@@ -10,10 +10,15 @@
 		<h2>KWAK</h2>
 		<div id="overlay" class="hidden">
 			<div id="begin" class="hidden">
-				<h3>Selecteer u speleraantal</h3>
+				<h3>Selecteer u speler aantal</h3>
 				<form>
 					<label for="playerAmount">aantal spelers</label>
-					<select id="playerAmount"></select>
+					<select id="playerAmount">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+					</select>
 				</form>
 			</div>
 			<div id="end" class="hidden">
@@ -27,81 +32,83 @@
 		</div>
 		<div id="players">
 			<div id="player-1" class="visable">
-				<img src="player.png" alt="image of player 1">
+				<img src="player.svg" alt="image of player 1">
 				<span>Player 1</span>
 				<button disabled>Dobbel</button>
 			</div>
 			<div id="player-2" class="visable">
-				<img src="player.png" alt="image of player 2">
+				<img src="player.svg" alt="image of player 2">
 				<span>Player 2</span>
 				<button disabled>Dobbel</button>
 			</div>
 		</div>
-		<div class="pawn-1 place-52"></div>
-		<div id="board">
-			<div id="tile-1"></div>
-			<div id="tile-2"></div>
-			<div id="tile-3"></div>
-			<div id="tile-4"></div>
-			<div id="tile-5"></div>
-			<div id="tile-6"></div>
-			<div id="tile-7"></div>
-			<div id="tile-8"></div>
-			<div id="tile-9"></div>
-			<div id="tile-10"></div>
-			<div id="tile-11"></div>
-			<div id="tile-12"></div>
-			<div id="tile-13"></div>
-			<div id="tile-14"></div>
-			<div id="tile-15"></div>
-			<div id="tile-16"></div>
-			<div id="tile-17"></div>
-			<div id="tile-18"></div>
-			<div id="tile-19"></div>
-			<div id="tile-20"></div>
-			<div id="tile-21"></div>
-			<div id="tile-22"></div>
-			<div id="tile-23"></div>
-			<div id="tile-24"></div>
-			<div id="tile-25"></div>
-			<div id="tile-26"></div>
-			<div id="tile-27"></div>
-			<div id="tile-28"></div>
-			<div id="tile-29"></div>
-			<div id="tile-30"></div>
-			<div id="tile-31"></div>
-			<div id="tile-32"></div>
-			<div id="tile-33"></div>
-			<div id="tile-34"></div>
-			<div id="tile-35"></div>
-			<div id="tile-36"></div>
-			<div id="tile-37"></div>
-			<div id="tile-38"></div>
-			<div id="tile-39"></div>
-			<div id="tile-40"></div>
-			<div id="tile-41"></div>
-			<div id="tile-42"></div>
-			<div id="tile-43"></div>
-			<div id="tile-44"></div>
-			<div id="tile-45"></div>
-			<div id="tile-46"></div>
-			<div id="tile-47"></div>
-			<div id="tile-48"></div>
-			<div id="tile-49"></div>
-			<div id="tile-50"></div>
-			<div id="tile-51"></div>
-			<div id="tile-52"></div>
-			<div id="tile-53"></div>
-			<div id="tile-54"></div>
-			<div id="tile-55"></div>
-			<div id="tile-56"></div>
-			<div id="tile-57"></div>
-			<div id="tile-58"></div>
-			<div id="tile-59"></div>
-			<div id="tile-60"></div>
-			<div id="tile-61"></div>
-			<div id="tile-62"></div>
-			<div id="tile-63"></div>
+		<div id="game">
+			<div class="pawn-1 place-52"></div>
+			<div id="board">
+				<div id="tile-1"></div>
+				<div id="tile-2"></div>
+				<div id="tile-3"></div>
+				<div id="tile-4"></div>
+				<div id="tile-5"></div>
+				<div id="tile-6"></div>
+				<div id="tile-7"></div>
+				<div id="tile-8"></div>
+				<div id="tile-9"></div>
+				<div id="tile-10"></div>
+				<div id="tile-11"></div>
+				<div id="tile-12"></div>
+				<div id="tile-13"></div>
+				<div id="tile-14"></div>
+				<div id="tile-15"></div>
+				<div id="tile-16"></div>
+				<div id="tile-17"></div>
+				<div id="tile-18"></div>
+				<div id="tile-19"></div>
+				<div id="tile-20"></div>
+				<div id="tile-21"></div>
+				<div id="tile-22"></div>
+				<div id="tile-23"></div>
+				<div id="tile-24"></div>
+				<div id="tile-25"></div>
+				<div id="tile-26"></div>
+				<div id="tile-27"></div>
+				<div id="tile-28"></div>
+				<div id="tile-29"></div>
+				<div id="tile-30"></div>
+				<div id="tile-31"></div>
+				<div id="tile-32"></div>
+				<div id="tile-33"></div>
+				<div id="tile-34"></div>
+				<div id="tile-35"></div>
+				<div id="tile-36"></div>
+				<div id="tile-37"></div>
+				<div id="tile-38"></div>
+				<div id="tile-39"></div>
+				<div id="tile-40"></div>
+				<div id="tile-41"></div>
+				<div id="tile-42"></div>
+				<div id="tile-43"></div>
+				<div id="tile-44"></div>
+				<div id="tile-45"></div>
+				<div id="tile-46"></div>
+				<div id="tile-47"></div>
+				<div id="tile-48"></div>
+				<div id="tile-49"></div>
+				<div id="tile-50"></div>
+				<div id="tile-51"></div>
+				<div id="tile-52"></div>
+				<div id="tile-53"></div>
+				<div id="tile-54"></div>
+				<div id="tile-55"></div>
+				<div id="tile-56"></div>
+				<div id="tile-57"></div>
+				<div id="tile-58"></div>
+				<div id="tile-59"></div>
+				<div id="tile-60"></div>
+				<div id="tile-61"></div>
+				<div id="tile-62"></div>
+				<div id="tile-63"></div>
+			</div>
 		</div>
 		<script type="text/javascript" src="scripts/rules.js"></script>
 		<script type="text/javascript" src="scripts/dices.js"></script>
