@@ -2,3 +2,20 @@
 	margin: 0;
 	padding: 0;
 }
+.hidden{
+	display: none;
+}
+#overlay{
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background: rgba(0,0,0,0.7);
+}
+h1,h2,h3,span{
+	font-family: Helvetica, Arial, sans-serif;
+}
+h2{
+	color: lightgray;
+}
