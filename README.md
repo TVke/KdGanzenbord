@@ -1,8 +1,8 @@
 # KdGanzenbord
 
 Thomas:
-view
-pionnen
+view,
+pionnen,
 verplaatsing
 
 
@@ -11,6 +11,6 @@ spelregels
 
 
 Niels:
-dobbelsteen
-beurten
+dobbelsteen,
+beurten,
 startscherm
