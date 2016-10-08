@@ -7,6 +7,8 @@
     text-rendering: optimizeLegibility;
 }
 
+/* basics */
+
 *,html {
 	margin:0;
 	padding:0;
@@ -47,22 +49,18 @@ header,#dices {
 	margin:0 auto;
 }
 
+header {
+	bottom:initial;
+}
+
+/* overlays */
+
 #overlay {
 	background:rgba(0,0,0,0.7);
 	z-index:2;
 }
 
-header {
-	bottom:initial;
-}
-
-#dices {
-	width:150px;
-	top:initial;
-	display:flex;
-	display:-webkit-flex;
-	justify-content:space-around;
-}
+/* players */
 
 #players {
 	z-index:1;
@@ -139,6 +137,16 @@ header {
 	top:0;
 }
 
+/* dices */
+
+#dices {
+	width:150px;
+	top:initial;
+	display:flex;
+	display:-webkit-flex;
+	justify-content:space-around;
+}
+
 #dices>div {
 	width:50px;
 	height:50px;
@@ -191,3 +199,6 @@ header {
 	background:transparent;
 	box-shadow:-20px -20px 0 black,-20px 0 0 black,-20px 20px 0 black,20px -20px 0 black,20px 0 0 black,20px 20px 0 #000;
 }
+
+/* gameboard */
+
