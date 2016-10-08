@@ -57,11 +57,11 @@ header {
 }
 
 #dices {
-	width: 150px;
+	width:150px;
 	top:initial;
 	display:flex;
 	display:-webkit-flex;
-	justify-content: space-around;
+	justify-content:space-around;
 }
 
 #players {
@@ -145,5 +145,49 @@ header {
 	border:3px solid #000;
 	border-radius:5px;
 	background:#fff;
-	padding: 5px;
+	padding:5px;
+	position:relative;
+}
+
+#dices>div::after {
+	content:"";
+	display:block;
+	width:10px;
+	height:10px;
+	margin:0 auto;
+	background:#000;
+	border-radius:50%;
+	position:absolute;
+	top:25px;
+	left:0;
+	right:0;
+}
+
+#dices>div.rolled-1::after {
+	background:#000;
+}
+
+#dices>div.rolled-2::after {
+	background:transparent;
+	box-shadow:20px -20px 0 black,-20px 20px 0 #000;
+}
+
+#dices>div.rolled-3::after {
+	background:#000;
+	box-shadow:20px -20px 0 black,-20px 20px 0 #000;
+}
+
+#dices>div.rolled-4::after {
+	background:transparent;
+	box-shadow:-20px -20px 0 black,-20px 20px 0 black,20px -20px 0 black,20px 20px 0 #000;
+}
+
+#dices>div.rolled-5::after {
+	background:#000;
+	box-shadow:-20px -20px 0 black,-20px 20px 0 black,20px -20px 0 black,20px 20px 0 #000;
+}
+
+#dices>div.rolled-6::after {
+	background:transparent;
+	box-shadow:-20px -20px 0 black,-20px 0 0 black,-20px 20px 0 black,20px -20px 0 black,20px 0 0 black,20px 20px 0 #000;
 }
