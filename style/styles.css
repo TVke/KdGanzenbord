@@ -202,3 +202,15 @@ header {
 
 /* gameboard */
 
+#board div{
+	counter-increment: tileIndex;
+}
+
+#board div::before{
+	content: counter(tileIndex);
+}
+
+
+
+
+
