@@ -3,23 +3,23 @@
 	<head>
 		<meta charset="utf-8">
 		<title>KdGanzenbord</title>
-		<link href="styles.css" rel="stylesheet" media="all">
+		<link href="styles.css" type="text/css" rel="stylesheet" media="all">
 	</head>
 	<body>
-		<h1>KdGanzenbord</h1>
-		<h2>KWAK</h2>
+		<header>
+			<h1>KdGanzenbord</h1>
+			<h2>KWAK</h2>
+		</header>
 		<div id="overlay" class="hidden">
 			<div id="begin" class="hidden">
 				<h3>Selecteer u speler aantal</h3>
-				<form>
-					<label for="playerAmount">aantal spelers</label>
-					<select id="playerAmount">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-					</select>
-				</form>
+				<label for="playerAmount">aantal spelers</label>
+				<select id="playerAmount">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+				</select>
 			</div>
 			<div id="end" class="hidden">
 				<h3>Gewonnen!</h3>
@@ -27,18 +27,42 @@
 			</div>
 		</div>
 		<div id="dices">
-			<div id="dice-1" class="rolled-3"></div>
-			<div id="dice-2" class="rolled-2"></div>
+			<div id="dice-1" class="rolled-3">
+				<div class="side-1"></div>
+				<div class="side-2"></div>
+				<div class="side-3"></div>
+				<div class="side-4"></div>
+				<div class="side-5"></div>
+				<div class="side-6"></div>
+			</div>
+			<div id="dice-2" class="rolled-2">
+				<div class="side-1"></div>
+				<div class="side-2"></div>
+				<div class="side-3"></div>
+				<div class="side-4"></div>
+				<div class="side-5"></div>
+				<div class="side-6"></div>
+			</div>
 		</div>
 		<div id="players">
 			<div id="player-1" class="visable">
 				<img src="player.svg" alt="image of player 1">
-				<span>Player 1</span>
+				<span>Speler 1</span>
 				<button disabled>Dobbel</button>
 			</div>
 			<div id="player-2" class="visable">
 				<img src="player.svg" alt="image of player 2">
-				<span>Player 2</span>
+				<span>Speler 2</span>
+				<button disabled>Dobbel</button>
+			</div>
+			<div id="player-3" class="visable">
+				<img src="player.svg" alt="image of player 3">
+				<span>Speler 3</span>
+				<button disabled>Dobbel</button>
+			</div>
+			<div id="player-4" class="visable">
+				<img src="player.svg" alt="image of player 4">
+				<span>Speler 4</span>
 				<button disabled>Dobbel</button>
 			</div>
 		</div>

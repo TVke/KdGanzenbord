@@ -1,21 +1,136 @@
-*,html{
-	margin: 0;
-	padding: 0;
+@font-face {
+	font-family: 'KdG';
+    src: url('KdG-Regular.eot'); 
+    src: url('KdG-Regular.eot?#iefix') format('embedded-opentype'), url('KdG-Regular.woff') format('woff'), url('KdG-Regular.ttf') format('truetype'), url('KdG-Regular.svg#KdG-Regular') format('svg');
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
 }
-.hidden{
-	display: none;
+
+*,html {
+	margin:0;
+	padding:0;
 }
-#overlay{
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	background: rgba(0,0,0,0.7);
+
+body {
+	font-family:'KdG',Helvetica,Arial,sans-serif;
 }
-h1,h2,h3,span{
-	font-family: Helvetica, Arial, sans-serif;
+
+.hidden,#players>div {
+	display:none;
 }
-h2{
-	color: lightgray;
+
+h1,h2,h3 {
+	text-align:center;
+}
+
+h2 {
+	color:lightgray;
+	font-size:1em;
+}
+
+header,#overlay,#players,#dices {
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	position:absolute;
+}
+
+header,#players>div {
+	background:rgba(255,255,255,0.3);
+}
+
+header,#dices {
+	padding:10px 0;
+	width:300px;
+	margin:0 auto;
+}
+
+#overlay {
+	background:rgba(0,0,0,0.7);
+	z-index:2;
+}
+
+header {
+	bottom:initial;
+}
+
+#dices {
+	top:initial;
+}
+
+#players {
+	z-index:1;
+}
+
+#players>div.visable {
+	position:inherit;
+	width:150px;
+	height:105px;
+	padding:10px;
+	display:flex;
+	display:-webkit-flex;
+	flex-wrap:wrap;
+	justify-content:space-around;
+}
+
+#players img {
+	display:block;
+	width:50px;
+	height:50px;
+	border-radius:50%;
+	background:#fff;
+	padding:5px;
+}
+
+#players span {
+	padding:10px 0;
+	font-size:1.2em;
+}
+
+#players button {
+	font-family:"Futura",Helvetica,Arial,sans-serif;
+	border:1px solid gray;
+	border-radius:5px;
+	font-size:1.2em;
+	padding:10px;
+	flex-grow:1;
+}
+
+#players button:enabled {
+	background:linear-gradient(#57bfff 0%,#009eff 100%);
+	background:-webkit-linear-gradient(#57bfff 0%,#009eff 100%);
+	color:#fff;
+	border-color:lightgray;
+}
+
+#players button:enabled:active {
+	background:linear-gradient(#009eff 0%,#57bfff 100%);
+	background:-webkit-linear-gradient(#009eff 0%,#57bfff 100%);
+	border-color:#000;
+}
+
+#players button:enabled:hover {
+	border-color:#000;
+}
+
+#player-1 {
+	right:0;
+	bottom:0;
+}
+
+#player-2 {
+	left:0;
+	bottom:0;
+}
+
+#player-3 {
+	left:0;
+	top:0;
+}
+
+#player-4 {
+	right:0;
+	top:0;
 }
