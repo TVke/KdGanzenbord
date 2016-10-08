@@ -205,25 +205,249 @@ header {
 	perspective: 2000px;
 }
 
+#game::after{
+	content: "";
+	display: block;
+	position: absolute;
+	width: 118%;
+	height:165px;
+	background: url("table-cloth-blue.png");
+	background-size: cover;
+	background-position-y: -3%;
+	transform-origin: top center;
+	transform: rotateX(50deg)rotateZ(0deg)translateY(-115px)translate(-7.6%)rotateX(-90deg);
+}
+
 #board {
 	display:flex;
 	display:-webkit-flex;
 	flex-wrap:wrap;
+	width: 100%;
+	height:600px;
 	background: url("table-cloth-blue.png");
-	background-size: contain;
+	background-size: cover;
 	transform: rotateX(50deg)rotate(0deg);
+	position: relative;
 }
 
-#board div {
-	counter-increment:tileIndex;
-	width:80px;
-	height:80px;
+/* pawn */
+#game div[class^="pawn-"]{
+	width:10%;
+	height:45px;
 	padding:5px;
 	border:1px solid #808080;
 	background: #fff;
-	position: relative;
+	position: absolute;
+	margin: 0 auto;
+	top: 276px;
+	left: 0;
+	right: 0;
+}
+
+/* board tiles */
+#board div {
+	counter-increment:tileIndex;
+	width:9%;
+	height:73.7px;
+	padding:5px;
+	border:1px solid #808080;
+	background: #fff;
+	position: absolute;
+	margin: 0 auto;
+	top: 263.15px;
+	left: 0;
+	right: 0;
 }
 
 #board div::before {
 	content:counter(tileIndex);
 }
+
+#tile-62,.place-62{
+	transform: translate(-100%);
+}
+#tile-61,.place-61{
+	transform: translate(-200%);
+}
+#tile-60,.place-60{
+	transform: translate(-200%,-100%);
+}
+#tile-59,.place-59{
+	transform: translate(-100%,-100%);
+}
+#tile-58,.place-58{
+	transform: translate(0,-100%);
+}
+#tile-57,.place-57{
+	transform: translate(100%,-100%);
+}
+#tile-56,.place-56{
+	transform: translate(100%,0);
+}
+#tile-55,.place-55{
+	transform: translate(100%,100%);
+}
+#tile-54,.place-54{
+	transform: translate(0,100%);
+}
+#tile-53,.place-53{
+	transform: translate(-100%,100%);
+}
+#tile-52,.place-52{
+	transform: translate(-200%,100%);
+}
+/*
+#tile-51,.place-51{
+	transform: translate(-200%,-200%);
+}
+#tile-50,.place-50{
+	transform: translate(-100%,-200%);
+}
+#tile-49,.place-49{
+	transform: translate(0,-200%);
+}
+#tile-48{
+	transform: translate(100%,-200%);
+}
+#tile-47{
+	transform: translate(200%,-200%);
+}
+#tile-46{
+	transform: translate(200%,-100%);
+}
+#tile-45{
+	transform: translate(200%,0);
+}
+#tile-44{
+	transform: translate(200%,100%);
+}
+#tile-43{
+	transform: translate(200%,200%);
+}
+#tile-42{
+	transform: translate(100%,200%);
+}
+#tile-41{
+	transform: translate(0,200%);
+}
+#tile-40{
+	transform: translate(-100%,200%);
+}
+#tile-39{
+	transform: translate(-200%,200%);
+}
+#tile-38{
+	transform: translate(-300%,200%);
+}
+#tile-37{
+	transform: translate(-300%,100%);
+}
+#tile-36{
+	transform: translate(-300%,0);
+}
+#tile-35{
+	transform: translate(-300%,-100%);
+}
+#tile-34{
+	transform: translate(-300%,-200%);
+}
+#tile-33{
+	transform: translate(-300%,-300%);
+}
+#tile-32{
+	transform: translate(-200%,-300%);
+}
+#tile-31{
+	transform: translate(-100%,-300%);
+}
+#tile-30{
+	transform: translate(0,-300%);
+}
+#tile-29{
+	transform: translate(100%,-300%);
+}
+#tile-28{
+	transform: translate(200%,-300%);
+}
+#tile-27{
+	transform: translate(300%,-300%);
+}
+#tile-26{
+	transform: translate(300%,-200%);
+}
+#tile-25{
+	transform: translate(300%,-100%);
+}
+#tile-24{
+	transform: translate(300%,0);
+}
+#tile-23{
+	transform: translate(300%,100%);
+}
+#tile-22{
+	transform: translate(300%,200%);
+}
+#tile-21{
+	transform: translate(300%,300%);
+}
+#tile-20{
+	transform: translate(200%,300%);
+}
+#tile-19{
+	transform: translate(100%,300%);
+}
+#tile-18{
+	transform: translate(0,300%);
+}
+#tile-17{
+	transform: translate(-100%,300%);
+}
+#tile-16{
+	transform: translate(-200%,300%);
+}
+#tile-15{
+	transform: translate(-300%,300%);
+}
+#tile-14{
+	transform: translate(-400%,300%);
+}
+#tile-13{
+	transform: translate(-400%,200%);
+}
+#tile-12{
+	transform: translate(-400%,100%);
+}
+#tile-11{
+	transform: translate(-400%,0);
+}
+#tile-10{
+	transform: translate(-400%,-100%);
+}
+#tile-9{
+	transform: translate(-400%,-200%);
+}
+#tile-8{
+	transform: translate(-400%,-300%);
+}
+#tile-7{
+	transform: translate(-400%,-400%);
+}
+#tile-6{
+	transform: translate(-300%,-400%);
+}
+#tile-5{
+	transform: translate(-200%,-400%);
+}
+#tile-4{
+	transform: translate(-100%,-400%);
+}
+#tile-3{
+	transform: translate(0,-400%);
+}
+#tile-2{
+	transform: translate(100%,-400%);
+}
+#tile-1{
+	transform: translate(200%,-400%);
+}
+*/
