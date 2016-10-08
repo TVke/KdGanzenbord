@@ -8,7 +8,6 @@
 }
 
 /* basics */
-
 *,html {
 	margin:0;
 	padding:0;
@@ -27,7 +26,7 @@ h1,h2,h3 {
 }
 
 h2 {
-	color:lightgray;
+	color:#808080;
 	font-size:1em;
 }
 
@@ -39,8 +38,8 @@ header,#overlay,#players,#dices {
 	position:absolute;
 }
 
-header,#players>div {
-	background:rgba(255,255,255,0.3);
+header,#dices,#players>div {
+	background:rgba(255,255,255,0.6);
 }
 
 header,#dices {
@@ -54,14 +53,12 @@ header {
 }
 
 /* overlays */
-
 #overlay {
 	background:rgba(0,0,0,0.7);
 	z-index:2;
 }
 
 /* players */
-
 #players {
 	z-index:1;
 }
@@ -93,7 +90,7 @@ header {
 
 #players button {
 	font-family:"Futura",Helvetica,Arial,sans-serif;
-	border:1px solid gray;
+	border:1px solid #fff;
 	border-radius:5px;
 	font-size:1.2em;
 	padding:10px;
@@ -104,7 +101,7 @@ header {
 	background:linear-gradient(#57bfff 0%,#009eff 100%);
 	background:-webkit-linear-gradient(#57bfff 0%,#009eff 100%);
 	color:#fff;
-	border-color:lightgray;
+	border-color:#d3d3d3;
 }
 
 #players button:enabled:active {
@@ -138,7 +135,6 @@ header {
 }
 
 /* dices */
-
 #dices {
 	width:150px;
 	top:initial;
@@ -201,16 +197,33 @@ header {
 }
 
 /* gameboard */
-
-#board div{
-	counter-increment: tileIndex;
+#game {
+	z-index:-1;
+	width: 75%;
+	margin: 0 auto;/*80px not in perspective*/
+	position: relative;
+	perspective: 2000px;
 }
 
-#board div::before{
-	content: counter(tileIndex);
+#board {
+	display:flex;
+	display:-webkit-flex;
+	flex-wrap:wrap;
+	background: url("table-cloth-blue.png");
+	background-size: contain;
+	transform: rotateX(50deg)rotate(0deg);
 }
 
+#board div {
+	counter-increment:tileIndex;
+	width:80px;
+	height:80px;
+	padding:5px;
+	border:1px solid #808080;
+	background: #fff;
+	position: relative;
+}
 
-
-
-
+#board div::before {
+	content:counter(tileIndex);
+}
