@@ -26,7 +26,7 @@ h1,h2,h3 {
 }
 
 h2 {
-	color:#808080;
+	color:gray;
 	font-size:1em;
 }
 
@@ -80,7 +80,9 @@ header {
 	height:50px;
 	border-radius:50%;
 	background:#fff;
-	padding:5px;
+	padding:2px;
+	margin: 3px;
+	border: 1px solid;
 }
 
 #players span {
@@ -132,6 +134,18 @@ header {
 #player-4 {
 	right:0;
 	top:0;
+}
+#player-1 img{
+	border-color: red;
+}
+#player-2 img{
+	border-color: orange;
+}
+#player-3 img{
+	border-color: purple;
+}
+#player-4 img{
+	border-color: green;
 }
 
 /* dices */
@@ -199,49 +213,50 @@ header {
 /* gameboard */
 #game {
 	z-index:-1;
-	width: 75%;
-	margin: 0 auto;/*80px not in perspective*/
-	position: relative;
-	perspective: 2000px;
+	width:75%;
+	margin:0 auto;
+/*80px not in perspective*/
+	position:relative;
+	perspective:2000px;
 }
 
-#game::after{
-	content: "";
-	display: block;
-	position: absolute;
-	width: 118%;
+#game::after {
+	content:"";
+	display:block;
+	position:absolute;
+	width:118%;
 	height:165px;
-	background: url("table-cloth-blue.png");
-	background-size: cover;
-	background-position-y: -3%;
-	transform-origin: top center;
-	transform: rotateX(50deg)rotateZ(0deg)translateY(-115px)translate(-7.6%)rotateX(-90deg);
+	background:url(table-cloth-blue.png);
+	background-size:cover;
+	background-position-y:-3%;
+	transform-origin:top center;
+	transform:rotateX(50deg)rotateZ(0deg)translateY(-115px)translate(-7.6%)rotateX(-90deg);
 }
 
 #board {
 	display:flex;
 	display:-webkit-flex;
 	flex-wrap:wrap;
-	width: 100%;
+	width:100%;
 	height:600px;
-	background: url("table-cloth-blue.png");
-	background-size: cover;
-	transform: rotateX(50deg)rotate(0deg);
-	position: relative;
+	background:url(table-cloth-blue.png);
+	background-size:cover;
+	transform:rotateX(50deg)rotate(0deg);
+	position:relative;
 }
 
 /* pawn */
-#game div[class^="pawn-"]{
+#game div[class^="pawn-"] {
 	width:10%;
 	height:45px;
 	padding:5px;
-	border:1px solid #808080;
-	background: #fff;
-	position: absolute;
-	margin: 0 auto;
-	top: 276px;
-	left: 0;
-	right: 0;
+	border:1px solid gray;
+	background:#fff;
+	position:absolute;
+	margin:0 auto;
+	top:276px;
+	left:0;
+	right:0;
 }
 
 /* board tiles */
@@ -250,52 +265,63 @@ header {
 	width:9%;
 	height:73.7px;
 	padding:5px;
-	border:1px solid #808080;
-	background: #fff;
-	position: absolute;
-	margin: 0 auto;
-	top: 263.15px;
-	left: 0;
-	right: 0;
+	border:1px solid gray;
+	background:#fff;
+	position:absolute;
+	margin:0 auto;
+	top:263.15px;
+	left:0;
+	right:0;
 }
 
 #board div::before {
 	content:counter(tileIndex);
 }
 
-#tile-62,.place-62{
-	transform: translate(-100%);
+#tile-62,.place-62 {
+	transform:translate(-100%);
 }
-#tile-61,.place-61{
-	transform: translate(-200%);
+
+#tile-61,.place-61 {
+	transform:translate(-200%);
 }
-#tile-60,.place-60{
-	transform: translate(-200%,-100%);
+
+#tile-60,.place-60 {
+	transform:translate(-200%,-100%);
 }
-#tile-59,.place-59{
-	transform: translate(-100%,-100%);
+
+#tile-59,.place-59 {
+	transform:translate(-100%,-100%);
 }
-#tile-58,.place-58{
-	transform: translate(0,-100%);
+
+#tile-58,.place-58 {
+	transform:translate(0,-100%);
 }
-#tile-57,.place-57{
-	transform: translate(100%,-100%);
+
+#tile-57,.place-57 {
+	transform:translate(100%,-100%);
 }
-#tile-56,.place-56{
-	transform: translate(100%,0);
+
+#tile-56,.place-56 {
+	transform:translate(100%,0);
 }
-#tile-55,.place-55{
-	transform: translate(100%,100%);
+
+#tile-55,.place-55 {
+	transform:translate(100%,100%);
 }
-#tile-54,.place-54{
-	transform: translate(0,100%);
+
+#tile-54,.place-54 {
+	transform:translate(0,100%);
 }
-#tile-53,.place-53{
-	transform: translate(-100%,100%);
+
+#tile-53,.place-53 {
+	transform:translate(-100%,100%);
 }
-#tile-52,.place-52{
-	transform: translate(-200%,100%);
+
+#tile-52,.place-52 {
+	transform:translate(-200%,100%);
 }
+
 /*
 #tile-51,.place-51{
 	transform: translate(-200%,-200%);
@@ -451,3 +477,10 @@ header {
 	transform: translate(200%,-400%);
 }
 */
+
+/* to small rules */
+@media screen and (max-width: 800px){
+	#game::after{
+		display: none;
+	}	
+}
