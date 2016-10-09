@@ -81,8 +81,8 @@ header {
 	border-radius:50%;
 	background:#fff;
 	padding:2px;
-	margin: 3px;
-	border: 1px solid;
+	margin:3px;
+	border:1px solid;
 }
 
 #players span {
@@ -135,17 +135,21 @@ header {
 	right:0;
 	top:0;
 }
-#player-1 img{
-	border-color: red;
+
+#player-1 img {
+	border-color:red;
 }
-#player-2 img{
-	border-color: orange;
+
+#player-2 img {
+	border-color:orange;
 }
-#player-3 img{
-	border-color: purple;
+
+#player-3 img {
+	border-color:purple;
 }
-#player-4 img{
-	border-color: green;
+
+#player-4 img {
+	border-color:green;
 }
 
 /* dices */
@@ -477,10 +481,9 @@ header {
 	transform: translate(200%,-400%);
 }
 */
-
 /* to small rules */
-@media screen and (max-width: 800px){
-	#game::after{
-		display: none;
-	}	
+@media screen and (max-width: 800px) {
+	#game::after {
+		display:none;
+	}
 }
