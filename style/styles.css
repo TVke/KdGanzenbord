@@ -81,8 +81,8 @@ header {
 	border-radius:50%;
 	background:#fff;
 	padding:2px;
-	margin:3px;
-	border:1px solid;
+	margin:2px;
+	border:2px solid;
 }
 
 #players span {
@@ -137,7 +137,7 @@ header {
 }
 
 #player-1 img {
-	border-color:red;
+	border-color:#FF5050;
 }
 
 #player-2 img {
@@ -145,11 +145,11 @@ header {
 }
 
 #player-3 img {
-	border-color:purple;
+	border-color:#00db00;
 }
 
 #player-4 img {
-	border-color:green;
+	border-color:#05B9FF;
 }
 
 /* dices */
