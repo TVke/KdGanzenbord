@@ -26,7 +26,7 @@ h1,h2,h3 {
 }
 
 h2 {
-	color:#808080;
+	color:gray;
 	font-size:1em;
 }
 
@@ -80,7 +80,9 @@ header {
 	height:50px;
 	border-radius:50%;
 	background:#fff;
-	padding:5px;
+	padding:2px;
+	margin:3px;
+	border:1px solid;
 }
 
 #players span {
@@ -132,6 +134,22 @@ header {
 #player-4 {
 	right:0;
 	top:0;
+}
+
+#player-1 img {
+	border-color:red;
+}
+
+#player-2 img {
+	border-color:orange;
+}
+
+#player-3 img {
+	border-color:purple;
+}
+
+#player-4 img {
+	border-color:green;
 }
 
 /* dices */
@@ -198,50 +216,323 @@ header {
 
 /* gameboard */
 #game {
-	z-index:-1;
-	width: 75%;
-	margin: 0 auto;/*80px not in perspective*/
-	position: relative;
-	perspective: 2000px;
+	width:75%;
+	margin:0 auto;
+/*80px not in perspective*/
+	position:relative;
+	perspective:2000px;
 }
 
-#game::after{
-	content: "";
-	display: block;
-	position: absolute;
-	width: 118%;
+#game::after {
+	content:"";
+	display:block;
+	position:absolute;
+	width:118%;
 	height:165px;
-	background: url("table-cloth-blue.png");
-	background-size: cover;
-	background-position-y: -3%;
-	transform-origin: top center;
-	transform: rotateX(50deg)rotateZ(0deg)translateY(-115px)translate(-7.6%)rotateX(-90deg);
+	background:url(table-cloth-blue.png);
+	background-size:cover;
+	background-position-y:-3%;
+	transform-origin:top center;
+	transform:rotateX(50deg)translateY(-115px)translate(-7.6%)rotateX(-90deg);
 }
 
 #board {
 	display:flex;
 	display:-webkit-flex;
 	flex-wrap:wrap;
-	width: 100%;
+	width:100%;
 	height:600px;
-	background: url("table-cloth-blue.png");
-	background-size: cover;
-	transform: rotateX(50deg)rotate(0deg);
-	position: relative;
+	background:url(table-cloth-blue.png);
+	background-size:cover;
+	transform:rotateX(50deg);
+	position:relative;
 }
 
 /* pawn */
-#game div[class^="pawn-"]{
-	width:10%;
-	height:45px;
+#game div[class^="pawn-"] {
+	width:9%;
+	height:73.7px;
 	padding:5px;
-	border:1px solid #808080;
-	background: #fff;
-	position: absolute;
-	margin: 0 auto;
-	top: 276px;
-	left: 0;
-	right: 0;
+	position:absolute;
+	margin:0 auto;
+	top:262.15px;
+	left:0;
+	right:0;
+	transform-origin:bottom center;
+}
+
+#game div[class^="pawn-"] svg {
+	height:73.7px;
+	margin:0 auto;
+	display:block;
+}
+
+#game .pawn-1 svg {
+	fill:red;
+}
+
+#game .pawn-2 svg {
+	fill:orange;
+}
+
+#game .pawn-3 svg {
+	fill:purple;
+}
+
+#game .pawn-4 svg {
+	fill:green;
+}
+
+#game .place-63 {
+	transform:rotateX(50deg)translate(100%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-62 {
+	transform:rotateX(50deg)translate(0)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-61 {
+	transform:rotateX(50deg)translate(-100%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-60 {
+	transform:rotateX(50deg)translate(-200%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-59 {
+	transform:rotateX(50deg)translate(-200%,-100%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-58 {
+	transform:rotateX(50deg)translate(-100%,-100%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-57 {
+	transform:rotateX(50deg)translate(0,-100%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-56 {
+	transform:rotateX(50deg)translate(100%,-100%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-55 {
+	transform:rotateX(50deg)translate(200%,-100%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-54 {
+	transform:rotateX(50deg)translate(200%,0)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-53 {
+	transform:rotateX(50deg)translate(200%,100%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-52 {
+	transform:rotateX(50deg)translate(100%,100%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-51 {
+	transform:rotateX(50deg) translate(0,100%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-50 {
+	transform:rotateX(50deg) translate(-100%,100%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-49 {
+	transform:rotateX(50deg) translate(-200%,100%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-48 {
+	transform:rotateX(50deg) translate(-300%,100%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-47 {
+	transform:rotateX(50deg) translate(-300%,0)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-46 {
+	transform:rotateX(50deg) translate(-300%,-100%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-45 {
+	transform:rotateX(50deg) translate(-300%,-200%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-44 {
+	transform:rotateX(50deg) translate(-200%,-200%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-43 {
+	transform:rotateX(50deg) translate(-100%,-200%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-42 {
+	transform:rotateX(50deg) translate(0,-200%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-41 {
+	transform:rotateX(50deg) translate(100%,-200%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-40 {
+	transform:rotateX(50deg) translate(200%,-200%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-39 {
+	transform:rotateX(50deg) translate(300%,-200%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-38 {
+	transform:rotateX(50deg) translate(300%,-100%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-37 {
+	transform:rotateX(50deg) translate(300%,0)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-36 {
+	transform:rotateX(50deg) translate(300%,100%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-35 {
+	transform:rotateX(50deg) translate(300%,200%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-34 {
+	transform:rotateX(50deg) translate(200%,200%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-33 {
+	transform:rotateX(50deg) translate(100%,200%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-32 {
+	transform:rotateX(50deg) translate(0,200%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-31 {
+	transform:rotateX(50deg) translate(-100%,200%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-30 {
+	transform:rotateX(50deg) translate(-200%,200%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-29 {
+	transform:rotateX(50deg) translate(-300%,200%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-28 {
+	transform:rotateX(50deg) translate(-400%,200%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-27 {
+	transform:rotateX(50deg) translate(-400%,100%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-26 {
+	transform:rotateX(50deg) translate(-400%,0)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-25 {
+	transform:rotateX(50deg) translate(-400%,-100%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-24 {
+	transform:rotateX(50deg) translate(-400%,-200%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-23 {
+	transform:rotateX(50deg) translate(-400%,-300%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-22 {
+	transform:rotateX(50deg) translate(-300%,-300%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-21 {
+	transform:rotateX(50deg) translate(-200%,-300%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-20 {
+	transform:rotateX(50deg) translate(-100%,-300%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-19 {
+	transform:rotateX(50deg) translate(0,-300%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-18 {
+	transform:rotateX(50deg) translate(100%,-300%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-17 {
+	transform:rotateX(50deg) translate(200%,-300%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-16 {
+	transform:rotateX(50deg) translate(300%,-300%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-15 {
+	transform:rotateX(50deg) translate(400%,-300%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-14 {
+	transform:rotateX(50deg) translate(400%,-200%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-13 {
+	transform:rotateX(50deg) translate(400%,-100%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-12 {
+	transform:rotateX(50deg) translate(400%,0)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-11 {
+	transform:rotateX(50deg) translate(400%,100%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-10 {
+	transform:rotateX(50deg) translate(400%,200%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-9 {
+	transform:rotateX(50deg) translate(400%,300%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-8 {
+	transform:rotateX(50deg) translate(300%,300%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-7 {
+	transform:rotateX(50deg) translate(200%,300%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-6 {
+	transform:rotateX(50deg) translate(100%,300%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-5 {
+	transform:rotateX(50deg) translate(0,300%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-4 {
+	transform:rotateX(50deg) translate(-100%,300%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-3 {
+	transform:rotateX(50deg) translate(-200%,300%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-2 {
+	transform:rotateX(50deg) translate(-300%,300%)translateZ(32px)rotateX(-50deg);
+}
+
+#game .place-1 {
+	transform:rotateX(50deg) translate(-400%,300%)translateZ(32px)rotateX(-50deg);
 }
 
 /* board tiles */
@@ -250,204 +541,274 @@ header {
 	width:9%;
 	height:73.7px;
 	padding:5px;
-	border:1px solid #808080;
-	background: #fff;
-	position: absolute;
-	margin: 0 auto;
-	top: 263.15px;
-	left: 0;
-	right: 0;
+	border:1px solid gray;
+	background:#fff;
+	position:absolute;
+	margin:0 auto;
+	top:257px;
+	left:0;
+	right:0;
 }
 
 #board div::before {
 	content:counter(tileIndex);
 }
 
-#tile-62,.place-62{
-	transform: translate(-100%);
+#tile-63,.place-63 {
+	transform:translate(100%);
 }
-#tile-61,.place-61{
-	transform: translate(-200%);
+
+#tile-62,.place-62 {
+	transform:translate(0);
 }
-#tile-60,.place-60{
-	transform: translate(-200%,-100%);
+
+#tile-61,.place-61 {
+	transform:translate(-100%);
 }
-#tile-59,.place-59{
-	transform: translate(-100%,-100%);
+
+#tile-60,.place-60 {
+	transform:translate(-200%);
 }
-#tile-58,.place-58{
-	transform: translate(0,-100%);
+
+#tile-59,.place-59 {
+	transform:translate(-200%,-100%);
 }
-#tile-57,.place-57{
-	transform: translate(100%,-100%);
+
+#tile-58,.place-58 {
+	transform:translate(-100%,-100%);
 }
-#tile-56,.place-56{
-	transform: translate(100%,0);
+
+#tile-57,.place-57 {
+	transform:translate(0,-100%);
 }
-#tile-55,.place-55{
-	transform: translate(100%,100%);
+
+#tile-56,.place-56 {
+	transform:translate(100%,-100%);
 }
-#tile-54,.place-54{
-	transform: translate(0,100%);
+
+#tile-55,.place-55 {
+	transform:translate(200%,-100%);
 }
-#tile-53,.place-53{
-	transform: translate(-100%,100%);
+
+#tile-54,.place-54 {
+	transform:translate(200%,0);
 }
-#tile-52,.place-52{
-	transform: translate(-200%,100%);
+
+#tile-53,.place-53 {
+	transform:translate(200%,100%);
 }
-/*
-#tile-51,.place-51{
-	transform: translate(-200%,-200%);
+
+#tile-52,.place-52 {
+	transform:translate(100%,100%);
 }
-#tile-50,.place-50{
-	transform: translate(-100%,-200%);
+
+#tile-51,.place-51 {
+	transform:translate(0,100%);
 }
-#tile-49,.place-49{
-	transform: translate(0,-200%);
+
+#tile-50,.place-50 {
+	transform:translate(-100%,100%);
 }
-#tile-48{
-	transform: translate(100%,-200%);
+
+#tile-49,.place-49 {
+	transform:translate(-200%,100%);
 }
-#tile-47{
-	transform: translate(200%,-200%);
+
+#tile-48,.place-48 {
+	transform:translate(-300%,100%);
 }
-#tile-46{
-	transform: translate(200%,-100%);
+
+#tile-47,.place-47 {
+	transform:translate(-300%,0);
 }
-#tile-45{
-	transform: translate(200%,0);
+
+#tile-46,.place-46 {
+	transform:translate(-300%,-100%);
 }
-#tile-44{
-	transform: translate(200%,100%);
+
+#tile-45,.place-45 {
+	transform:translate(-300%,-200%);
 }
-#tile-43{
-	transform: translate(200%,200%);
+
+#tile-44,.place-44 {
+	transform:translate(-200%,-200%);
 }
-#tile-42{
-	transform: translate(100%,200%);
+
+#tile-43,.place-43 {
+	transform:translate(-100%,-200%);
 }
-#tile-41{
-	transform: translate(0,200%);
+
+#tile-42,.place-42 {
+	transform:translate(0,-200%);
 }
-#tile-40{
-	transform: translate(-100%,200%);
+
+#tile-41,.place-41 {
+	transform:translate(100%,-200%);
 }
-#tile-39{
-	transform: translate(-200%,200%);
+
+#tile-40,.place-40 {
+	transform:translate(200%,-200%);
 }
-#tile-38{
-	transform: translate(-300%,200%);
+
+#tile-39,.place-39 {
+	transform:translate(300%,-200%);
 }
-#tile-37{
-	transform: translate(-300%,100%);
+
+#tile-38,.place-38 {
+	transform:translate(300%,-100%);
 }
-#tile-36{
-	transform: translate(-300%,0);
+
+#tile-37,.place-37 {
+	transform:translate(300%,0);
 }
-#tile-35{
-	transform: translate(-300%,-100%);
+
+#tile-36,.place-36 {
+	transform:translate(300%,100%);
 }
-#tile-34{
-	transform: translate(-300%,-200%);
+
+#tile-35,.place-35 {
+	transform:translate(300%,200%);
 }
-#tile-33{
-	transform: translate(-300%,-300%);
+
+#tile-34,.place-34 {
+	transform:translate(200%,200%);
 }
-#tile-32{
-	transform: translate(-200%,-300%);
+
+#tile-33,.place-33 {
+	transform:translate(100%,200%);
 }
-#tile-31{
-	transform: translate(-100%,-300%);
+
+#tile-32,.place-32 {
+	transform:translate(0,200%);
 }
-#tile-30{
-	transform: translate(0,-300%);
+
+#tile-31,.place-31 {
+	transform:translate(-100%,200%);
 }
-#tile-29{
-	transform: translate(100%,-300%);
+
+#tile-30,.place-30 {
+	transform:translate(-200%,200%);
 }
-#tile-28{
-	transform: translate(200%,-300%);
+
+#tile-29,.place-29 {
+	transform:translate(-300%,200%);
 }
-#tile-27{
-	transform: translate(300%,-300%);
+
+#tile-28,.place-28 {
+	transform:translate(-400%,200%);
 }
-#tile-26{
-	transform: translate(300%,-200%);
+
+#tile-27,.place-27 {
+	transform:translate(-400%,100%);
 }
-#tile-25{
-	transform: translate(300%,-100%);
+
+#tile-26,.place-26 {
+	transform:translate(-400%,0);
 }
-#tile-24{
-	transform: translate(300%,0);
+
+#tile-25,.place-25 {
+	transform:translate(-400%,-100%);
 }
-#tile-23{
-	transform: translate(300%,100%);
+
+#tile-24,.place-24 {
+	transform:translate(-400%,-200%);
 }
-#tile-22{
-	transform: translate(300%,200%);
+
+#tile-23,.place-23 {
+	transform:translate(-400%,-300%);
 }
-#tile-21{
-	transform: translate(300%,300%);
+
+#tile-22,.place-22 {
+	transform:translate(-300%,-300%);
 }
-#tile-20{
-	transform: translate(200%,300%);
+
+#tile-21,.place-21 {
+	transform:translate(-200%,-300%);
 }
-#tile-19{
-	transform: translate(100%,300%);
+
+#tile-20,.place-20 {
+	transform:translate(-100%,-300%);
 }
-#tile-18{
-	transform: translate(0,300%);
+
+#tile-19,.place-19 {
+	transform:translate(0,-300%);
 }
-#tile-17{
-	transform: translate(-100%,300%);
+
+#tile-18,.place-18 {
+	transform:translate(100%,-300%);
 }
-#tile-16{
-	transform: translate(-200%,300%);
+
+#tile-17,.place-17 {
+	transform:translate(200%,-300%);
 }
-#tile-15{
-	transform: translate(-300%,300%);
+
+#tile-16,.place-16 {
+	transform:translate(300%,-300%);
 }
-#tile-14{
-	transform: translate(-400%,300%);
+
+#tile-15,.place-15 {
+	transform:translate(400%,-300%);
 }
-#tile-13{
-	transform: translate(-400%,200%);
+
+#tile-14,.place-14 {
+	transform:translate(400%,-200%);
 }
-#tile-12{
-	transform: translate(-400%,100%);
+
+#tile-13,.place-13 {
+	transform:translate(400%,-100%);
 }
-#tile-11{
-	transform: translate(-400%,0);
+
+#tile-12,.place-12 {
+	transform:translate(400%,0);
 }
-#tile-10{
-	transform: translate(-400%,-100%);
+
+#tile-11,.place-11 {
+	transform:translate(400%,100%);
 }
-#tile-9{
-	transform: translate(-400%,-200%);
+
+#tile-10,.place-10 {
+	transform:translate(400%,200%);
 }
-#tile-8{
-	transform: translate(-400%,-300%);
+
+#tile-9,.place-9 {
+	transform:translate(400%,300%);
 }
-#tile-7{
-	transform: translate(-400%,-400%);
+
+#tile-8,.place-8 {
+	transform:translate(300%,300%);
 }
-#tile-6{
-	transform: translate(-300%,-400%);
+
+#tile-7,.place-7 {
+	transform:translate(200%,300%);
 }
-#tile-5{
-	transform: translate(-200%,-400%);
+
+#tile-6,.place-6 {
+	transform:translate(100%,300%);
 }
-#tile-4{
-	transform: translate(-100%,-400%);
+
+#tile-5,.place-5 {
+	transform:translate(0,300%);
 }
-#tile-3{
-	transform: translate(0,-400%);
+
+#tile-4,.place-4 {
+	transform:translate(-100%,300%);
 }
-#tile-2{
-	transform: translate(100%,-400%);
+
+#tile-3,.place-3 {
+	transform:translate(-200%,300%);
 }
-#tile-1{
-	transform: translate(200%,-400%);
+
+#tile-2,.place-2 {
+	transform:translate(-300%,300%);
 }
-*/
+
+#tile-1,.place-1 {
+	transform:translate(-400%,300%);
+}
+
+/* to small rules */
+@media screen and (max-width: 800px) {
+	#game::after {
+		display:none;
+	}
+}
