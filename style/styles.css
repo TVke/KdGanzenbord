@@ -258,223 +258,280 @@ header {
 	top:262.15px;
 	left:0;
 	right:0;
-	transform-origin: bottom center;
+	transform-origin:bottom center;
 }
-#game div[class^="pawn-"] svg{
-	height: 73.7px;
-	margin: 0 auto;
-	display: block;
+
+#game div[class^="pawn-"] svg {
+	height:73.7px;
+	margin:0 auto;
+	display:block;
 }
-#game .pawn-1 svg{
+
+#game .pawn-1 svg {
 	fill:red;
 }
-#game .pawn-2 svg{
+
+#game .pawn-2 svg {
 	fill:orange;
 }
-#game .pawn-3 svg{
+
+#game .pawn-3 svg {
 	fill:purple;
 }
-#game .pawn-4 svg{
+
+#game .pawn-4 svg {
 	fill:green;
 }
 
-#game .place-63{
+#game .place-63 {
 	transform:rotateX(50deg)translate(100%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-62{
+
+#game .place-62 {
 	transform:rotateX(50deg)translate(0)translateZ(32px)rotateX(-50deg);
 }
 
-#game .place-61{
+#game .place-61 {
 	transform:rotateX(50deg)translate(-100%)translateZ(32px)rotateX(-50deg);
 }
 
-#game .place-60{
+#game .place-60 {
 	transform:rotateX(50deg)translate(-200%)translateZ(32px)rotateX(-50deg);
 }
 
-#game .place-59{
+#game .place-59 {
 	transform:rotateX(50deg)translate(-200%,-100%)translateZ(32px)rotateX(-50deg);
 }
 
-#game .place-58{
+#game .place-58 {
 	transform:rotateX(50deg)translate(-100%,-100%)translateZ(32px)rotateX(-50deg);
 }
 
-#game .place-57{
+#game .place-57 {
 	transform:rotateX(50deg)translate(0,-100%)translateZ(32px)rotateX(-50deg);
 }
 
-#game .place-56{
+#game .place-56 {
 	transform:rotateX(50deg)translate(100%,-100%)translateZ(32px)rotateX(-50deg);
 }
 
-#game .place-55{
+#game .place-55 {
 	transform:rotateX(50deg)translate(200%,-100%)translateZ(32px)rotateX(-50deg);
 }
 
-#game .place-54{
+#game .place-54 {
 	transform:rotateX(50deg)translate(200%,0)translateZ(32px)rotateX(-50deg);
 }
 
-#game .place-53{
+#game .place-53 {
 	transform:rotateX(50deg)translate(200%,100%)translateZ(32px)rotateX(-50deg);
 }
 
-#game .place-52{
+#game .place-52 {
 	transform:rotateX(50deg)translate(100%,100%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-51{
+
+#game .place-51 {
 	transform:rotateX(50deg) translate(0,100%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-50{
+
+#game .place-50 {
 	transform:rotateX(50deg) translate(-100%,100%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-49{
+
+#game .place-49 {
 	transform:rotateX(50deg) translate(-200%,100%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-48{
+
+#game .place-48 {
 	transform:rotateX(50deg) translate(-300%,100%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-47{
+
+#game .place-47 {
 	transform:rotateX(50deg) translate(-300%,0)translateZ(32px)rotateX(-50deg);
 }
-#game .place-46{
+
+#game .place-46 {
 	transform:rotateX(50deg) translate(-300%,-100%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-45{
+
+#game .place-45 {
 	transform:rotateX(50deg) translate(-300%,-200%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-44{
+
+#game .place-44 {
 	transform:rotateX(50deg) translate(-200%,-200%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-43{
+
+#game .place-43 {
 	transform:rotateX(50deg) translate(-100%,-200%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-42{
+
+#game .place-42 {
 	transform:rotateX(50deg) translate(0,-200%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-41{
+
+#game .place-41 {
 	transform:rotateX(50deg) translate(100%,-200%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-40{
+
+#game .place-40 {
 	transform:rotateX(50deg) translate(200%,-200%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-39{
+
+#game .place-39 {
 	transform:rotateX(50deg) translate(300%,-200%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-38{
+
+#game .place-38 {
 	transform:rotateX(50deg) translate(300%,-100%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-37{
+
+#game .place-37 {
 	transform:rotateX(50deg) translate(300%,0)translateZ(32px)rotateX(-50deg);
 }
-#game .place-36{
+
+#game .place-36 {
 	transform:rotateX(50deg) translate(300%,100%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-35{
+
+#game .place-35 {
 	transform:rotateX(50deg) translate(300%,200%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-34{
+
+#game .place-34 {
 	transform:rotateX(50deg) translate(200%,200%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-33{
+
+#game .place-33 {
 	transform:rotateX(50deg) translate(100%,200%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-32{
+
+#game .place-32 {
 	transform:rotateX(50deg) translate(0,200%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-31{
+
+#game .place-31 {
 	transform:rotateX(50deg) translate(-100%,200%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-30{
+
+#game .place-30 {
 	transform:rotateX(50deg) translate(-200%,200%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-29{
+
+#game .place-29 {
 	transform:rotateX(50deg) translate(-300%,200%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-28{
+
+#game .place-28 {
 	transform:rotateX(50deg) translate(-400%,200%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-27{
+
+#game .place-27 {
 	transform:rotateX(50deg) translate(-400%,100%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-26{
+
+#game .place-26 {
 	transform:rotateX(50deg) translate(-400%,0)translateZ(32px)rotateX(-50deg);
 }
-#game .place-25{
+
+#game .place-25 {
 	transform:rotateX(50deg) translate(-400%,-100%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-24{
+
+#game .place-24 {
 	transform:rotateX(50deg) translate(-400%,-200%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-23{
+
+#game .place-23 {
 	transform:rotateX(50deg) translate(-400%,-300%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-22{
+
+#game .place-22 {
 	transform:rotateX(50deg) translate(-300%,-300%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-21{
+
+#game .place-21 {
 	transform:rotateX(50deg) translate(-200%,-300%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-20{
+
+#game .place-20 {
 	transform:rotateX(50deg) translate(-100%,-300%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-19{
+
+#game .place-19 {
 	transform:rotateX(50deg) translate(0,-300%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-18{
+
+#game .place-18 {
 	transform:rotateX(50deg) translate(100%,-300%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-17{
+
+#game .place-17 {
 	transform:rotateX(50deg) translate(200%,-300%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-16{
+
+#game .place-16 {
 	transform:rotateX(50deg) translate(300%,-300%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-15{
+
+#game .place-15 {
 	transform:rotateX(50deg) translate(400%,-300%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-14{
+
+#game .place-14 {
 	transform:rotateX(50deg) translate(400%,-200%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-13{
+
+#game .place-13 {
 	transform:rotateX(50deg) translate(400%,-100%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-12{
+
+#game .place-12 {
 	transform:rotateX(50deg) translate(400%,0)translateZ(32px)rotateX(-50deg);
 }
-#game .place-11{
+
+#game .place-11 {
 	transform:rotateX(50deg) translate(400%,100%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-10{
+
+#game .place-10 {
 	transform:rotateX(50deg) translate(400%,200%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-9{
+
+#game .place-9 {
 	transform:rotateX(50deg) translate(400%,300%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-8{
+
+#game .place-8 {
 	transform:rotateX(50deg) translate(300%,300%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-7{
+
+#game .place-7 {
 	transform:rotateX(50deg) translate(200%,300%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-6{
+
+#game .place-6 {
 	transform:rotateX(50deg) translate(100%,300%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-5{
+
+#game .place-5 {
 	transform:rotateX(50deg) translate(0,300%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-4{
+
+#game .place-4 {
 	transform:rotateX(50deg) translate(-100%,300%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-3{
+
+#game .place-3 {
 	transform:rotateX(50deg) translate(-200%,300%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-2{
+
+#game .place-2 {
 	transform:rotateX(50deg) translate(-300%,300%)translateZ(32px)rotateX(-50deg);
 }
-#game .place-1{
+
+#game .place-1 {
 	transform:rotateX(50deg) translate(-400%,300%)translateZ(32px)rotateX(-50deg);
 }
 
@@ -497,204 +554,256 @@ header {
 	content:counter(tileIndex);
 }
 
-#tile-63,.place-63{
+#tile-63,.place-63 {
 	transform:translate(100%);
 }
-#tile-62,.place-62{
+
+#tile-62,.place-62 {
 	transform:translate(0);
 }
 
-#tile-61,.place-61{
+#tile-61,.place-61 {
 	transform:translate(-100%);
 }
 
-#tile-60,.place-60{
+#tile-60,.place-60 {
 	transform:translate(-200%);
 }
 
-#tile-59,.place-59{
+#tile-59,.place-59 {
 	transform:translate(-200%,-100%);
 }
 
-#tile-58,.place-58{
+#tile-58,.place-58 {
 	transform:translate(-100%,-100%);
 }
 
-#tile-57,.place-57{
+#tile-57,.place-57 {
 	transform:translate(0,-100%);
 }
 
-#tile-56,.place-56{
+#tile-56,.place-56 {
 	transform:translate(100%,-100%);
 }
 
-#tile-55,.place-55{
+#tile-55,.place-55 {
 	transform:translate(200%,-100%);
 }
 
-#tile-54,.place-54{
+#tile-54,.place-54 {
 	transform:translate(200%,0);
 }
 
-#tile-53,.place-53{
+#tile-53,.place-53 {
 	transform:translate(200%,100%);
 }
 
-#tile-52,.place-52{
+#tile-52,.place-52 {
 	transform:translate(100%,100%);
 }
-#tile-51,.place-51{
-	transform: translate(0,100%);
+
+#tile-51,.place-51 {
+	transform:translate(0,100%);
 }
-#tile-50,.place-50{
-	transform: translate(-100%,100%);
+
+#tile-50,.place-50 {
+	transform:translate(-100%,100%);
 }
-#tile-49,.place-49{
-	transform: translate(-200%,100%);
+
+#tile-49,.place-49 {
+	transform:translate(-200%,100%);
 }
-#tile-48,.place-48{
-	transform: translate(-300%,100%);
+
+#tile-48,.place-48 {
+	transform:translate(-300%,100%);
 }
-#tile-47,.place-47{
-	transform: translate(-300%,0);
+
+#tile-47,.place-47 {
+	transform:translate(-300%,0);
 }
-#tile-46,.place-46{
-	transform: translate(-300%,-100%);
+
+#tile-46,.place-46 {
+	transform:translate(-300%,-100%);
 }
-#tile-45,.place-45{
-	transform: translate(-300%,-200%);
+
+#tile-45,.place-45 {
+	transform:translate(-300%,-200%);
 }
-#tile-44,.place-44{
-	transform: translate(-200%,-200%);
+
+#tile-44,.place-44 {
+	transform:translate(-200%,-200%);
 }
-#tile-43,.place-43{
-	transform: translate(-100%,-200%);
+
+#tile-43,.place-43 {
+	transform:translate(-100%,-200%);
 }
-#tile-42,.place-42{
-	transform: translate(0,-200%);
+
+#tile-42,.place-42 {
+	transform:translate(0,-200%);
 }
-#tile-41,.place-41{
-	transform: translate(100%,-200%);
+
+#tile-41,.place-41 {
+	transform:translate(100%,-200%);
 }
-#tile-40,.place-40{
-	transform: translate(200%,-200%);
+
+#tile-40,.place-40 {
+	transform:translate(200%,-200%);
 }
-#tile-39,.place-39{
-	transform: translate(300%,-200%);
+
+#tile-39,.place-39 {
+	transform:translate(300%,-200%);
 }
-#tile-38,.place-38{
-	transform: translate(300%,-100%);
+
+#tile-38,.place-38 {
+	transform:translate(300%,-100%);
 }
-#tile-37,.place-37{
-	transform: translate(300%,0);
+
+#tile-37,.place-37 {
+	transform:translate(300%,0);
 }
-#tile-36,.place-36{
-	transform: translate(300%,100%);
+
+#tile-36,.place-36 {
+	transform:translate(300%,100%);
 }
-#tile-35,.place-35{
-	transform: translate(300%,200%);
+
+#tile-35,.place-35 {
+	transform:translate(300%,200%);
 }
-#tile-34,.place-34{
-	transform: translate(200%,200%);
+
+#tile-34,.place-34 {
+	transform:translate(200%,200%);
 }
-#tile-33,.place-33{
-	transform: translate(100%,200%);
+
+#tile-33,.place-33 {
+	transform:translate(100%,200%);
 }
-#tile-32,.place-32{
-	transform: translate(0,200%);
+
+#tile-32,.place-32 {
+	transform:translate(0,200%);
 }
-#tile-31,.place-31{
-	transform: translate(-100%,200%);
+
+#tile-31,.place-31 {
+	transform:translate(-100%,200%);
 }
-#tile-30,.place-30{
-	transform: translate(-200%,200%);
+
+#tile-30,.place-30 {
+	transform:translate(-200%,200%);
 }
-#tile-29,.place-29{
-	transform: translate(-300%,200%);
+
+#tile-29,.place-29 {
+	transform:translate(-300%,200%);
 }
-#tile-28,.place-28{
-	transform: translate(-400%,200%);
+
+#tile-28,.place-28 {
+	transform:translate(-400%,200%);
 }
-#tile-27,.place-27{
-	transform: translate(-400%,100%);
+
+#tile-27,.place-27 {
+	transform:translate(-400%,100%);
 }
-#tile-26,.place-26{
-	transform: translate(-400%,0);
+
+#tile-26,.place-26 {
+	transform:translate(-400%,0);
 }
-#tile-25,.place-25{
-	transform: translate(-400%,-100%);
+
+#tile-25,.place-25 {
+	transform:translate(-400%,-100%);
 }
-#tile-24,.place-24{
-	transform: translate(-400%,-200%);
+
+#tile-24,.place-24 {
+	transform:translate(-400%,-200%);
 }
-#tile-23,.place-23{
-	transform: translate(-400%,-300%);
+
+#tile-23,.place-23 {
+	transform:translate(-400%,-300%);
 }
-#tile-22,.place-22{
-	transform: translate(-300%,-300%);
+
+#tile-22,.place-22 {
+	transform:translate(-300%,-300%);
 }
-#tile-21,.place-21{
-	transform: translate(-200%,-300%);
+
+#tile-21,.place-21 {
+	transform:translate(-200%,-300%);
 }
-#tile-20,.place-20{
-	transform: translate(-100%,-300%);
+
+#tile-20,.place-20 {
+	transform:translate(-100%,-300%);
 }
-#tile-19,.place-19{
-	transform: translate(0,-300%);
+
+#tile-19,.place-19 {
+	transform:translate(0,-300%);
 }
-#tile-18,.place-18{
-	transform: translate(100%,-300%);
+
+#tile-18,.place-18 {
+	transform:translate(100%,-300%);
 }
-#tile-17,.place-17{
-	transform: translate(200%,-300%);
+
+#tile-17,.place-17 {
+	transform:translate(200%,-300%);
 }
-#tile-16,.place-16{
-	transform: translate(300%,-300%);
+
+#tile-16,.place-16 {
+	transform:translate(300%,-300%);
 }
-#tile-15,.place-15{
-	transform: translate(400%,-300%);
+
+#tile-15,.place-15 {
+	transform:translate(400%,-300%);
 }
-#tile-14,.place-14{
-	transform: translate(400%,-200%);
+
+#tile-14,.place-14 {
+	transform:translate(400%,-200%);
 }
-#tile-13,.place-13{
-	transform: translate(400%,-100%);
+
+#tile-13,.place-13 {
+	transform:translate(400%,-100%);
 }
-#tile-12,.place-12{
-	transform: translate(400%,0);
+
+#tile-12,.place-12 {
+	transform:translate(400%,0);
 }
-#tile-11,.place-11{
-	transform: translate(400%,100%);
+
+#tile-11,.place-11 {
+	transform:translate(400%,100%);
 }
-#tile-10,.place-10{
-	transform: translate(400%,200%);
+
+#tile-10,.place-10 {
+	transform:translate(400%,200%);
 }
-#tile-9,.place-9{
-	transform: translate(400%,300%);
+
+#tile-9,.place-9 {
+	transform:translate(400%,300%);
 }
-#tile-8,.place-8{
-	transform: translate(300%,300%);
+
+#tile-8,.place-8 {
+	transform:translate(300%,300%);
 }
-#tile-7,.place-7{
-	transform: translate(200%,300%);
+
+#tile-7,.place-7 {
+	transform:translate(200%,300%);
 }
-#tile-6,.place-6{
-	transform: translate(100%,300%);
+
+#tile-6,.place-6 {
+	transform:translate(100%,300%);
 }
-#tile-5,.place-5{
-	transform: translate(0,300%);
+
+#tile-5,.place-5 {
+	transform:translate(0,300%);
 }
-#tile-4,.place-4{
-	transform: translate(-100%,300%);
+
+#tile-4,.place-4 {
+	transform:translate(-100%,300%);
 }
-#tile-3,.place-3{
-	transform: translate(-200%,300%);
+
+#tile-3,.place-3 {
+	transform:translate(-200%,300%);
 }
-#tile-2,.place-2{
-	transform: translate(-300%,300%);
+
+#tile-2,.place-2 {
+	transform:translate(-300%,300%);
 }
-#tile-1,.place-1{
-	transform: translate(-400%,300%);
+
+#tile-1,.place-1 {
+	transform:translate(-400%,300%);
 }
 
 /* to small rules */
