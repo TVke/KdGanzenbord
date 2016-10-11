@@ -276,7 +276,7 @@ header {
 }
 
 #game div.pawn-1 svg {
-	fill:red;
+	fill:#FF5050;
 }
 
 #game div.pawn-2 svg {
@@ -284,11 +284,11 @@ header {
 }
 
 #game div.pawn-3 svg {
-	fill:purple;
+	fill:#00db00;
 }
 
 #game div.pawn-4 svg {
-	fill:green;
+	fill:#05B9FF;
 }
 
 #game div.duo-1 svg,#game div.trio-1 svg,#game div.quatro-1 svg {
