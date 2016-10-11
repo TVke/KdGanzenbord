@@ -991,24 +991,28 @@ header {
 	#game::after {
 		display:none;
 	}
+	
 	#players {
 		display:flex;
 		display:-webkit-flex;
 		top:550px;
-		height: 125px;
+		height:125px;
 	}
+	
 	#players>div {
-		position: relative;
-		width: initial;
+		position:relative;
+		width:initial;
 	}
 }
+
 @media screen and (max-width: 605px) {
 	#players {
 		display:block;
-		height: initial;
+		height:initial;
 	}
-	#players>div{
-		max-width: 200px;
-		margin: 20px auto;
+	
+	#players>div {
+		max-width:200px;
+		margin:20px auto;
 	}
 }
