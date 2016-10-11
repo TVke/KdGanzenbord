@@ -1,5 +1,3 @@
-@import playboard.css;
-
 @font-face {
 	font-family: 'KdG';
     src: url('KdG-Regular.eot'); 
@@ -221,7 +219,6 @@ header {
 #game {
 	width:75%;
 	margin:0 auto;
-/*80px not in perspective*/
 	position:relative;
 	perspective:2000px;
 }
