@@ -968,12 +968,10 @@ header {
 	border-right-width:.5px!important;
 }
 
-/* #tile-1,#tile-2,#tile-3,#tile-4,#tile-5,#tile-6,#tile-7,#tile-8,#tile-9, */
 #tile-16,#tile-17,#tile-18,#tile-19,#tile-20,#tile-21,#tile-22,#tile-40,#tile-41,#tile-42,#tile-43,#tile-44,#tile-56,#tile-57,#tile-58,#tile-60,#tile-61,#tile-62,#tile-63,#tile-48,#tile-49,#tile-50,#tile-51,#tile-52,#tile-53,#tile-28,#tile-29,#tile-30,#tile-31,#tile-32,#tile-33,#tile-34,#tile-35 {
 	border-bottom-color:#000!important;
 }
 
-/* #tile-9,#tile-10,#tile-11,#tile-12,#tile-13,#tile-14,#tile-15, */
 #tile-35,#tile-36,#tile-37,#tile-38,#tile-39,#tile-53,#tile-54,#tile-55,#tile-63,#tile-46,#tile-47,#tile-24,#tile-25,#tile-26,#tile-27 {
 	border-right-color:#000!important;
 }
@@ -988,25 +986,29 @@ header {
 	border-right-width:.5px!important;
 }
 
-/*
-#tile-1,#tile-23,#tile-24,#tile-25,#tile-26,#tile-27,#tile-28 {
-	border-left-color:#000!important;
-}
-
-#tile-15,#tile-16,#tile-17,#tile-18,#tile-19,#tile-20,#tile-21,#tile-22,#tile-23 {
-	border-top-color:#000!important;
-}
-*/
 /* to small rules */
 @media screen and (max-width: 800px) {
 	#game::after {
 		display:none;
 	}
-	
 	#players {
 		display:flex;
 		display:-webkit-flex;
-		flex-wrap:wrap;
-		top:600px;
+		top:550px;
+		height: 125px;
+	}
+	#players>div {
+		position: relative;
+		width: initial;
+	}
+}
+@media screen and (max-width: 605px) {
+	#players {
+		display:block;
+		height: initial;
+	}
+	#players>div{
+		max-width: 200px;
+		margin: 20px auto;
 	}
 }
