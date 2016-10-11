@@ -266,6 +266,7 @@ header {
 	-webkit-transform-origin:bottom center;
 	transition:all .5s ease;
 	-webkit-transition:all .5s ease;
+	z-index: 1;
 }
 
 #game div[class^="pawn-"] svg {
