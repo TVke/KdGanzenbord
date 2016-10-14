@@ -42,3 +42,19 @@ var Observable = function() {
         }
     }
 };
+
+var test = {
+    'dobbel' : new Observable()
+}
+
+function rolldice( amount ) {
+    
+    for(var i=0; i<amount; i++)
+    {
+        var randomNumber = Math.floor((Math.random() * 6 ) + 1 );
+        
+        console.log(randomNumber);
+    }
+}
+
+test.dobbel.subscribe(rolldice);
