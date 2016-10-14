@@ -32,17 +32,34 @@ var Observable = function(){
 	return _self.methods;
 };
 
-/*
 var model = {
-	dices : new Observable()
-	tegelmodel:
+	dices : []
+	tiles : []
+	pawns : []
+	buttons:[]
 }
 
+/*
 models.dices.subscribe(function(){console.log("test dices")});
 models.dices.publish(4);
+*/
 
 
-
+function movePawn(pawn,place){
+	if(place<63&&place>1){
+		pawn.className = pawn.classList[0]+" place-"+place;
+	}
+	else if(place>63){
+		pawn.className = pawn.classList[0]+" place-63";
+		setTimeout(function(){
+			pawn.className = pawn.classList[0]+" place-"+(63-(parseInt(place)-63));
+		},1000);
+	}
+	else if(place<1){
+		pawn.className = pawn.classList[0]+" place-1";
+	}
+}
+/*
 var tegelcontroller={
 	
 }
