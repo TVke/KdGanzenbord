@@ -25,13 +25,13 @@ var Observable = function() {
     }
     
     
-    _self.subscribe = function() {
+    _self.subscribe = function( callback ) {
         
-        
+        _self.subscribers
     }
     
     
-    _self.unsubscribe = function() {
+    _self.unsubscribe = function( callback ) {
         
         
     }
