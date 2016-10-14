@@ -7,9 +7,7 @@ var Observable = function() {
     _self.subscribers = [];
     
     
-    _self.subscribe = function( newData ) {
-        
-        var data = _self.newData;
+    _self.publish = function() {
         
         if(newData === 'undefined')
         {
@@ -17,22 +15,24 @@ var Observable = function() {
         }
         else
         {
+            _self.data = newData;
             
-            
-            for(subscirber in _self.subscribers)
+            for(subsriber in _self.subscribers)
             {
-                
+                _self.subscribers.push(newData);
             }
         }
     }
     
     
+    _self.subscribe = function() {
+        
+        
+    }
+    
+    
     _self.unsubscribe = function() {
         
-    }
-    
-    
-    _self.publish = function() {
         
     }
-}
+};
