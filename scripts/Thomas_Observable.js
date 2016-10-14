@@ -31,3 +31,19 @@ var Observable = function(){
 	}
 	return _self.methods;
 };
+
+/*
+var model = {
+	dices : new Observable()
+	tegelmodel:
+}
+
+models.dices.subscribe(function(){console.log("test dices")});
+models.dices.publish(4);
+
+
+
+var tegelcontroller={
+	
+}
+*/
