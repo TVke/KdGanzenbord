@@ -8,7 +8,9 @@ var Observable = function(){
 	_self.methods= {
 		
 		subscribe: function(callback){
-			_self.subscribers.push(callback);
+			if(_self.subscribers.indexOf(callback)===-1){
+				_self.subscribers.push(callback);
+			}
 		},
 		unsubscribe: function(callback){
 			for (var subscribersKey in _self.subscribers){
