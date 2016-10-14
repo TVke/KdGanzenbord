@@ -35,9 +35,9 @@ var Observable = function(){
 };
 
 var model = {
-	dices : []
-	tiles : []
-	pawns : []
+	dices : [],
+	tiles : [],
+	pawns : [],
 	buttons:[]
 }
 
