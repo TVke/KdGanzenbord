@@ -12,8 +12,8 @@ function Observable() {
 
 		unsubscribe : function(callback) {
 			if(_self.subscribers.indexOf(callback) > -1) {
-				for (var subscribersIndex; subscribersIndex < _self.subscribers.length; ++subscribersIndex) {
-		            if (_self.subscribers[i] === callback) {
+				for(let subscribersIndex = 0; subscribersIndex < _self.subscribers.length; subscribersIndex++) {
+		            if(_self.subscribers[subscribersIndex] === callback) {
 		                _self.subscribers.splice(subscribersIndex, 1);
 		                return;
 	            	}
@@ -24,7 +24,7 @@ function Observable() {
 		publish : function(data) {
 			if(typeof data !== "undefined") {
 				_self.data = data;
-				for(var subscribersIndex = 0; subscribersIndex < _self.subscribers.length; ++subscribersIndex) {
+				for(let subscribersIndex = 0; subscribersIndex < _self.subscribers.length; subscribersIndex++) {
 		            _self.subscribers[subscribersIndex](data);
 		        }
 			}
