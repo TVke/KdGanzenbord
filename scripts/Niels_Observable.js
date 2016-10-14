@@ -43,13 +43,15 @@ var Observable = function() {
     }
 };
 
+
+/*
 var test = {
     'dobbel' : new Observable()
 }
 
-function rolldice( amount ) {
+function rolldice() {
     
-    for(var i=0; i<amount; i++)
+    for(var i=0; i<2; i++) // geen for lus
     {
         var randomNumber = Math.floor((Math.random() * 6 ) + 1 );
         
@@ -58,3 +60,6 @@ function rolldice( amount ) {
 }
 
 test.dobbel.subscribe(rolldice);
+
+test.dobbel.publish();
+*/
