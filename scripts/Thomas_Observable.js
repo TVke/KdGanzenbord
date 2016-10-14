@@ -15,7 +15,7 @@ var Observable = function(){
 		unsubscribe: function(callback){
 			for (var subscribersKey in _self.subscribers){
 				if(_self.subscribers[subscribersKey] === callback){
-					delete _self.subscribers[subscribersKey];
+					_self.subscribers.splice(subscribersKey,1);
 				}
 			}
 		},
@@ -35,9 +35,9 @@ var Observable = function(){
 };
 
 var model = {
-	dices : []
-	tiles : []
-	pawns : []
+	dices : [],
+	tiles : [],
+	pawns : [],
 	buttons:[]
 }
 
