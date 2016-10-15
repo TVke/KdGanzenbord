@@ -63,3 +63,49 @@ test.dobbel.subscribe(rolldice);
 
 test.dobbel.publish();
 */
+
+
+var dices = {
+    'dice' : new Observable()
+}
+
+
+function rolldice() {
+    
+    var randomNumber1 = Math.floor((Math.random() * 6 ) + 1 );
+    var randomNumber2 = Math.floor((Math.random() * 6 ) + 1 );
+    
+    var totalNumber = randomNumber1 + randomNumber2;
+    
+    var classDice1 = "rolled-" + randomNumber1;
+    var classDice2 = "rolled-" + randomNumber2;
+    
+    document.getElementById('dice-1').className = classDice1;
+    document.getElementById('dice-2').className = classDice2;
+    
+    //document.getElementById('dices').className = "";
+    
+    //console.log(classDice1);
+    //console.log(classDice2);
+    //console.log(randomNumber1);
+    //console.log(randomNumber2);
+    
+    return totalNumber;
+};
+
+
+var button = document.querySelector('button');
+
+button.addEventListener('click', function() {
+    
+    rolldice();
+    document.getElementById('dices').className = "";
+});
+
+
+dices.dice.subscribe(rolldice);
+
+dices.dice.publish();
+
+
+
