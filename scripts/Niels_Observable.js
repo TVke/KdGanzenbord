@@ -94,13 +94,16 @@ function rolldice() {
 };
 
 
-var button = document.querySelector('button');
+var button = document.querySelectorAll('button');
 
-button.addEventListener('click', function() {
-    
-    rolldice();
-    document.getElementById('dices').className = "";
-});
+for(var i=0; i<4; i++)
+{
+    button[i].addEventListener('click', function() {
+        rolldice();
+        document.getElementById('dices').className = "";
+    });
+}
+
 
 
 dices.dice.subscribe(rolldice);
