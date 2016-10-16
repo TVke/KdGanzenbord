@@ -83,15 +83,13 @@ function rolldice() {
     document.getElementById('dice-1').className = classDice1;
     document.getElementById('dice-2').className = classDice2;
     
-    //document.getElementById('dices').className = "";
-    
     //console.log(classDice1);
     //console.log(classDice2);
     //console.log(randomNumber1);
     //console.log(randomNumber2);
     
     return totalNumber;
-};
+}
 
 
 var button = document.querySelectorAll('button');
@@ -103,6 +101,30 @@ for(var i=0; i<4; i++)
         document.getElementById('dices').className = "";
     });
 }
+
+
+
+var pawns = document.querySelectorAll('#game div');
+var pawnclass = "";
+
+function restartGame() {
+    var counter = 0;
+    
+    for(var i=0; i<4; i++)
+    {
+        counter++;
+        
+        pawnclass = "pawn-" + counter + " place-1" + " quatro-" + counter;
+        
+        pawns[i].className = pawnclass;
+        
+        console.log(pawnclass);
+    }
+    
+    document.getElementById('dices').className = "hidden";
+}
+
+
 
 
 
