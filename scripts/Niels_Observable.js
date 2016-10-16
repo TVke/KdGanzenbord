@@ -103,6 +103,53 @@ for(var i=0; i<4; i++)
 }
 
 
+var allbuttons = document.querySelectorAll('#players button');
+var button1 = document.querySelector('#player-1 button');
+var button2 = document.querySelector('#player-2 button');
+var button3 = document.querySelector('#player-3 button');
+var button4 = document.querySelector('#player-4 button');
+
+function nextPlayer() {
+    
+    if(button1.disabled == false)
+    {
+        button1.setAttribute('disabled', true);
+        button2.removeAttribute('disabled');
+        
+        console.log("button1");
+    }
+    else if(button2.disabled == false)
+    {
+        button2.setAttribute('disabled', true);
+        button3.removeAttribute('disabled');
+        
+        console.log("button2");
+    }
+    else if(button3.disabled == false)
+    {
+        button3.setAttribute('disabled', true);
+        button4.removeAttribute('disabled');
+        
+        console.log("button3");
+    }
+    else if(button4.disabled == false)
+    {
+        button4.setAttribute('disabled', true);
+        button1.removeAttribute('disabled');
+        
+        console.log("button4");
+    }
+}
+
+
+
+
+
+
+
+
+
+
 
 var pawns = document.querySelectorAll('#game div');
 var pawnclass = "";
@@ -120,6 +167,11 @@ function restartGame() {
         
         console.log(pawnclass);
     }
+    
+    button1.removeAttribute('disabled');
+    button2.setAttribute('disabled', true);
+    button3.setAttribute('disabled', true);
+    button4.setAttribute('disabled', true);
     
     document.getElementById('dices').className = "hidden";
 }
