@@ -88,6 +88,8 @@ function rolldice() {
     //console.log(randomNumber1);
     //console.log(randomNumber2);
     
+    return randomNumber1;
+    return randomNumber2;
     return totalNumber;
 }
 
@@ -113,41 +115,25 @@ function nextPlayer() {
     
     if(button1.disabled == false)
     {
-        button1.setAttribute('disabled', true);
+        button1.setAttribute('disabled', 'disabled');
         button2.removeAttribute('disabled');
-        
-        console.log("button1");
     }
     else if(button2.disabled == false)
     {
-        button2.setAttribute('disabled', true);
+        button2.setAttribute('disabled', 'disabled');
         button3.removeAttribute('disabled');
-        
-        console.log("button2");
     }
     else if(button3.disabled == false)
     {
-        button3.setAttribute('disabled', true);
+        button3.setAttribute('disabled', 'disabled');
         button4.removeAttribute('disabled');
-        
-        console.log("button3");
     }
     else if(button4.disabled == false)
     {
-        button4.setAttribute('disabled', true);
+        button4.setAttribute('disabled', 'disabled');
         button1.removeAttribute('disabled');
-        
-        console.log("button4");
     }
 }
-
-
-
-
-
-
-
-
 
 
 
