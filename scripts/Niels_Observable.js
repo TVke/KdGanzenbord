@@ -88,9 +88,7 @@ function rolldice() {
     //console.log(randomNumber1);
     //console.log(randomNumber2);
     
-    return randomNumber1;
-    return randomNumber2;
-    return totalNumber;
+    return [randomNumber1, randomNumber2, totalNumber];
 }
 
 
