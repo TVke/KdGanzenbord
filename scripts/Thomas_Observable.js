@@ -20,7 +20,7 @@ var Observable = function(){
 			}
 		},
 		publish: function(newData){
-			if(typeof newData === 'undifined'){
+			if(typeof newData === 'undefined'){
 				return _self.data;
 			}
 			else{
@@ -34,12 +34,14 @@ var Observable = function(){
 	return _self.methods;
 };
 
+/*
 var model = {
 	dices : [],
 	tiles : [],
 	pawns : [],
 	buttons:[]
 }
+*/
 
 /*
 models.dices.subscribe(function(){console.log("test dices")});
@@ -48,17 +50,17 @@ models.dices.publish(4);
 
 
 function movePawn(pawn,place){
-	if(place<63&&place>1){
-		pawn.className = pawn.classList[0]+" place-"+place;
+	if(place<=63&&place>=1){
+		pawn.className = "place-"+place;
 	}
 	else if(place>63){
-		pawn.className = pawn.classList[0]+" place-63";
+		pawn.className = "place-63";
 		setTimeout(function(){
-			pawn.className = pawn.classList[0]+" place-"+(63-(parseInt(place)-63));
+			pawn.className = "place-"+(63-(parseInt(place)-63));
 		},1000);
 	}
 	else if(place<1){
-		pawn.className = pawn.classList[0]+" place-1";
+		pawn.className = "place-1";
 	}
 }
 /*
