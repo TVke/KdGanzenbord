@@ -190,8 +190,6 @@ var gameController = {
 		gameController.skipTurn()
 	},
 	nextPlayer: function() {
-		// maak de dobbel stenen weer onzichtbaar
-		gameView.diceContainer.className = "hidden";
 		var activeID = gameModel.activePlayer.publish();
 		//volgende speler activeren
 		if (activeID < (gameModel.players.length-1)) {
