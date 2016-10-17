@@ -6,7 +6,7 @@ var Observable = function() {
 			publish: function(newData) {
 				if (typeof newData !== 'undefined') {
 					_self.data = newData;
-					for (var i = 0, ilen = _self.subs.length; i < ilen; ++i) {
+					for (let i = 0, ilen = _self.subs.length; i < ilen; ++i) {
 						_self.subs[i](_self.data);
 					}
 				} else {
@@ -19,7 +19,7 @@ var Observable = function() {
 				}
 			},
 			unsubscribe: function(callback) {
-				for (var i = 0, ilen = _self.subs.length; i < ilen; ++i) {
+				for (let i = 0, ilen = _self.subs.length; i < ilen; ++i) {
 					if (_self.subs[i] === callback) {
 						_self.subs.splice(i, 1);
 					}
@@ -29,209 +29,170 @@ var Observable = function() {
 		return _self.methods;
 	};
 var gameView = {
+	playerAmount: document.getElementById("playerAmount"),
+	diceContainer: document.getElementById("dices"),
 	dices: document.querySelectorAll("#dices div"),
 	pawns: document.querySelectorAll("div[id^='pawn-']"),
 	tiles: document.querySelectorAll("#board div"),
-	players: document.querySelectorAll("#players div")
+	players: document.querySelectorAll("#players div"),
+	playerButtons: document.querySelectorAll("#players div button")
 };
 var gameModel = {
 	dices: [],
-	pawns: [1, 5, 1, 5],
+	pawns: [],
 	tiles: [],
-	players: []
+	players: [],
+	gooses: []
 };
-var gameControllers = {
-	addMultiplePosition: function() {
-		
-/* niet meer nodig  
-		var sorted = gameModel.pawns.slice().sort(function(a, b) {
-			return a - b
-		});
-		
-		var uniqueValues = [];
-		var countUniques = [];
-		var lastChecked;
-		
-		for (var i = 0, ilen = sorted.length; i < ilen; ++i) {
-			if (sorted[i] !== lastChecked) {
-				uniqueValues.push(sorted[i]);
-				countUniques.push(1);
-			} else {
-				++countUniques[countUniques.length - 1];
-			}
-			lastChecked = sorted[i];
-		}
-		
-		for (var i = 0, ilen = countUniques.length; i < ilen; ++i) {
-			switch(countUniques[i]){
-				case 2:
-					var extraClass="duo-";
-					var counter=1;
-					for(var j = 0, jlen = gameModel.pawns.length; j < jlen; ++j){
-						if(gameModel.pawns[j]==uniqueValues[i]){
-							gameModel.multiplePawns[j]=extraClass+counter;
-							++counter;
-						}
-					}
-				break;
-				case 3:
-					var extraClass="trio-";
-					var counter=1;
-					for(var j = 0, jlen = gameModel.pawns.length; j < jlen; ++j){
-						if(gameModel.pawns[j]==uniqueValues[i]){
-							gameModel.multiplePawns[j]=extraClass+counter;
-							++counter;
-						}
-					}
-				break;
-				case 4:
-					var extraClass="quatro-";
-					var counter=1;
-					for(var j = 0, jlen = gameModel.pawns.length; j < jlen; ++j){
-						if(gameModel.pawns[j]==uniqueValues[i]){
-							gameModel.multiplePawns[j]=extraClass+counter;
-							++counter;
-						}
-					}
-				break;
-			}
-		}
-*/
+var gameController = {
+	testRules: function() {
+		console.log("test");
 	},
-	movePawn: function(pawn,place) {
-/*
-		var lastPlace=; 
-		for(var i = 0, ilen = gameModel.pawns.length; i < ilen; ++i){
-			if(place==gameModel.pawns[i]){
-				pawn.publish(place);
-				setTimeout(function() {
-					pawn.className = "place-" + (63 - (parseInt(place) - 63));
-			}, 1000);
+	movePawn: function(pawnId, place) {
+		for (let i = 0, ilen = gameModel.pawns.length; i < ilen; ++i) {
+			if (i != pawnId) {
+				if (gameModel.pawns[i].publish() == place) {
+					console.log("test");
+				}
 			}
 		}
-		
-		
+		console.log(place);
 		if (place <= 63 && place >= 1) {
-			this.className = "place-" + place;
+			gameView.pawns[pawnId].className = "place-" + place;
 		} else if (place < 63) {
-			this.className = "place-63";
+			gameView.pawns[pawnId].className = "place-63";
 			setTimeout(function() {
-				this.className = "place-" + (63 - (parseInt(place) - 63));
+				gameView.pawns[pawnId].className = "place-" + (63 - (parseInt(place) - 63));
 			}, 1000);
 		} else if (place < 1) {
-			this.className = "place-1";
+			gameView.pawns[pawnId].className = "place-1";
 		}
-		gameControllers.addMultiplePosition();
-*/
 	},
-	rollDices:function(){
-		var randomNumber1 = Math.floor((Math.random() * 6 ) + 1 );
-		var randomNumber2 = Math.floor((Math.random() * 6 ) + 1 );
-		
-		var totalNumber = randomNumber1 + randomNumber2;
-		
-		var classDice1 = "rolled-" + randomNumber1;
-		var classDice2 = "rolled-" + randomNumber2;
-		
-		document.getElementById('dice-1').className = classDice1;
-		document.getElementById('dice-2').className = classDice2;
-		
-		document.getElementById("dices").removeAttribute("class");
+	rollDices: function() {
+		var activePlayerId;
+		for (let i = 0, ilen = gameView.playerButtons.length; i < ilen; ++i) {
+			if (gameView.playerButtons[i].disabled == false) {
+				activePlayerId = i;
+			}
+		}
+		var totalThrow = 0;
+		for (let i = 0, ilen = gameModel.dices.length; i < ilen; ++i) {
+			var randomNumber = Math.floor((Math.random() * 6) + 1);
+			gameModel.dices[i].publish(randomNumber);
+			totalThrow += randomNumber;
+		}
+		// toon dice container
+		gameView.diceContainer.removeAttribute("class");
+		// disable after button press
+		gameView.playerButtons[activePlayerId].setAttribute('disabled', '');
+		var currentPlace = gameModel.pawns[activePlayerId].publish();
+		gameModel.pawns[activePlayerId].publish(currentPlace + totalThrow);
+	},
+	nextPlayer: function(index) {
+		// maak de dobbel stenen weer onzichtbaar
 /*
-		return randomNumber1;
-		return randomNumber2;
-		return totalNumber;
-*/
-// 		gameModel.players[0].publish(0);
-	},
-	nextPlayer:function(index){
+		gameView.diceContainer.setAttribute("class", "hidden");
 		// checkt dat het niet de laatste player is
-		if(index<gameModel.players.length){
+		if (index < gameModel.players.length) {
 			gameView.players[index].querySelector("button").setAttribute('disabled', 'disabled');
 			gameView.players[++index].querySelector("button").removeAttribute('disabled');
-		}else{
+		} else {
 			gameView.players[index].querySelector("button").setAttribute('disabled', 'disabled');
 			gameView.players[0].querySelector("button").removeAttribute('disabled');
 		}
-/* niels code
-		if(button1.disabled == false){
-	        button1.setAttribute('disabled', 'disabled');
-	        button2.removeAttribute('disabled');
-	    }
-	    else if(button2.disabled == false)
-	    {
-	        button2.setAttribute('disabled', 'disabled');
-	        button3.removeAttribute('disabled');
-	    }
-	    else if(button3.disabled == false)
-	    {
-	        button3.setAttribute('disabled', 'disabled');
-	        button4.removeAttribute('disabled');
-	    }
-	    else if(button4.disabled == false)
-	    {
-	        button4.setAttribute('disabled', 'disabled');
-	        button1.removeAttribute('disabled');
-	    }
 */
 	}
 };
-var gameConnectors = {
-	players:function(){
+var gameConnector = {
+	players: function() {
 		var player = new Observable();
-		
-		// bij een publish met een index nummer wordt deze functie uitgevoerd
-		player.subscribe(gameControllers.nextPlayer);
+		// bij een publish met een index nummer van de volgende speler wordt deze functie uitgevoerd
+		player.subscribe(gameController.nextPlayer);
 		return player;
 	},
-	pawns:function(){
-		//console.log("pawn");
+	dices: function(DOMElement) {
+		var dice = new Observable();
+		dice.subscribe(function(data) {
+			DOMElement.className = "rolled-" + data;
+			//gameController.testRules();
+			
+		});
+		return dice;
+	},
+	pawns: function(DOMElementId) {
+		var pawn = new Observable();
+		pawn.publish(1);
+		pawn.subscribe(function(data) {
+			gameController.movePawn(DOMElementId, data);
+		});
+		return pawn;
 	}
 };
-
-var startGame=function(players){
-	// loopt het aantal meespelende spelers
-	for(var i=0;i<players;++i){
-		
-		// player = het DOM element met id player-1,2,3,4,...
-		var player = gameView.players[i];
-		
-		// haalt de classe hidden weg
-		player.removeAttribute("class");
-		
-		// maakt Observable object
-		var newPlayer = gameConnectors.players();
-		
-		//zet de Observable in de array bij de Models
-		gameModel.players.push(newPlayer);
-		
-		// button functionaliteit
-		playerButton=player.querySelector("button");
-		playerButton.addEventListener("click", gameControllers.rollDices);
-		
-		// maakt eerste button klikbaar
-		if(i==0){
-			playerButton.removeAttribute("disabled");
+var gameSetup = {
+	players: function(players) {
+		// loopt het aantal meespelende spelers
+		for (let i = 0; i < players; ++i) {
+			// player = het DOM element met id player-1,2,3,4,...
+			var player = gameView.players[i];
+			// haalt de classe hidden weg
+			player.removeAttribute("class");
+			// maakt Observable object
+			var newPlayer = gameConnector.players();
+			//zet de Observable in de array bij de Models
+			gameModel.players.push(newPlayer);
+			// button functionaliteit
+			playerButton = gameView.playerButtons[i];
+			playerButton.addEventListener("click", function() {
+				gameController.rollDices();
+			});
+			// maakt eerste button klikbaar
+			if (i == 0) {
+				playerButton.removeAttribute("disabled");
+			}
+		}
+	},
+	dices: function(dices) {
+		for (let i = 0; i < dices; ++i) {
+			var dice = gameView.dices[i];
+			// Observable
+			var newDice = gameConnector.dices(dice);
+			gameModel.dices.push(newDice);
+		}
+	},
+	pawns: function(players) {
+		for (let i = 0; i < players; ++i) {
+			var pawn = gameView.pawns[i];
+			pawn.classList.toggle("hidden");
+			// Observable
+			var newPawn = gameConnector.pawns(i);
+			gameModel.pawns.push(newPawn);
+		}
+	},
+	goose: function() {
+		for(let gooseSpace = 9; gooseSpace <= 63; gooseSpace += 9) {
+			if(gooseSpace != 63) {
+				var gooseSpaceOne = gooseSpace - 4;
+				var gooseSpaceTwo = gooseSpace;
+				gameView.tiles[--gooseSpaceOne].classList.add("goose");
+				gameView.tiles[--gooseSpaceTwo].classList.add("goose");
+			}
+			else {
+				var gooseSpaceOne = gooseSpace - 4;
+				gameView.tiles[--gooseSpaceOne].classList.add("goose");
+			}
 		}
 	}
-	
-	//  dices observables  //
-	
-	//  pawns observables  //
-	
-	//  goose observables  //
-	
 };
-
 // eerst aangeroepen functie  ------->  instellingen nog te regelen
-var init=function(){
-	var givenPlayerAmount = 4;
-	startGame(givenPlayerAmount);
+var init = function() {
+	gameSetup.goose();
+	gameSetup.dices(2);
+	
+	// in addEventlistener
+	var PlayerAmount = gameView.playerAmount.value;
+	gameSetup.players(PlayerAmount);
+	gameSetup.pawns(PlayerAmount);
 }();
-
-
-
-
 /* sander nog te implementeren
 	
 	
