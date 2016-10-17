@@ -68,8 +68,8 @@ function checkForGooseSpaces() {
 }
 
 function checkForSpecialSpaces() {
-	var pawnPlaceClass = pawnElement.classList[1];
-	var pawnPlaceNumber = parseInt(pawnPlaceClass.slice(pawnPlaceClass.indexOf("-") + 1));
+	var pawnPlace = pawn.publish();
+	var pawnPlaceNumber = parseInt(pawnPlace.slice(pawnPlace.indexOf("-") + 1));
 	var overlayElement = document.getElementById("overlay");
 	var endElement = document.getElementById("end");
 
@@ -86,8 +86,18 @@ function checkForSpecialSpaces() {
 			break;
 		case 58 : movePawn(pawnElement, 1);
 			break;
-		case 63 : overlayElement.classList.remove("hidden"); endElement.classList.remove("hidden");
+		case 63 : win();
 			break;
+	}
+}
+
+function win() {
+	var pawnPlace = pawn.publish();
+	var pawnPlaceNumber = parseInt(pawnPlace.slice(pawnPlace.indexOf("-") + 1));
+
+	if(pawnPlaceNumber + totalDiceValue == 63) {
+		overlayElement.classList.remove("hidden");
+		endElement.classList.remove("hidden");
 	}
 }
 
@@ -98,7 +108,7 @@ pawn.subscribe(function() {
 
 // Publishing
 var lastPlaceClass = pawnElement.classList[1];
-setInterval(function() {
+var intervalID = setInterval(function() {
 	var placeClass = pawnElement.classList[1];
     if (placeClass !== lastPlaceClass) {
         pawn.publish(placeClass);
