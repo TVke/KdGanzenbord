@@ -284,12 +284,12 @@ var gameSetup = {
 				var goosespaceTwo = goosespace;
 				gameView.tiles[--goosespaceOne].classList.add("goose");
 				gameView.tiles[--goosespaceTwo].classList.add("goose");
-				gameModel.gooses.push(++goosespaceOne);
-				gameModel.gooses.push(++goosespaceTwo);
+				gameModel.geese.push(++goosespaceOne);
+				gameModel.geese.push(++goosespaceTwo);
 			} else {
 				var goosespaceOne = goosespace - 4;
 				gameView.tiles[--goosespaceOne].classList.add("goose");
-				gameModel.gooses.push(++goosespaceOne);
+				gameModel.geese.push(++goosespaceOne);
 			}
 		}
 	}
