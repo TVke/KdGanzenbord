@@ -30,7 +30,7 @@ h2 {
 	font-size:1em;
 }
 
-header,#overlay,#players,#dices {
+header,#overlay,#players,#dices,#board div.goose::after {
 	top:0;
 	left:0;
 	right:0;
@@ -252,7 +252,7 @@ header {
 }
 
 /* pawn */
-#game div[class^="pawn-"] {
+#game div[id^="pawn-"] {
 	width:9%;
 	height:73.7px;
 	padding:5px;
@@ -268,7 +268,7 @@ header {
 	z-index:1;
 }
 
-#game div[class^="pawn-"] svg {
+#game div[id^="pawn-"] svg {
 	height:73.7px;
 	width:50%;
 	max-width:46px;
@@ -276,35 +276,35 @@ header {
 	display:block;
 }
 
-#game div.pawn-1 svg {
+#game div#pawn-1 svg {
 	fill:#FF5050;
 }
 
-#game div.pawn-2 svg {
+#game div#pawn-2 svg {
 	fill:orange;
 }
 
-#game div.pawn-3 svg {
+#game div#pawn-3 svg {
 	fill:#00db00;
 }
 
-#game div.pawn-4 svg {
+#game div#pawn-4 svg {
 	fill:#05B9FF;
 }
 
-#game div.duo-1 svg,#game div.trio-1 svg,#game div.quatro-1 svg {
+#game div#pawn-1.start svg {
 	margin-left:0;
 }
 
-#game div.quatro-2 svg {
+#game div#pawn-2.start svg {
 	margin-left:17%;
 }
 
-#game div.quatro-3 svg {
+#game div#pawn-3.start svg, #game div.temp svg{
 	margin-right:17%;
 }
 
-#game div.duo-2 svg,#game div.trio-3 svg,#game div.quatro-4 svg {
+#game div#pawn-4.start svg {
 	margin-right:0;
 }
 
@@ -327,6 +327,13 @@ header {
 	content:counter(tileIndex);
 }
 
+#board div.goose::after{
+	content:"";
+	background: url("goose.png") no-repeat;
+	background-size: contain;
+	background-position-y: 5px;
+}
+
 /* to small rules */
 @media screen and (max-width: 800px) {
 	#game::after {
@@ -344,6 +351,13 @@ header {
 		position:relative;
 		width:initial;
 	}
+	#dices{
+		top:0;
+		right: 0;
+		bottom: initial;
+		left:initial;
+		background: none;
+	}
 }
 
 @media screen and (max-width: 605px) {
@@ -355,5 +369,8 @@ header {
 	#players>div {
 		max-width:200px;
 		margin:20px auto;
+	}
+	#dices{
+		top:40px;
 	}
 }
