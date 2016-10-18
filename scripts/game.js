@@ -42,7 +42,7 @@ var gameModel = {
 	pawns: [],
 	tiles: [],
 	players: [],
-	gooses: [],
+	geese: [],
 	tempPos: new Observable(),
 	activePlayer: new Observable(),
 	currentThrow: new Observable()
@@ -134,45 +134,52 @@ var gameController = {
 	rules: function(data) {
 		var testRules = true;
 		// check de ganzen
-		for (let i = 0, ilen = gameModel.gooses.length; i < ilen; ++i) {
-			if (gameModel.gooses[i] == data) {
+		for (let i = 0, ilen = gameModel.geese.length; i < ilen; ++i) {
+			if (gameModel.geese[i] == data) {
 				// checkt maar 1 keer te fixen als er meer keren mmoet gecheckt worden ----------->  belangrijk to do
 				setTimeout(function() {
-					gameController.movePawn(gameModel.activePlayer.publish(), data + gameModel.currentThrow.publish());
+					gameModel.pawns[gameModel.activePlayer.publish()].publish(data + gameModel.currentThrow.publish());
 				}, 1000);
 				testRules = false;
 				break;
 			}
 		}
+		var playerId = gameModel.activePlayer.publish();
 		if (testRules) { // pas de regels toe
 			switch (data) {
 			case 6:
-				gameController.movePawn(gameModel.activePlayer.publish(), 12);
-				gameController.nextPlayer();
+				gameModel.pawns[playerId].publish(12);
+				//gameController.nextPlayer();
 				break;
 			case 19:
+				console.log("skipturn");
 				// Een beurt overslaan
 				gameController.skipTurn(gameModel.activePlayer.publish());
 				gameController.nextPlayer();
 				break;
 			case 31:
 				// Wie hier komt moet er blijven tot een andere speler er komt. Degene die er het eerst was speelt dan verder.
+				console.log("stickyPlace31");
 				gameController.stickyPlace(gameModel.activePlayer.publish(), 31);
 				gameController.nextPlayer();
 				break;
 			case 42:
-				gameController.movePawn(gameModel.activePlayer.publish(), 39);
-				gameController.nextPlayer();
+				gameModel.pawns[playerId].publish(39);
+				//gameController.movePawn(gameModel.activePlayer.publish(), 39);
+				//gameController.nextPlayer();
 				break;
 			case 52:
+				console.log("stickyPlace52");
 				gameController.stickyPlace(gameModel.activePlayer.publish(), 52);
 				gameController.nextPlayer();
 				break;
 			case 58:
-				gameController.movePawn(gameModel.activePlayer.publish(), 1);
-				gameController.nextPlayer();
+				gameModel.pawns[playerId].publish(1);
+				//gameController.movePawn(gameModel.activePlayer.publish(), 1);
+				//gameController.nextPlayer();
 				break;
 			case 63:
+				console.log("win");
 				gameController.win();
 				break;
 			default:
@@ -271,18 +278,18 @@ var gameSetup = {
 		}
 	},
 	goose: function() {
-		for (let gooseSpace = 9; gooseSpace <= 63; gooseSpace += 9) {
-			if (gooseSpace != 63) {
-				var gooseSpaceOne = gooseSpace - 4;
-				var gooseSpaceTwo = gooseSpace;
-				gameView.tiles[--gooseSpaceOne].classList.add("goose");
-				gameView.tiles[--gooseSpaceTwo].classList.add("goose");
-				gameModel.gooses.push(++gooseSpaceOne);
-				gameModel.gooses.push(++gooseSpaceTwo);
+		for (let goosespace = 9; goosespace <= 63; goosespace += 9) {
+			if (goosespace != 63) {
+				var goosespaceOne = goosespace - 4;
+				var goosespaceTwo = goosespace;
+				gameView.tiles[--goosespaceOne].classList.add("goose");
+				gameView.tiles[--goosespaceTwo].classList.add("goose");
+				gameModel.geese.push(++goosespaceOne);
+				gameModel.geese.push(++goosespaceTwo);
 			} else {
-				var gooseSpaceOne = gooseSpace - 4;
-				gameView.tiles[--gooseSpaceOne].classList.add("goose");
-				gameModel.gooses.push(++gooseSpaceOne);
+				var goosespaceOne = goosespace - 4;
+				gameView.tiles[--goosespaceOne].classList.add("goose");
+				gameModel.geese.push(++goosespaceOne);
 			}
 		}
 	}
