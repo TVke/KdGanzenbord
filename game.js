@@ -17,7 +17,7 @@ var Observable = function() {
 				if (_self.subs.indexOf(callback) === -1) {
 					_self.subs.push(callback);
 				}
-			}/*,
+			}/* ,
 			unsubscribe: function(callback) {
 				for (let i = 0, ilen = _self.subs.length; i < ilen; ++i) {
 					if (_self.subs[i] === callback) {
