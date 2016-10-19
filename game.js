@@ -17,27 +17,27 @@ var Observable = function() {
 				if (_self.subs.indexOf(callback) === -1) {
 					_self.subs.push(callback);
 				}
-			},
+			}/*,
 			unsubscribe: function(callback) {
 				for (let i = 0, ilen = _self.subs.length; i < ilen; ++i) {
 					if (_self.subs[i] === callback) {
 						_self.subs.splice(i, 1);
 					}
 				}
-			}
+			}*/
 		};
 		return _self.methods;
 	};
 var gameView = {
 	playerAmount: document.getElementById("playerAmount"),
+	startButton: document.querySelector("#begin button"),
 	diceContainer: document.getElementById("dices"),
 	dices: document.querySelectorAll("#dices div"),
 	pawns: document.querySelectorAll("div[id^='pawn-']"),
 	tiles: document.querySelectorAll("#board div"),
 	players: document.querySelectorAll("#players div"),
 	playerNames: document.querySelectorAll("#players span"),
-	playerButtons: document.querySelectorAll("#players div button"),
-	startButton: document.querySelector("#begin button")
+	playerButtons: document.querySelectorAll("#players div button")
 };
 var gameModel = {
 	dices: [],
@@ -251,7 +251,7 @@ var gameSetup = {
 			// zet de namen in de view
 			gameView.playerNames[i].innerHTML = namen[i];
 			// button functionaliteit
-			playerButton = gameView.playerButtons[i];
+			var playerButton = gameView.playerButtons[i];
 			playerButton.addEventListener("click", function() {
 				gameController.rollDices();
 			});
