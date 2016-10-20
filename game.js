@@ -37,7 +37,8 @@ var gameView = {
 	tiles: document.querySelectorAll("#board div"),
 	players: document.querySelectorAll("#players div"),
 	playerNames: document.querySelectorAll("#players span"),
-	playerButtons: document.querySelectorAll("#players div button")
+	playerButtons: document.querySelectorAll("#players div button"),
+	endMessage: document.querySelector("#end p")
 };
 var gameModel = {
 	dices: [],
@@ -75,8 +76,8 @@ var gameController = {
 		gameModel.currentThrow.publish(totalThrow);
 	},
 	movePawn: function(pawnId, place) {
-		for (let i = 0, ilen = gameModel.pawns.length; i < ilen; ++i) {
-			// alle behalven de te verplaatsen pion
+		for (let i = 0, pawnsLength = gameModel.pawns.length; i < pawnsLength; ++i) {
+			// alles behalven de te verplaatsen pion
 			if (i != pawnId) {
 				if (gameModel.pawns[i].publish() == place) {
 					gameView.pawns[i].classList.add("temp");
@@ -208,7 +209,8 @@ var gameController = {
 		}
 	},
 	win: function() {
-		var winner = gameModel.activePlayer.publish();
+		var winnerName = gameView.playerNames[gameModel.activePlayer.publish()].innerHTML;
+		gameView.endMessage.innerHTML = winnerName;
 	}
 };
 var gameConnector = {
@@ -288,9 +290,9 @@ var gameSetup = {
 				gameModel.geese.push(++goosespaceOne);
 				gameModel.geese.push(++goosespaceTwo);
 			} else {
-				var goosespaceOne = goosespace - 4;
-				gameView.tiles[--goosespaceOne].classList.add("goose");
-				gameModel.geese.push(++goosespaceOne);
+				var goosespaceTree = goosespace - 4;
+				gameView.tiles[--goosespaceTree].classList.add("goose");
+				gameModel.geese.push(++goosespaceTree);
 			}
 		}
 	}
@@ -309,4 +311,4 @@ var init = function() {
 		var PlayerAmount = gameView.playerAmount.value;
 		gameSetup.players(PlayerAmount);
 		gameSetup.pawns(PlayerAmount);
-	}();
+}();
