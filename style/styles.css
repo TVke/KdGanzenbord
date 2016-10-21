@@ -183,6 +183,9 @@ header {
 	display:-webkit-flex;
 	justify-content:space-around;
 	z-index:1;
+	padding:10px;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
 }
 
 #dice>div {
