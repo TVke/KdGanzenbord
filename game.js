@@ -299,7 +299,9 @@ var gameSetup = {
 	pawns: function (players) {
 		for (let i = 0; i < players; ++i) {
 			var pawn = gameView.pawns[i];
-			pawn.classList.toggle("hidden");
+			if(pawn.classList.contains("hidden")){
+				pawn.classList.toggle("hidden");
+			}
 			// Observable
 			var newPawn = gameConnector.pawns();
 			gameModel.pawns.push(newPawn);

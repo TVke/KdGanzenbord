@@ -371,6 +371,46 @@ header {
 	background-position-y: 5px;
 }
 
+#game #board div[id^="tile-"]::after{
+	content:"";
+	background-size: contain;
+	background-position-y: 100%;
+	background-position-X: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+/*#board div#tile-6::after{
+	background: url("brug.png") no-repeat;
+}*/
+
+#board div#tile-19::after{
+	background: url("herberg.svg") no-repeat;
+}
+
+/*#board div#tile-31::after{
+	background: url("put.svg") no-repeat;
+}*/
+
+/*#board div#tile-42::after{
+	background: url("doolhof.svg") no-repeat;
+}*/
+
+#board div#tile-52::after{
+	background: url("gevangenis.svg") no-repeat;
+}
+
+/*#board div#tile-58::after{
+	background: url("dood.svg") no-repeat;
+}*/
+
+#board div#tile-63::after{
+	background: url("gewonnen.svg") no-repeat;
+}
+
 /* Niels hier mag de stijl voor het startscherm */
 
 #begin {
