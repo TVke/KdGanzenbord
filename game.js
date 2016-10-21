@@ -31,8 +31,8 @@ var Observable = function() {
 var gameView = {
 	playerAmount: document.getElementById("playerAmount"),
 	startButton: document.querySelector("#begin button"),
-	diceContainer: document.getElementById("dices"),
-	dices: document.querySelectorAll("#dices div"),
+	dieContainer: document.getElementById("dice"),
+	dice: document.querySelectorAll("#dice div"),
 	pawns: document.querySelectorAll("div[id^='pawn-']"),
 	tiles: document.querySelectorAll("#board div"),
 	players: document.querySelectorAll("#players div"),
@@ -47,14 +47,15 @@ var gameView = {
 	info: document.querySelector("#whiteoverlay p"),
 };
 var gameModel = {
-	dices: [],
+	dice: [],
 	pawns: [],
 	tiles: [],
 	players: [],
 	geese: [],
 	tempPos: new Observable(),
 	activePlayer: new Observable(),
-	currentThrow: new Observable()
+	currentThrow: new Observable(),
+	pawnMoveOver: new Observable()
 };
 var gameController = {
 	rollDices: function() {
@@ -65,13 +66,13 @@ var gameController = {
 			}
 		}
 		var totalThrow = 0;
-		for (let i = 0, ilen = gameModel.dices.length; i < ilen; ++i) {
+		for (let i = 0, ilen = gameModel.dice.length; i < ilen; ++i) {
 			var randomNumber = Math.floor((Math.random() * 6) + 1);
-			gameModel.dices[i].publish(randomNumber);
+			gameModel.dice[i].publish(randomNumber);
 			totalThrow += randomNumber;
 		}
-		// toon dice container
-		gameView.diceContainer.removeAttribute("class");
+		// toon die container
+		gameView.dieContainer.removeAttribute("class");
 		// disable after button press
 		gameView.playerButtons[activePlayerId].setAttribute('disabled', '');
 		var currentPlace = gameModel.pawns[activePlayerId].publish();
@@ -82,8 +83,7 @@ var gameController = {
 		gameModel.currentThrow.publish(totalThrow);
 	},
 	movePawn: function(place) {
-		/* test code
-
+		 //test code
 		var startPlace = gameModel.tempPos.publish();
 		var startCounter = gameModel.tempPos.publish();
 		var playerId = gameModel.activePlayer.publish();
@@ -95,6 +95,14 @@ var gameController = {
 				otherPlayerAlready=true;
 			}
 		}
+		// controlles
+		console.log("startPlace: "+startPlace);
+		console.log("startCounter: "+startCounter);
+		console.log("playerId: "+playerId);
+		console.log("otherPlayerAlready: "+otherPlayerAlready);
+		console.log("place: "+place);
+
+
 		var move = setInterval(function () {
 			if(place > startCounter){
 				if(startCounter!=maxCounter) {
@@ -120,14 +128,13 @@ var gameController = {
 			}
 		},250);
 
-		*/
-		var pawnId = gameModel.activePlayer.publish();
+		/*var pawnId = gameModel.activePlayer.publish();
 		for (let i = 0, pawnsLength = gameModel.pawns.length; i < pawnsLength; ++i) {
 			// alles behalven de te verplaatsen pion
 			if (i != pawnId) {
 				if (gameModel.pawns[i].publish() == place) {
 					gameView.pawns[i].classList.add("temp");
-/*
+/!*
 					setTimeout(function(){
 						if(typeof gameModel.tempPos.publish() === "undefined"){
 							gameView.pawns[pawnId].publish(1);
@@ -136,7 +143,7 @@ var gameController = {
 						}
 						gameView.pawns[i].classList.toggle("temp");
 					}, 700);
-*/
+*!/
 					setTimeout(function() {
 						var tempP = gameModel.tempPos.publish();
 						if (tempP <= 63 && tempP >= 1) {
@@ -164,12 +171,12 @@ var gameController = {
 			}, 700);
 		} else if (place < 1) {
 			gameView.pawns[pawnId].className = "place-1";
-		}
+		}*/
 	},
 	startRules: function() {
 		var currentPawn = gameModel.pawns[gameModel.activePlayer.publish()];
-		var secondDiceValue = gameModel.dices[1].publish();
-		switch (gameModel.dices[0].publish()) {
+		var secondDiceValue = gameModel.dice[1].publish();
+		switch (gameModel.dice[0].publish()) {
 		case 3:
 			if (secondDiceValue == 6) {
 				currentPawn.publish(26);
@@ -262,12 +269,12 @@ var gameController = {
 	}
 };
 var gameConnector = {
-	dices: function(DOMElement) {
-		var dice = new Observable();
-		dice.subscribe(function(data) {
+	dice: function(DOMElement) {
+		var die = new Observable();
+		die.subscribe(function(data) {
 			DOMElement.className = "rolled-" + data;
 		});
-		return dice;
+		return die;
 	},
 	pawns: function() {
 		var pawn = new Observable();
@@ -275,21 +282,22 @@ var gameConnector = {
 		pawn.subscribe(function(data) {
 			if (data != 9) {
 				gameController.movePawn(data);
-				setTimeout(function() {
+				/*setTimeout(function() {
 					gameController.rules(data);
-				}, 700);
+				}, 700);*/
 			} else {
 				gameController.movePawn(data);
-				setTimeout(function() {
+				/*setTimeout(function() {
 					gameController.startRules();
-				}, 700);
+				}, 700);*/
 			}
 		});
 		return pawn;
 	}
 };
 var gameSetup = {
-	players: function(players, namen = ["Speler 1", "Speler 2", "Speler 3", "Speler 4"]) {
+
+	players: function(players, names = ["Speler 1", "Speler 2", "Speler 3", "Speler 4"]) {
 		// loopt het aantal meespelende spelers
 		for (let i = 0; i < players; ++i) {
 			// player = het DOM element met id player-1,2,3,4,...
@@ -297,9 +305,9 @@ var gameSetup = {
 			// haalt de classe hidden weg
 			player.removeAttribute("class");
 			//zet de naam in de array bij de Models
-			gameModel.players.push(namen[i]);
-			// zet de namen in de view
-			gameView.playerNames[i].innerHTML = namen[i];
+			gameModel.players.push(names[i]);
+			// zet de names in de view
+			gameView.playerNames[i].innerHTML = names[i];
 			// button functionaliteit
 			var playerButton = gameView.playerButtons[i];
 			playerButton.addEventListener("click", function() {
@@ -309,15 +317,17 @@ var gameSetup = {
 			if (i == 0) {
 				playerButton.removeAttribute("disabled");
 				gameModel.activePlayer.publish(0);
+				gameModel.tempPos.publish(0);
+				gameModel.pawnMoveOver.publish(false);
 			}
 		}
 	},
-	dices: function(dices) {
-		for (let i = 0; i < dices; ++i) {
-			var dice = gameView.dices[i];
+	dice: function(dice) {
+		for (let i = 0; i < dice; ++i) {
+			var die = gameView.dice[i];
 			// Observable
-			var newDice = gameConnector.dices(dice);
-			gameModel.dices.push(newDice);
+			var newDice = gameConnector.dice(die);
+			gameModel.dice.push(newDice);
 		}
 	},
 	pawns: function(players) {
@@ -339,9 +349,9 @@ var gameSetup = {
 				gameModel.geese.push(goosespaceOne);
 				gameModel.geese.push(goosespaceTwo);
 			} else {
-				var goosespaceTree = goosespace - 4;
-				gameView.tiles[goosespaceTree].classList.add("goose");
-				gameModel.geese.push(goosespaceTree);
+				var goosespaceThree = goosespace - 4;
+				gameView.tiles[goosespaceThree].classList.add("goose");
+				gameModel.geese.push(goosespaceThree);
 			}
 		}
 	}
@@ -349,15 +359,15 @@ var gameSetup = {
 // eerst aangeroepen functie
 var init = function() {
 		gameSetup.goose();
-		gameSetup.dices(2);
+		gameSetup.dice(2);
 /*
 		gameView.startButton.addEventListener("click",function(){
-			var PlayerAmount = gameView.playerAmount.value;
-			gameSetup.players(PlayerAmount);
-			gameSetup.pawns(PlayerAmount);
+			var playerAmount = gameView.playerAmount.value;
+			gameSetup.players(playerAmount);
+			gameSetup.pawns(playerAmount);
 		});
 */
-		var PlayerAmount = gameView.playerAmount.value;
-		gameSetup.players(PlayerAmount);
-		gameSetup.pawns(PlayerAmount);
+		var playerAmount = gameView.playerAmount.value;
+		gameSetup.players(playerAmount);
+		gameSetup.pawns(playerAmount);
 }();
