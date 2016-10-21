@@ -38,7 +38,7 @@ var gameView = {
 	endButton: document.querySelector("#end button"),
 	infoOverlay: document.getElementById("whiteoverlay"),
 	infoTitle: document.querySelector("#whiteoverlay h3"),
-	info: document.querySelector("#whiteoverlay p"),
+	info: document.querySelector("#whiteoverlay p")
 };
 var gameModel = {
 	dice: [],
@@ -73,8 +73,6 @@ var gameController = {
 		gameModel.currentThrow.publish(totalThrow);
 	},
 	movePawn: function (place) {
-		//test code
-		var startPlace = gameModel.tempPos.publish();
 		var startCounter = gameModel.subPos.publish();
 		var playerId = gameModel.activePlayer.publish();
 		var maxCounter = 63;
@@ -101,14 +99,13 @@ var gameController = {
 				} else {
 					clearInterval(move);
 					gameView.pawns[playerId].className = "place-" + minCounter;
-					gameView.pawns[playerId].classList.add("start");
 				}
 			} else if (place === startCounter) {// staat op 'place'
-				if (otherPlayerAlready) {
+				if (otherPlayerAlready && place!==minCounter) {
 					clearInterval(move);
 					gameView.pawns[playerId].classList.add("temp");
 					gameModel.subPos.publish(gameModel.pawns[playerId].publish());
-					gameModel.pawns[playerId].publish(startPlace);
+					gameModel.pawns[playerId].publish(gameModel.tempPos.publish());
 				} else {
 					clearInterval(move);
 					gameModel.subPos.publish(place);
@@ -141,11 +138,19 @@ var gameController = {
 					currentPawn.publish(26);
 				}
 				break;
+			default:
+				setTimeout(function () {
+					if (gameModel.tempPos.publish()<data){
+						currentPawn.publish(data + gameModel.currentThrow.publish());
+					}else{
+						currentPawn.publish(data - gameModel.currentThrow.publish());
+					}
+				}, 500);
+				break;
 		}
 	},
 	rules: function (data) {
 		var testRules = true;
-		console.log("data="+data+"&tempPos="+gameModel.tempPos.publish()+"&subPos="+gameModel.subPos.publish());
 		var playerId = gameModel.activePlayer.publish();
 		// check de ganzen
 		for (let i = 0, ilen = gameModel.geese.length; i < ilen; ++i) {
@@ -156,7 +161,7 @@ var gameController = {
 					}else{
 						gameModel.pawns[playerId].publish(data - gameModel.currentThrow.publish());
 					}
-				}, 700);
+				}, 500);
 				testRules = false;
 				break;
 			}
@@ -185,7 +190,6 @@ var gameController = {
 					gameModel.pawns[playerId].publish(0);
 					break;
 				case 63:
-					console.log("win");
 					gameController.win();
 					break;
 				default:
@@ -209,23 +213,19 @@ var gameController = {
 			gameModel.activePlayer.publish(nextPlayerId);
 			gameView.playerButtons[nextPlayerId].removeAttribute('disabled');
 			gameModel.subPos.publish(gameModel.pawns[nextPlayerId].publish());
-			//gameModel.tempPos.publish(gameModel.pawns[nextPlayerId].publish());
 		} else {
 			gameModel.activePlayer.publish(0);
 			gameView.playerButtons[0].removeAttribute('disabled');
 			gameModel.subPos.publish(gameModel.pawns[0].publish());
-			//gameModel.tempPos.publish(gameModel.pawns[0].publish());
 		}
 	},
 	win: function () {
-		var winnerName = gameView.playerNames[gameModel.activePlayer.publish()].innerHTML;
-		gameView.endMessage.innerHTML = winnerName;
+		gameView.endMessage.innerHTML = gameView.playerNames[gameModel.activePlayer.publish()].innerHTML;
 		gameView.overlay.removeAttribute("class");
 		gameView.endOverlay.removeAttribute("class");
 		gameView.endButton.addEventListener("click", function () {
 			gameView.endOverlay.setAttribute("class", "hidden");
 			gameView.beginOverlay.removeAttribute("class");
-			//init();
 		});
 	}
 };
@@ -253,12 +253,15 @@ var gameSetup = {
 		gameModel.subPos.publish(0);
 		gameModel.pawnMoveOver.publish(false);
 		gameModel.pawnMoveOver.subscribe(function (data) {
-
 			if (data) {
 				if (gameModel.pawns[gameModel.activePlayer.publish()].publish() !== 9) {
-					gameController.rules(gameModel.pawns[gameModel.activePlayer.publish()].publish());
+					setTimeout(function () {
+						gameController.rules(gameModel.pawns[gameModel.activePlayer.publish()].publish());
+					},500);
 				} else {
-					gameController.startRules(gameModel.pawns[gameModel.activePlayer.publish()].publish());
+					setTimeout(function () {
+						gameController.startRules(gameModel.pawns[gameModel.activePlayer.publish()].publish());
+					},500);
 				}
 			}
 		});
