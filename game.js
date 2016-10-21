@@ -35,6 +35,7 @@ var gameView = {
 	beginOverlay: document.getElementById("begin"),
 	endOverlay: document.getElementById("end"),
 	endMessage: document.querySelector("#end p"),
+	endButton: document.querySelector("#end button"),
 	infoOverlay: document.getElementById("whiteoverlay"),
 	infoTitle: document.querySelector("#whiteoverlay h3"),
 	info: document.querySelector("#whiteoverlay p"),
@@ -212,6 +213,13 @@ var gameController = {
 	win: function() {
 		var winnerName = gameView.playerNames[gameModel.activePlayer.publish()].innerHTML;
 		gameView.endMessage.innerHTML = winnerName;
+		gameView.overlay.removeAttribute("class");
+		gameView.endOverlay.removeAttribute("class");
+		gameView.endButton.addEventListener("click",function () {
+			gameView.endOverlay.setAttribute("class","hidden");
+			gameView.beginOverlay.removeAttribute("class");
+			//init();
+		});
 	}
 };
 var gameConnector = {
@@ -309,14 +317,12 @@ var init = function() {
 		gameSetup.goose();
 		gameSetup.dice(2);
 		gameSetup.singleObservables();
-/*
+
 		gameView.startButton.addEventListener("click",function(){
 			var playerAmount = gameView.playerAmount.value;
 			gameSetup.players(playerAmount);
 			gameSetup.pawns(playerAmount);
+			gameView.overlay.setAttribute("class","hidden");
+			gameView.beginOverlay.setAttribute("class","hidden");
 		});
-*/
-		var playerAmount = gameView.playerAmount.value;
-		gameSetup.players(playerAmount);
-		gameSetup.pawns(playerAmount);
 }();
