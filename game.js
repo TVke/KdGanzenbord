@@ -38,7 +38,7 @@ var gameView = {
 	endButton: document.querySelector("#end button"),
 	infoOverlay: document.getElementById("whiteoverlay"),
 	infoTitle: document.querySelector("#whiteoverlay h3"),
-	info: document.querySelector("#whiteoverlay p"),
+	info: document.querySelector("#whiteoverlay p")
 };
 var gameModel = {
 	dice: [],
