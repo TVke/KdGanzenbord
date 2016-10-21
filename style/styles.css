@@ -318,19 +318,19 @@ header {
 	fill:#05B9FF;
 }
 
-#game div#pawn-1.start svg {
+#game div#pawn-1.place-0 svg {
 	margin-left:0;
 }
 
-#game div#pawn-2.start svg {
+#game div#pawn-2.place-0 svg {
 	margin-left:17%;
 }
 
-#game div#pawn-3.start svg, #game div.temp svg{
+#game div#pawn-3.place-0 svg, #game div.temp svg{
 	margin-right:17%;
 }
 
-#game div#pawn-4.start svg {
+#game div#pawn-4.place-0 svg {
 	margin-right:0;
 }
 
@@ -370,6 +370,25 @@ header {
 	background-size: contain;
 	background-position-y: 5px;
 }
+
+/* Niels hier mag de stijl voor het startscherm */
+
+#begin {
+
+}
+#begin h3{
+
+}
+#begin label{
+
+}
+#begin select{
+
+}
+#begin button{
+
+}
+
 
 /* to small rules */
 @media screen and (max-width: 800px) {
