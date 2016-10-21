@@ -1,0 +1,8 @@
+@font-face {
+	font-family: 'KdG';
+    src: url('KdG-Regular.eot'); 
+    src: url('KdG-Regular.eot?#iefix') format('embedded-opentype'), url('KdG-Regular.woff') format('woff'), url('KdG-Regular.ttf') format('truetype'), url('KdG-Regular.svg#KdG-Regular') format('svg');
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}

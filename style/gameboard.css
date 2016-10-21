@@ -313,6 +313,10 @@
 	transform:rotateX(50deg) translate(-400%,300%)translateZ(32px)rotateX(-50deg);
 	-webkit-transform:rotateX(50deg) translate(-400%,300%)translateZ(32px)rotateX(-50deg);
 }
+#game .place-0 {
+	transform:rotateX(50deg) translate(-500%,300%)translateZ(32px)rotateX(-50deg);
+	-webkit-transform:rotateX(50deg) translate(-500%,300%)translateZ(32px)rotateX(-50deg);
+}
 
 /* tile placement */
 #tile-63 {
@@ -628,6 +632,10 @@
 #tile-1 {
 	transform:translate(-400%,300%);
 	-webkit-transform:translate(-400%,300%);
+}
+#tile-0 {
+	transform:translate(-500%,300%);
+	-webkit-transform:translate(-500%,300%);
 }
 
 /* tile look */

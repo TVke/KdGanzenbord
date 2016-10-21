@@ -1,41 +1,50 @@
 var Observable = function() {
-	var _self = this;
-	_self.data;
-	_self.subs = [];
-	_self.methods = {
-		publish: function(newData) {
-			if (typeof newData !== 'undefined') {
-				_self.data = newData;
+		var _self = this;
+		_self.data;
+		_self.subs = [];
+		_self.methods = {
+			publish: function(newData) {
+				if (typeof newData !== 'undefined') {
+					_self.data = newData;
+					for (let i = 0, ilen = _self.subs.length; i < ilen; ++i) {
+						_self.subs[i](_self.data);
+					}
+				} else {
+					return _self.data;
+				}
+			},
+			subscribe: function(callback) {
+				if (_self.subs.indexOf(callback) === -1) {
+					_self.subs.push(callback);
+				}
+			}/* ,
+			unsubscribe: function(callback) {
 				for (let i = 0, ilen = _self.subs.length; i < ilen; ++i) {
-					_self.subs[i](_self.data);
+					if (_self.subs[i] === callback) {
+						_self.subs.splice(i, 1);
+					}
 				}
-			} else {
-				return _self.data;
-			}
-		},
-		subscribe: function(callback) {
-			if (_self.subs.indexOf(callback) === -1) {
-				_self.subs.push(callback);
-			}
-		},
-		unsubscribe: function(callback) {
-			for (let i = 0, ilen = _self.subs.length; i < ilen; ++i) {
-				if (_self.subs[i] === callback) {
-					_self.subs.splice(i, 1);
-				}
-			}
-		}
+			}*/
+		};
+		return _self.methods;
 	};
-	return _self.methods;
-};
 var gameView = {
 	playerAmount: document.getElementById("playerAmount"),
+	startButton: document.querySelector("#begin button"),
 	diceContainer: document.getElementById("dices"),
 	dices: document.querySelectorAll("#dices div"),
 	pawns: document.querySelectorAll("div[id^='pawn-']"),
 	tiles: document.querySelectorAll("#board div"),
 	players: document.querySelectorAll("#players div"),
-	playerButtons: document.querySelectorAll("#players div button")
+	playerNames: document.querySelectorAll("#players span"),
+	playerButtons: document.querySelectorAll("#players div button"),
+	overlay: document.getElementById("overlay"),
+	beginOverlay: document.getElementById("begin"),
+	endOverlay: document.getElementById("end"),
+	endMessage: document.querySelector("#end p"),
+	infoOverlay: document.getElementById("whiteoverlay"),
+	infoTitle: document.querySelector("#whiteoverlay h3"),
+	info: document.querySelector("#whiteoverlay p"),
 };
 var gameModel = {
 	dices: [],
@@ -72,63 +81,115 @@ var gameController = {
 		gameModel.activePlayer.publish(activePlayerId);
 		gameModel.currentThrow.publish(totalThrow);
 	},
-	movePawn: function(pawnId, place) {
-		for (let i = 0, ilen = gameModel.pawns.length; i < ilen; ++i) {
+	movePawn: function(place) {
+		/* test code
+
+		var startPlace = gameModel.tempPos.publish();
+		var startCounter = gameModel.tempPos.publish();
+		var playerId = gameModel.activePlayer.publish();
+		var maxCounter = 63;
+		var minCounter = 0;
+		var otherPlayerAlready = false;
+		for(let i=0,ilen = gameModel.pawns.length;i<ilen;++i){
+			if(playerId!=i && gameModel.pawns[i].publish()==place){
+				otherPlayerAlready=true;
+			}
+		}
+		var move = setInterval(function () {
+			if(place > startCounter){
+				if(startCounter!=maxCounter) {
+					gameView.pawns[playerId].className = "place-" + ++startCounter;
+				}else{
+					clearInterval(move);
+					gameModel.pawns[playerId].publish(maxCounter-(place-maxCounter));
+				}
+			}else if(place < startCounter){
+				if(startCounter>minCounter){
+					gameView.pawns[playerId].className = "place-"+ --startCounter;
+				}else {
+					clearInterval(move);
+					gameView.pawns[playerId].className = "place-"+ minCounter;
+					gameView.pawns[playerId].classList.add("start");
+				}
+			}else if(place == startCounter){
+				if(otherPlayerAlready){
+					clearInterval(move);
+					gameView.pawns[playerId].classList.add("temp");
+					gameModel.pawns[playerId].publish(startPlace);
+				}
+			}
+		},250);
+
+		*/
+		var pawnId = gameModel.activePlayer.publish();
+		for (let i = 0, pawnsLength = gameModel.pawns.length; i < pawnsLength; ++i) {
+			// alles behalven de te verplaatsen pion
 			if (i != pawnId) {
 				if (gameModel.pawns[i].publish() == place) {
-					gameView.pawns[pawnId].classList.add("temp");
+					gameView.pawns[i].classList.add("temp");
+/*
+					setTimeout(function(){
+						if(typeof gameModel.tempPos.publish() === "undefined"){
+							gameView.pawns[pawnId].publish(1);
+						}else{
+							gameView.pawns[pawnId].publish(gameModel.tempPos.publish());
+						}
+						gameView.pawns[i].classList.toggle("temp");
+					}, 700);
+*/
 					setTimeout(function() {
 						var tempP = gameModel.tempPos.publish();
 						if (tempP <= 63 && tempP >= 1) {
 							gameView.pawns[pawnId].className = "place-" + tempP;
-						} else if (tempP < 63) {
+						} else if (tempP > 63) {
 							gameView.pawns[pawnId].className = "place-63";
 							setTimeout(function() {
 								gameView.pawns[pawnId].className = "place-" + (63 - (parseInt(place) - 63));
-							}, 1000);
-						} else if (tempP < 1) {
+							}, 700);
+						} else if (tempP < 0) {
 							gameView.pawns[pawnId].className = "place-1";
 						}
 						gameView.pawns[pawnId].classList.toggle("temp");
-					}, 1000);
+					}, 700);
 				}
 			}
 		}
 		if (place <= 63 && place >= 1) {
+			gameView.pawns[pawnId].className
 			gameView.pawns[pawnId].className = "place-" + place;
-		} else if (place < 63) {
+		} else if (place > 63) {
 			gameView.pawns[pawnId].className = "place-63";
 			setTimeout(function() {
 				gameView.pawns[pawnId].className = "place-" + (63 - (parseInt(place) - 63));
-			}, 1000);
+			}, 700);
 		} else if (place < 1) {
 			gameView.pawns[pawnId].className = "place-1";
 		}
 	},
 	startRules: function() {
-		if (typeof gameModel.tempPos !== "undefined" && gameModel.tempPos.publish() == 1) {
-			switch (gameModel.dices[0].publish()) {
-			case 3:
-				if (gameModel.dices[1].publish() == 6) {
-					gameController.movePawn(gameModel.activePlayer.publish(), 26);
-				}
-				break;
-			case 4:
-				if (gameModel.dices[1].publish() == 5) {
-					gameController.movePawn(gameModel.activePlayer.publish(), 53);
-				}
-				break;
-			case 5:
-				if (gameModel.dices[1].publish() == 4) {
-					gameController.movePawn(gameModel.activePlayer.publish(), 53);
-				}
-				break;
-			case 6:
-				if (gameModel.dices[1].publish() == 3) {
-					gameController.movePawn(gameModel.activePlayer.publish(), 26);
-				}
-				break;
+		var currentPawn = gameModel.pawns[gameModel.activePlayer.publish()];
+		var secondDiceValue = gameModel.dices[1].publish();
+		switch (gameModel.dices[0].publish()) {
+		case 3:
+			if (secondDiceValue == 6) {
+				currentPawn.publish(26);
 			}
+			break;
+		case 4:
+			if (secondDiceValue == 5) {
+				currentPawn.publish(53);
+			}
+			break;
+		case 5:
+			if (secondDiceValue == 4) {
+				currentPawn.publish(53);
+			}
+			break;
+		case 6:
+			if (secondDiceValue == 3) {
+				currentPawn.publish(26);
+			}
+			break;
 		}
 	},
 	rules: function(data) {
@@ -136,10 +197,9 @@ var gameController = {
 		// check de ganzen
 		for (let i = 0, ilen = gameModel.geese.length; i < ilen; ++i) {
 			if (gameModel.geese[i] == data) {
-				// checkt maar 1 keer te fixen als er meer keren mmoet gecheckt worden ----------->  belangrijk to do
 				setTimeout(function() {
 					gameModel.pawns[gameModel.activePlayer.publish()].publish(data + gameModel.currentThrow.publish());
-				}, 1000);
+				}, 700);
 				testRules = false;
 				break;
 			}
@@ -149,34 +209,24 @@ var gameController = {
 			switch (data) {
 			case 6:
 				gameModel.pawns[playerId].publish(12);
-				//gameController.nextPlayer();
 				break;
 			case 19:
 				console.log("skipturn");
-				// Een beurt overslaan
 				gameController.skipTurn(gameModel.activePlayer.publish());
-				gameController.nextPlayer();
 				break;
 			case 31:
-				// Wie hier komt moet er blijven tot een andere speler er komt. Degene die er het eerst was speelt dan verder.
 				console.log("stickyPlace31");
 				gameController.stickyPlace(gameModel.activePlayer.publish(), 31);
-				gameController.nextPlayer();
 				break;
 			case 42:
 				gameModel.pawns[playerId].publish(39);
-				//gameController.movePawn(gameModel.activePlayer.publish(), 39);
-				//gameController.nextPlayer();
 				break;
 			case 52:
 				console.log("stickyPlace52");
 				gameController.stickyPlace(gameModel.activePlayer.publish(), 52);
-				gameController.nextPlayer();
 				break;
 			case 58:
-				gameModel.pawns[playerId].publish(1);
-				//gameController.movePawn(gameModel.activePlayer.publish(), 1);
-				//gameController.nextPlayer();
+				gameModel.pawns[playerId].publish(0);
 				break;
 			case 63:
 				console.log("win");
@@ -188,75 +238,77 @@ var gameController = {
 			}
 		}
 	},
-	skipTurn: function() {
-		console.log("skipTurn");
+	skipTurn: function() { // Een beurt overslaan
 		gameController.nextPlayer();
 	},
-	stickyPlace: function() {
-		console.log("stickyPlace 31 of 52");
+	stickyPlace: function() { // Wie hier komt moet er blijven tot een andere speler er komt. Degene die er het eerst was speelt dan verder.
 		gameController.skipTurn()
 	},
 	nextPlayer: function() {
 		var activeID = gameModel.activePlayer.publish();
+		var nextPlayerId = ++activeID;
 		//volgende speler activeren
-		if (activeID < (gameModel.players.length-1)) {
-			gameView.playerButtons[++activeID].removeAttribute('disabled');
+		if (activeID < gameModel.players.length) {
+			gameModel.activePlayer.publish(nextPlayerId);
+			gameView.playerButtons[nextPlayerId].removeAttribute('disabled');
 		} else {
 			gameModel.activePlayer.publish(0);
 			gameView.playerButtons[0].removeAttribute('disabled');
 		}
 	},
 	win: function() {
-		var winner = gameModel.activePlayer.publish();
+		var winnerName = gameView.playerNames[gameModel.activePlayer.publish()].innerHTML;
+		gameView.endMessage.innerHTML = winnerName;
 	}
 };
 var gameConnector = {
-	players: function() {
-		var player = new Observable();
-		// bij een publish met een index nummer van de volgende speler wordt deze functie uitgevoerd
-		player.subscribe(gameController.nextPlayer);
-		return player;
-	},
 	dices: function(DOMElement) {
 		var dice = new Observable();
 		dice.subscribe(function(data) {
 			DOMElement.className = "rolled-" + data;
-			setTimeout(gameController.startRules, 1000);
 		});
 		return dice;
 	},
-	pawns: function(DOMElementId) {
+	pawns: function() {
 		var pawn = new Observable();
-		pawn.publish(1);
+		pawn.publish(0);
 		pawn.subscribe(function(data) {
-			gameController.movePawn(DOMElementId, data);
-			setTimeout(function() {
-				gameController.rules(data);
-			}, 1000);
+			if (data != 9) {
+				gameController.movePawn(data);
+				setTimeout(function() {
+					gameController.rules(data);
+				}, 700);
+			} else {
+				gameController.movePawn(data);
+				setTimeout(function() {
+					gameController.startRules();
+				}, 700);
+			}
 		});
 		return pawn;
 	}
 };
 var gameSetup = {
-	players: function(players) {
+	players: function(players, namen = ["Speler 1", "Speler 2", "Speler 3", "Speler 4"]) {
 		// loopt het aantal meespelende spelers
 		for (let i = 0; i < players; ++i) {
 			// player = het DOM element met id player-1,2,3,4,...
 			var player = gameView.players[i];
 			// haalt de classe hidden weg
 			player.removeAttribute("class");
-			// maakt Observable object
-			var newPlayer = gameConnector.players();
-			//zet de Observable in de array bij de Models
-			gameModel.players.push(newPlayer);
+			//zet de naam in de array bij de Models
+			gameModel.players.push(namen[i]);
+			// zet de namen in de view
+			gameView.playerNames[i].innerHTML = namen[i];
 			// button functionaliteit
-			playerButton = gameView.playerButtons[i];
+			var playerButton = gameView.playerButtons[i];
 			playerButton.addEventListener("click", function() {
 				gameController.rollDices();
 			});
 			// maakt eerste button klikbaar
 			if (i == 0) {
 				playerButton.removeAttribute("disabled");
+				gameModel.activePlayer.publish(0);
 			}
 		}
 	},
@@ -273,7 +325,7 @@ var gameSetup = {
 			var pawn = gameView.pawns[i];
 			pawn.classList.toggle("hidden");
 			// Observable
-			var newPawn = gameConnector.pawns(i);
+			var newPawn = gameConnector.pawns();
 			gameModel.pawns.push(newPawn);
 		}
 	},
@@ -282,23 +334,29 @@ var gameSetup = {
 			if (goosespace != 63) {
 				var goosespaceOne = goosespace - 4;
 				var goosespaceTwo = goosespace;
-				gameView.tiles[--goosespaceOne].classList.add("goose");
-				gameView.tiles[--goosespaceTwo].classList.add("goose");
-				gameModel.geese.push(++goosespaceOne);
-				gameModel.geese.push(++goosespaceTwo);
+				gameView.tiles[goosespaceOne].classList.add("goose");
+				gameView.tiles[goosespaceTwo].classList.add("goose");
+				gameModel.geese.push(goosespaceOne);
+				gameModel.geese.push(goosespaceTwo);
 			} else {
-				var goosespaceOne = goosespace - 4;
-				gameView.tiles[--goosespaceOne].classList.add("goose");
-				gameModel.geese.push(++goosespaceOne);
+				var goosespaceTree = goosespace - 4;
+				gameView.tiles[goosespaceTree].classList.add("goose");
+				gameModel.geese.push(goosespaceTree);
 			}
 		}
 	}
 };
-// eerst aangeroepen functie  ------->  instellingen nog te regelen
+// eerst aangeroepen functie
 var init = function() {
 		gameSetup.goose();
 		gameSetup.dices(2);
-		// in addEventlistener
+/*
+		gameView.startButton.addEventListener("click",function(){
+			var PlayerAmount = gameView.playerAmount.value;
+			gameSetup.players(PlayerAmount);
+			gameSetup.pawns(PlayerAmount);
+		});
+*/
 		var PlayerAmount = gameView.playerAmount.value;
 		gameSetup.players(PlayerAmount);
 		gameSetup.pawns(PlayerAmount);
