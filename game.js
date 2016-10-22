@@ -101,7 +101,7 @@ var gameController = {
 					gameView.pawns[playerId].className = "place-" + minCounter;
 				}
 			} else if (place === startCounter) {// staat op 'place'
-				if (otherPlayerAlready && place!==minCounter) {
+				if (otherPlayerAlready && place!==minCounter && place !== 31 && place !== 52) {
 					clearInterval(move);
 					gameView.pawns[playerId].classList.add("temp");
 					gameModel.subPos.publish(gameModel.pawns[playerId].publish());
@@ -224,8 +224,7 @@ var gameController = {
 		gameView.overlay.removeAttribute("class");
 		gameView.endOverlay.removeAttribute("class");
 		gameView.endButton.addEventListener("click", function () {
-			gameView.endOverlay.setAttribute("class", "hidden");
-			gameView.beginOverlay.removeAttribute("class");
+			location.reload();
 		});
 	}
 };
