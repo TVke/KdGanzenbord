@@ -364,13 +364,6 @@ header {
 	content:counter(tileIndex);
 }
 
-#board div.goose::after{
-	content:"";
-	background: url("gans.svg") no-repeat;
-	background-size: contain;
-	background-position-y: 5px;
-}
-
 #game #board div[id^="tile-"]::after{
 	content:"";
 	background-size: contain;
@@ -381,6 +374,11 @@ header {
 	left: 0;
 	right: 0;
 	bottom: 0;
+}
+
+#board div.goose::after{
+	background: url("gans.svg") no-repeat;
+	right: 10px !important;
 }
 
 #board div#tile-6::after{
