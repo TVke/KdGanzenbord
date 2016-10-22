@@ -378,7 +378,7 @@ header {
 
 #board div.goose::after{
 	background: url("gans.svg") no-repeat;
-	right: 10px !important;
+	right: 20% !important;
 }
 
 #board div#tile-6::after{
@@ -404,10 +404,12 @@ header {
 
 #board div#tile-58::after{
 	background: url("dood.svg") no-repeat;
+	right: 20% !important;
 }
 
 #board div#tile-63::after{
 	background: url("gewonnen.svg") no-repeat;
+	right: 10% !important;
 }
 
 /* Niels hier mag de stijl voor het startscherm */
