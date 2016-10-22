@@ -366,6 +366,7 @@ header {
 
 #board div.goose::after{
 	content:"";
+	/* background: url("goose.svg") no-repeat; */
 	background: url("goose.png") no-repeat;
 	background-size: contain;
 	background-position-y: 5px;
@@ -383,21 +384,21 @@ header {
 	bottom: 0;
 }
 
-/*#board div#tile-6::after{
-	background: url("brug.png") no-repeat;
-}*/
+#board div#tile-6::after{
+	background: url("brug.svg") no-repeat;
+}
 
 #board div#tile-19::after{
 	background: url("herberg.svg") no-repeat;
 }
 
-/*#board div#tile-31::after{
+#board div#tile-31::after{
 	background: url("put.svg") no-repeat;
-}*/
+}
 
-/*#board div#tile-42::after{
+#board div#tile-42::after{
 	background: url("doolhof.svg") no-repeat;
-}*/
+}
 
 #board div#tile-52::after{
 	background: url("gevangenis.svg") no-repeat;
