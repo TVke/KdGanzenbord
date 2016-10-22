@@ -366,8 +366,7 @@ header {
 
 #board div.goose::after{
 	content:"";
-	/* background: url("goose.svg") no-repeat; */
-	background: url("goose.png") no-repeat;
+	background: url("gans.svg") no-repeat;
 	background-size: contain;
 	background-position-y: 5px;
 }
@@ -397,6 +396,7 @@ header {
 }
 
 #board div#tile-42::after{
+	content: "";
 	background: url("doolhof.svg") no-repeat;
 }
 
@@ -404,9 +404,9 @@ header {
 	background: url("gevangenis.svg") no-repeat;
 }
 
-/*#board div#tile-58::after{
+#board div#tile-58::after{
 	background: url("dood.svg") no-repeat;
-}*/
+}
 
 #board div#tile-63::after{
 	background: url("gewonnen.svg") no-repeat;
