@@ -112,7 +112,7 @@ var gameController = {
 					gameModel.pawnMoveOver.publish(true);
 				}
 			}
-		}, 250);
+		}, 0);
 	},
 	startRules: function () {
 		var currentPawn = gameModel.pawns[gameModel.activePlayer.publish()];
@@ -171,7 +171,7 @@ var gameController = {
 				case 6:
 					gameModel.pawns[playerId].publish(12);
 					break;
-				case 19:
+				case 7:
 					console.log("skipturn");
 					gameController.skipTurn(gameModel.activePlayer.publish());
 					break;
@@ -198,7 +198,8 @@ var gameController = {
 			}
 		}
 	},
-	skipTurn: function () { // Een beurt overslaan
+	skipTurn: function (activePlayerId) { // Een beurt overslaan
+		gameView.pawns[activePlayerId].classList.add("skip-turn");
 		gameController.nextPlayer();
 	},
 	stickyPlace: function () { // Wie hier komt moet er blijven tot een andere speler er komt. Degene die er het eerst was speelt dan verder.
@@ -210,13 +211,28 @@ var gameController = {
 		var nextPlayerId = activeID + 1;
 		// volgende speler activeren
 		if (nextPlayerId < gameModel.players.length) {
-			gameModel.activePlayer.publish(nextPlayerId);
-			gameView.playerButtons[nextPlayerId].removeAttribute('disabled');
-			gameModel.subPos.publish(gameModel.pawns[nextPlayerId].publish());
+			if(gameView.pawns[nextPlayerId].classList.contains("skip-turn")) {
+				gameModel.activePlayer.publish(nextPlayerId+1);
+				gameView.playerButtons[nextPlayerId+1].removeAttribute('disabled');
+				gameView.pawns[nextPlayerId].classList.remove("skip-turn")
+			}
+			else {
+				gameModel.activePlayer.publish(nextPlayerId);
+				gameView.playerButtons[nextPlayerId].removeAttribute('disabled');
+				gameModel.subPos.publish(gameModel.pawns[nextPlayerId].publish());
+			}
 		} else {
-			gameModel.activePlayer.publish(0);
-			gameView.playerButtons[0].removeAttribute('disabled');
-			gameModel.subPos.publish(gameModel.pawns[0].publish());
+			if(gameView.pawns[0].classList.contains("skip-turn")) {
+				gameModel.activePlayer.publish(1);
+				gameView.playerButtons[1].removeAttribute('disabled');
+				gameView.pawns[0].classList.remove("skip-turn")
+			}
+			else {
+				gameModel.activePlayer.publish(0);
+				gameView.playerButtons[0].removeAttribute('disabled');
+				gameModel.subPos.publish(gameModel.pawns[0].publish());
+			}
+			
 		}
 	},
 	win: function () {
