@@ -106,13 +106,14 @@ var gameController = {
 					gameView.pawns[playerId].classList.add("temp");
 					gameModel.subPos.publish(gameModel.pawns[playerId].publish());
 					gameModel.pawns[playerId].publish(gameModel.tempPos.publish());
+					gameController.displayInfo("Andere speler", "Je gaat terug naar je vorige positie!");
 				} else {
 					clearInterval(move);
 					gameModel.subPos.publish(place);
 					gameModel.pawnMoveOver.publish(true);
 				}
 			}
-		}, 0);
+		}, 250);
 	},
 	startRules: function () {
 		var currentPawn = gameModel.pawns[gameModel.activePlayer.publish()];
@@ -121,21 +122,25 @@ var gameController = {
 			case 3:
 				if (secondDiceValue === 6) {
 					currentPawn.publish(26);
+					gameController.displayInfo("3 & 6", "Je gaat verder naar vakje 26!");
 				}
 				break;
 			case 4:
 				if (secondDiceValue === 5) {
 					currentPawn.publish(53);
+					gameController.displayInfo("4 & 5", "Je gaat verder naar vakje 53!");
 				}
 				break;
 			case 5:
 				if (secondDiceValue === 4) {
 					currentPawn.publish(53);
+					gameController.displayInfo("5 & 4", "Je gaat verder naar vakje 53!");
 				}
 				break;
 			case 6:
 				if (secondDiceValue === 3) {
 					currentPawn.publish(26);
+					gameController.displayInfo("6 & 3", "Je gaat verder naar vakje 26!");
 				}
 				break;
 			default:
@@ -158,8 +163,10 @@ var gameController = {
 				setTimeout(function () {
 					if (gameModel.tempPos.publish()<data){
 						gameModel.pawns[playerId].publish(data + gameModel.currentThrow.publish());
+						gameController.displayInfo("Gans", "Je gaat " + gameModel.currentThrow.publish() + " vakjes verder!");
 					}else{
 						gameModel.pawns[playerId].publish(data - gameModel.currentThrow.publish());
+						gameController.displayInfo("Gans", "Je gaat " + gameModel.currentThrow.publish() + " vakjes terug!");
 					}
 				}, 500);
 				testRules = false;
@@ -170,24 +177,30 @@ var gameController = {
 			switch (data) {
 				case 6:
 					gameModel.pawns[playerId].publish(12);
+					gameController.displayInfo("Brug", "Je gaat verder naar vakje 12!");
 					break;
-				case 7:
+				case 19:
 					console.log("skipturn");
 					gameController.skipTurn(gameModel.activePlayer.publish());
+					gameController.displayInfo("Herbeg", "Je moet een beurt overslaan!");
 					break;
 				case 31:
 					console.log("stickyPlace31");
-					gameController.stickyPlace(gameModel.activePlayer.publish(), 31);
+					gameController.stickyPlace(gameModel.activePlayer.publish());
+					gameController.displayInfo("Put", "Je moet wachten tot een andere speler je bevrijdt!");
 					break;
 				case 42:
 					gameModel.pawns[playerId].publish(39);
+					gameController.displayInfo("Doolhof", "Je moet terug naar vakje 39!");
 					break;
 				case 52:
 					console.log("stickyPlace52");
-					gameController.stickyPlace(gameModel.activePlayer.publish(), 52);
+					gameController.stickyPlace(gameModel.activePlayer.publish());
+					gameController.displayInfo("Gevangenis", "Je moet wachten tot een andere speler je bevrijdt!");
 					break;
 				case 58:
 					gameModel.pawns[playerId].publish(0);
+					gameController.displayInfo("Dood", "Je moet terug naar het begin x_x");
 					break;
 				case 63:
 					gameController.win();
@@ -202,8 +215,9 @@ var gameController = {
 		gameView.pawns[activePlayerId].classList.add("skip-turn");
 		gameController.nextPlayer();
 	},
-	stickyPlace: function () { // Wie hier komt moet er blijven tot een andere speler er komt. Degene die er het eerst was speelt dan verder.
-		gameController.skipTurn()
+	stickyPlace: function (activePlayerId) { // Wie hier komt moet er blijven tot een andere speler er komt.
+		gameView.pawns[activePlayerId].classList.add("sticky-place");
+		gameController.nextPlayer();
 	},
 	nextPlayer: function () {
 		gameModel.pawnMoveOver.publish(false);
@@ -211,10 +225,16 @@ var gameController = {
 		var nextPlayerId = activeID + 1;
 		// volgende speler activeren
 		if (nextPlayerId < gameModel.players.length) {
-			if(gameView.pawns[nextPlayerId].classList.contains("skip-turn")) {
+			if(gameView.pawns[nextPlayerId].classList.contains("sticky-place")) {
+				gameModel.activePlayer.publish(nextPlayerId+1);
+				gameView.playerButtons[nextPlayerId+1].removeAttribute('disabled');
+				gameModel.subPos.publish(gameModel.pawns[nextPlayerId+1].publish());
+			}
+			else if(gameView.pawns[nextPlayerId].classList.contains("skip-turn")) {
 				gameModel.activePlayer.publish(nextPlayerId+1);
 				gameView.playerButtons[nextPlayerId+1].removeAttribute('disabled');
 				gameView.pawns[nextPlayerId].classList.remove("skip-turn")
+				gameModel.subPos.publish(gameModel.pawns[nextPlayerId+1].publish());
 			}
 			else {
 				gameModel.activePlayer.publish(nextPlayerId);
@@ -222,10 +242,17 @@ var gameController = {
 				gameModel.subPos.publish(gameModel.pawns[nextPlayerId].publish());
 			}
 		} else {
-			if(gameView.pawns[0].classList.contains("skip-turn")) {
+			if(gameView.pawns[0].classList.contains("sticky-place")) {
+				gameModel.activePlayer.publish(1);
+				gameView.playerButtons[1].removeAttribute('disabled');
+				gameModel.subPos.publish(gameModel.pawns[1].publish());
+
+			}
+			else if(gameView.pawns[0].classList.contains("skip-turn")) {
 				gameModel.activePlayer.publish(1);
 				gameView.playerButtons[1].removeAttribute('disabled');
 				gameView.pawns[0].classList.remove("skip-turn")
+				gameModel.subPos.publish(gameModel.pawns[1].publish());
 			}
 			else {
 				gameModel.activePlayer.publish(0);
@@ -242,6 +269,14 @@ var gameController = {
 		gameView.endButton.addEventListener("click", function () {
 			location.reload();
 		});
+	},
+	displayInfo: function (infoTitle, info) {
+		gameView.infoOverlay.classList.remove("hidden");
+		gameView.infoTitle.innerHTML = infoTitle;
+		gameView.info.innerHTML = info;
+		setTimeout(function() {
+			gameView.infoOverlay.classList.add("hidden");
+		}, 4000)
 	}
 };
 var gameConnector = {
