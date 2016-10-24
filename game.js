@@ -114,28 +114,60 @@ var gameController = {
 			}
 		}, 250);
 	},
-	startRules: function () {
+	startRules: function (data) {
 		var currentPawn = gameModel.pawns[gameModel.activePlayer.publish()];
 		var secondDiceValue = gameModel.dice[1].publish();
 		switch (gameModel.dice[0].publish()) {
 			case 3:
 				if (secondDiceValue === 6) {
 					currentPawn.publish(26);
+				}else{
+					setTimeout(function () {
+						if (gameModel.tempPos.publish()<data){
+							currentPawn.publish(data + gameModel.currentThrow.publish());
+						}else{
+							currentPawn.publish(data - gameModel.currentThrow.publish());
+						}
+					}, 500);
 				}
 				break;
 			case 4:
 				if (secondDiceValue === 5) {
 					currentPawn.publish(53);
+				}else{
+					setTimeout(function () {
+						if (gameModel.tempPos.publish()<data){
+							currentPawn.publish(data + gameModel.currentThrow.publish());
+						}else{
+							currentPawn.publish(data - gameModel.currentThrow.publish());
+						}
+					}, 500);
 				}
 				break;
 			case 5:
 				if (secondDiceValue === 4) {
 					currentPawn.publish(53);
+				}else{
+					setTimeout(function () {
+						if (gameModel.tempPos.publish()<data){
+							currentPawn.publish(data + gameModel.currentThrow.publish());
+						}else{
+							currentPawn.publish(data - gameModel.currentThrow.publish());
+						}
+					}, 500);
 				}
 				break;
 			case 6:
 				if (secondDiceValue === 3) {
 					currentPawn.publish(26);
+				}else{
+					setTimeout(function () {
+						if (gameModel.tempPos.publish()<data){
+							currentPawn.publish(data + gameModel.currentThrow.publish());
+						}else{
+							currentPawn.publish(data - gameModel.currentThrow.publish());
+						}
+					}, 500);
 				}
 				break;
 			default:
