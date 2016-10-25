@@ -214,12 +214,10 @@ var gameController = {
 					gameController.displayInfo("Brug", "Je gaat verder naar vakje 12!");
 					break;
 				case 19:
-					console.log("skipturn");
 					gameController.skipTurn();
 					gameController.displayInfo("Herbeg", "Je moet een beurt overslaan!");
 					break;
 				case 31:
-					console.log("stickyPlace31");
 					gameController.stickyPlace(31);
 					gameController.displayInfo("Put", "Je moet wachten tot een andere speler je bevrijdt!");
 					break;
@@ -228,7 +226,6 @@ var gameController = {
 					gameController.displayInfo("Doolhof", "Je moet terug naar vakje 39!");
 					break;
 				case 52:
-					console.log("stickyPlace52");
 					gameController.stickyPlace(52);
 					gameController.displayInfo("Gevangenis", "Je moet wachten tot een andere speler je bevrijdt!");
 					break;
