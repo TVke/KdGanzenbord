@@ -24,6 +24,7 @@ var Observable = function() {
 var gameView = {
 	playerAmount: document.getElementById("playerAmount"),
 	startButton: document.querySelector("#begin button"),
+	playerInput: document.querySelectorAll("#begin input[type=text]"),
 	dieContainer: document.getElementById("dice"),
 	dice: document.querySelectorAll("#dice div"),
 	pawns: document.querySelectorAll("div[id^='pawn-']"),
