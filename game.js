@@ -271,10 +271,11 @@ var gameController = {
 		});
 	},
 	displayInfo: function (infoTitle, info) {
+		clearTimeout(infoOverlayTimeout);
 		gameView.infoOverlay.classList.remove("hidden");
 		gameView.infoTitle.innerHTML = infoTitle;
 		gameView.info.innerHTML = info;
-		setTimeout(function() {
+		var infoOverlayTimeout = setTimeout(function() {
 			gameView.infoOverlay.classList.add("hidden");
 		}, 4000)
 	}
