@@ -113,7 +113,7 @@ header {
 	font-size:1.2em;
 }
 
-#players button {
+button {
 	font-family:"Futura",Helvetica,Arial,sans-serif;
 	border:1px solid #fff;
 	border-radius:5px;
@@ -122,20 +122,20 @@ header {
 	flex-grow:1;
 }
 
-#players button:enabled {
+button:enabled {
 	background:linear-gradient(#57bfff 0%,#009eff 100%);
 	background:-webkit-linear-gradient(#57bfff 0%,#009eff 100%);
 	color:#fff;
 	border-color:#d3d3d3;
 }
 
-#players button:enabled:active {
+button:enabled:active {
 	background:linear-gradient(#009eff 0%,#57bfff 100%);
 	background:-webkit-linear-gradient(#009eff 0%,#57bfff 100%);
 	border-color:#000;
 }
 
-#players button:enabled:hover {
+button:enabled:hover {
 	border-color:#000;
 }
 
@@ -318,19 +318,19 @@ header {
 	fill:#05B9FF;
 }
 
-#game div#pawn-1.start svg {
+#game div#pawn-1.place-0 svg {
 	margin-left:0;
 }
 
-#game div#pawn-2.start svg {
+#game div#pawn-2.place-0 svg {
 	margin-left:17%;
 }
 
-#game div#pawn-3.start svg, #game div.temp svg{
+#game div#pawn-3.place-0 svg, #game div.temp svg{
 	margin-right:17%;
 }
 
-#game div#pawn-4.start svg {
+#game div#pawn-4.place-0 svg {
 	margin-right:0;
 }
 
@@ -364,11 +364,94 @@ header {
 	content:counter(tileIndex);
 }
 
-#board div.goose::after{
+#game #board div[id^="tile-"]::after{
 	content:"";
-	background: url("goose.png") no-repeat;
 	background-size: contain;
-	background-position-y: 5px;
+	background-position-y: 100%;
+	background-position-X: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+#board div.goose::after{
+	background: url("gans.svg") no-repeat;
+	right: 20% !important;
+}
+
+#board div#tile-6::after{
+	background: url("brug.svg") no-repeat;
+}
+
+#board div#tile-19::after{
+	background: url("herberg.svg") no-repeat;
+}
+
+#board div#tile-31::after{
+	background: url("put.svg") no-repeat;
+}
+
+#board div#tile-42::after{
+	content: "";
+	background: url("doolhof.svg") no-repeat;
+}
+
+#board div#tile-52::after{
+	background: url("gevangenis.svg") no-repeat;
+}
+
+#board div#tile-58::after{
+	background: url("dood.svg") no-repeat;
+	right: 20% !important;
+}
+
+#board div#tile-63::after{
+	background: url("gewonnen.svg") no-repeat;
+	right: 10% !important;
+}
+
+/* Niels hier mag de stijl voor het startscherm */
+
+#begin {
+
+}
+#begin h3{
+
+}
+#begin label{
+
+}
+#begin select{
+
+}
+#begin button{
+
+}
+
+/* eindscherm */
+
+#end{
+	width: 20%;
+	margin: 100px auto;
+	background: white;
+	padding: 15px;
+	border-radius: 3px;
+}
+
+#end h3{
+	font-size: 2em;
+}
+
+#end p{
+	font-size: 1.2em;
+	text-align: center;
+}
+
+#end button{
+	display: block;
+	margin: 20px auto 10px;
 }
 
 /* to small rules */
