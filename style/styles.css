@@ -415,19 +415,61 @@ button:enabled:hover {
 /* Niels hier mag de stijl voor het startscherm */
 
 #begin {
-
+    //background-color: white;
+    //padding-bottom: 300px;
+    margin: 625px 0px 0px 0px;
 }
+
 #begin h3{
-
+    font-size: 200%;
+    margin-bottom: 20px;
 }
+
 #begin label{
-
+    margin: 0px 5px 0px -425px;
+    font-size: 150%;
 }
+
 #begin select{
-
+    font-size: 100%;
+    border-radius: 5px;
 }
-#begin button{
 
+#begin button{
+    float: left;
+    margin:  210px 0px 0px -196px;
+    padding: 10px 75px 10px 75px;
+}
+
+#begin input {
+    float: left;
+    font-size: 100%;
+    border-radius: 5px;
+    margin-left: 975px;
+}
+
+#begin input[name=player1] {
+    float: left;
+    margin-top: 10px;
+}
+
+#begin input[name=player2] {
+    float: left;
+    margin: 60px 0px 0px 0px;
+}
+
+#begin input[name=player3] {
+    float: left;
+    margin: 110px 0px 0px 0px;
+}
+
+#begin input[name=player4] {
+    float: left;
+    margin: 160px 0px 0px 0px;
+}
+
+#begin input:not([name=player1]) {
+    margin-left: -200px;
 }
 
 /* eindscherm */
