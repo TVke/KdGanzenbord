@@ -260,7 +260,7 @@ var gameController = {
 		else if (gameModel.players.length === 2 && typeof gameModel.stayInPlace31.publish() !== "undefined" && typeof gameModel.stayInPlace52.publish() !== "undefined") {
 			gameController.end("gelijk");
 		}
-		else if (gameModel.players.length === 1 && (typeof gameModel.stayInPlace31.publish() !== "undefined" || typeof gameModel.stayInPlace52.publish() !== "undefined")) {
+		else if (gameModel.players.length === 1) {
 			gameController.end("verloren");
 		}else{
 			console.log("meest zeldzame else is uitgevoerd");
