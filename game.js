@@ -25,7 +25,6 @@ var gameView = {
 	playerAmount: document.getElementById("playerAmount"),
 	startButton: document.querySelector("#begin button"),
 	playerInput: document.querySelectorAll("#begin input[type=text]"),
-	dieContainer: document.getElementById("dice"),
 	dice: document.querySelectorAll("#dice div"),
 	pawns: document.querySelectorAll("div[id^='pawn-']"),
 	tiles: document.querySelectorAll("#board div"),
@@ -35,6 +34,7 @@ var gameView = {
 	overlay: document.getElementById("overlay"),
 	beginOverlay: document.getElementById("begin"),
 	endOverlay: document.getElementById("end"),
+	endTitel: document.querySelector("#end h3"),
 	endMessage: document.querySelector("#end p"),
 	endButton: document.querySelector("#end button"),
 	infoOverlay: document.getElementById("whiteoverlay"),
@@ -52,6 +52,7 @@ var gameModel = {
 	activePlayer: new Observable(),
 	currentThrow: new Observable(),
 	pawnMoveOver: new Observable(),
+	skipTurn: new Observable(),
 	stayInPlace31: new Observable(),
 	stayInPlace52: new Observable()
 };
@@ -64,8 +65,6 @@ var gameController = {
 			gameModel.dice[i].publish(randomNumber);
 			totalThrow += randomNumber;
 		}
-		// toon die container
-		gameView.dieContainer.removeAttribute("class");
 		// disable after button press
 		gameView.playerButtons[activePlayerId].setAttribute('disabled', '');
 		var currentPlace = gameModel.pawns[activePlayerId].publish();
@@ -236,7 +235,7 @@ var gameController = {
 					gameController.displayInfo("Dood", "Je moet terug naar het begin x_x");
 					break;
 				case 63:
-					gameController.win();
+					gameController.end("win");
 					break;
 				default:
 					gameController.nextPlayer();
@@ -246,30 +245,30 @@ var gameController = {
 		}
 	},
 	skipTurn: function () { // Een beurt overslaan
-		gameView.pawns[gameModel.activePlayer.publish()].classList.add("skip-turn");
+		gameModel.skipTurn.publish(gameModel.activePlayer.publish());
 		gameController.nextPlayer();
 	},
 	stickyPlace: function (place) { // Wie hier komt moet er blijven tot een andere speler er komt. Degene die er het eerst was speelt dan verder.
-		if (place === 31) {
-			if (typeof gameModel.stayInPlace31.publish() === "undefined") {
+		if (gameModel.players.length >= 2 && (typeof gameModel.stayInPlace31.publish() === "undefined" || typeof gameModel.stayInPlace52.publish() === "undefined")) {
+			console.log("kei vaak voorkomend");
+			if (place === 31) {
 				gameModel.stayInPlace31.publish(gameModel.activePlayer.publish());
-				gameView.pawns[gameModel.activePlayer.publish()].classList.add("sticky-place");
+			} else if (place === 52) {
+				gameModel.stayInPlace52.publish(gameModel.activePlayer.publish());
 			}
-			else {
-				gameView.pawns[gameModel.stayInPlace31.publish()].classList.remove("sticky-place");
+		}
+		else if (gameModel.players.length === 2 && typeof gameModel.stayInPlace31.publish() !== "undefined" && typeof gameModel.stayInPlace52.publish() !== "undefined") {
+			gameController.end("gelijk");
+		}
+		else if (gameModel.players.length === 1) {
+			gameController.end("verloren");
+		}else{
+			console.log("meest zeldzame else is uitgevoerd");
+			if (place === 31) {
 				gameModel.stayInPlace31.publish(gameModel.activePlayer.publish());
-				gameView.pawns[gameModel.activePlayer.publish()].classList.add("sticky-place");
-			}
-		} else if (place === 52) {
-			if (typeof gameModel.stayInPlace52.publish() === "undefined") {
+			} else if (place === 52) {
 				gameModel.stayInPlace52.publish(gameModel.activePlayer.publish());
-				gameView.pawns[gameModel.activePlayer.publish()].classList.add("sticky-place");
-			} else {
-				gameView.pawns[gameModel.stayInPlace52.publish()].classList.remove("sticky-place");
-				gameModel.stayInPlace52.publish(gameModel.activePlayer.publish());
-				gameView.pawns[gameModel.activePlayer.publish()].classList.add("sticky-place");
 			}
-
 		}
 		gameController.nextPlayer();
 	},
@@ -278,60 +277,60 @@ var gameController = {
 		var activeID = gameModel.activePlayer.publish();
 		var nextPlayerId = activeID + 1;
 		// volgende speler activeren
-		if (nextPlayerId < gameModel.players.length) {
-			if (gameView.pawns[nextPlayerId].classList.contains("sticky-place")) {
-				if ((nextPlayerId + 1) < gameModel.players.length) {
-					gameModel.activePlayer.publish(nextPlayerId + 1);
-					gameView.playerButtons[nextPlayerId + 1].removeAttribute('disabled');
-					gameModel.subPos.publish(gameModel.pawns[nextPlayerId + 1].publish());
-				} else {
-					gameModel.activePlayer.publish(0);
-					gameView.playerButtons[0].removeAttribute('disabled');
-					gameModel.subPos.publish(gameModel.pawns[0].publish());
-				}
-			}
-			else if (gameView.pawns[nextPlayerId].classList.contains("skip-turn")) {
-				gameController.displayInfo("Herbeg", "volgende beurt mag je weer meespelen!");
-				if ((nextPlayerId + 1) < gameModel.players.length) {
-					gameModel.activePlayer.publish(nextPlayerId + 1);
-					gameView.playerButtons[nextPlayerId + 1].removeAttribute('disabled');
-					gameView.pawns[nextPlayerId].classList.remove("skip-turn");
-					gameModel.subPos.publish(gameModel.pawns[nextPlayerId + 1].publish());
-				} else {
-					gameModel.activePlayer.publish(0);
-					gameView.playerButtons[0].removeAttribute('disabled');
-					gameView.pawns[nextPlayerId].classList.remove("skip-turn");
-					gameModel.subPos.publish(gameModel.pawns[0].publish());
-				}
-			}
-			else {
-				gameModel.activePlayer.publish(nextPlayerId);
-				gameView.playerButtons[nextPlayerId].removeAttribute('disabled');
-				gameModel.subPos.publish(gameModel.pawns[nextPlayerId].publish());
-			}
-		} else {
-			if (gameView.pawns[0].classList.contains("sticky-place")) {
-				gameModel.activePlayer.publish(1);
-				gameView.playerButtons[1].removeAttribute('disabled');
-				gameModel.subPos.publish(gameModel.pawns[1].publish());
 
-			}
-			else if (gameView.pawns[0].classList.contains("skip-turn")) {
-				gameController.displayInfo("Herbeg", "volgende beurt mag je weer meespelen!");
-				gameModel.activePlayer.publish(1);
-				gameView.playerButtons[1].removeAttribute('disabled');
-				gameView.pawns[0].classList.remove("skip-turn");
-				gameModel.subPos.publish(gameModel.pawns[1].publish());
-			}
-			else {
+		if(gameModel.skipTurn.publish()!==nextPlayerId&&gameModel.stayInPlace31.publish()!==nextPlayerId&&gameModel.stayInPlace52.publish()!==nextPlayerId) {
+			if (nextPlayerId < gameModel.players.length) {
+				gameModel.activePlayer.publish(nextPlayerId);
+				gameModel.subPos.publish(gameModel.pawns[nextPlayerId].publish());
+				gameView.playerButtons[nextPlayerId].removeAttribute('disabled');
+
+			} else {
 				gameModel.activePlayer.publish(0);
-				gameView.playerButtons[0].removeAttribute('disabled');
 				gameModel.subPos.publish(gameModel.pawns[0].publish());
+				gameView.playerButtons[0].removeAttribute('disabled');
+			}
+		}
+		else{
+			/* nog af te werken!!!! -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
+			console.log("nextPlayerId="+nextPlayerId+" skipTurn="+gameModel.skipTurn.publish()+" stayInPlace31="+gameModel.stayInPlace31.publish()+" stayInPlace52="+gameModel.stayInPlace52.publish());
+			while(gameModel.skipTurn.publish()===nextPlayerId||gameModel.stayInPlace31.publish()===nextPlayerId||gameModel.stayInPlace52.publish()===nextPlayerId){
+				console.log("looping nextPlayerId="+nextPlayerId);
+				if(gameModel.skipTurn.publish()===nextPlayerId||gameModel.stayInPlace31.publish()===nextPlayerId||gameModel.stayInPlace52.publish()===nextPlayerId) {
+					console.log("door controle nextPlayerId="+nextPlayerId);
+					if ((nextPlayerId + 1) < gameModel.players.length) {
+						nextPlayerId += 1;
+					} else {
+						nextPlayerId = 0;
+					}
+				}else{
+					console.log("NIET door controle nextPlayerId="+nextPlayerId);
+					if (nextPlayerId < gameModel.players.length) {
+						gameModel.activePlayer.publish(nextPlayerId);
+						gameModel.subPos.publish(gameModel.pawns[nextPlayerId].publish());
+						gameView.playerButtons[nextPlayerId].removeAttribute('disabled');
+
+					} else {
+						gameModel.activePlayer.publish(0);
+						gameModel.subPos.publish(gameModel.pawns[0].publish());
+						gameView.playerButtons[0].removeAttribute('disabled');
+					}
+				}
 			}
 		}
 	},
-	win: function () {
-		gameView.endMessage.innerHTML = gameView.playerNames[gameModel.activePlayer.publish()].innerHTML;
+	end: function (status) {
+		if(status==="win"){
+			gameView.endTitel.innerHTML="Gewonnen!";
+			gameView.endMessage.innerHTML = gameView.playerNames[gameModel.activePlayer.publish()].innerHTML;
+		}
+		if(status==="gelijk"){
+			gameView.endTitel.innerHTML="Gelijk gespeeld!";
+			gameView.endMessage.innerHTML = "probeer nog eens.";
+		}
+		if(status==="verloren"){
+			gameView.endTitel.innerHTML="Verloren!";
+			gameView.endMessage.innerHTML = gameView.playerNames[gameModel.activePlayer.publish()].innerHTML;
+		}
 		gameView.overlay.removeAttribute("class");
 		gameView.endOverlay.removeAttribute("class");
 		gameView.endButton.addEventListener("click", function () {
