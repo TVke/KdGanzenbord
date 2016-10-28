@@ -17,7 +17,7 @@ body {
 	font-family:'KdG',Helvetica,Arial,sans-serif;
 }
 
-.hidden,#dice.hidden,#players>div.hidden {
+.hidden,#dice.hidden,#players>div.hidden,#overlay input.hidden {
 	display:none;
 }
 
@@ -420,6 +420,7 @@ button:enabled:hover {
 	background: white;
 	padding: 15px;
 	border-radius: 3px;
+    text-align: center;
 }
 
 #begin h3{
@@ -429,19 +430,25 @@ button:enabled:hover {
 
 #begin label{
     font-size: 1.5em;
-    
+    margin-bottom: 10px;
 }
 
 #begin select{
     font-size: 1.5em;
+    margin-bottom: 20px;
 }
 
 #begin button{
-    margin: 0px 0px 0px 320px;
+    display: block;
+    margin: auto;
 }
 
 #begin input{
-    margin: 0px 0px 0px 210px;
+    font-size: 1em;
+    margin: auto;
+    margin-bottom: 15px;
+    padding: 5px;
+    display: block;
 }
 
 /* eindscherm */

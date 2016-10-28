@@ -458,7 +458,20 @@ var init = function() {
 	gameSetup.goose();
 	gameSetup.dice(2);
 	gameSetup.singleObservables();
-
+    
+    gameView.playerAmount.addEventListener("change", function(){
+        // inputs hidden zetten als iets veranderd aan select
+        for(let i=0, ilen=gameView.playerInput.length; i<ilen; ++i)
+        {
+            gameView.playerInput[i].setAttribute("class", "hidden");
+        }
+        var playerAmount = gameView.playerAmount.value;
+        for(let i=0; i<playerAmount; ++i)
+        {
+            gameView.playerInput[i].removeAttribute("class");
+        }
+    })
+    
 	gameView.startButton.addEventListener("click", function () {
 		var playerAmount = gameView.playerAmount.value;
 		gameSetup.players(playerAmount);
