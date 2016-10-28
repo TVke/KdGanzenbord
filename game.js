@@ -106,7 +106,9 @@ var gameController = {
 			} else if (place === startCounter) {// staat op 'place'
 				if (otherPlayerAlready && place !== minCounter && place !== 31 && place !== 52) {
 					clearInterval(move);
-					gameView.pawns[playerId].classList.add("temp");
+					if(otherPlayerAlready){
+						gameView.pawns[playerId].classList.add("temp");
+					}
 					gameModel.subPos.publish(gameModel.pawns[playerId].publish());
 					gameModel.pawns[playerId].publish(gameModel.tempPos.publish());
 					gameController.displayInfo("Andere speler", "Je gaat terug naar je vorige positie!");
@@ -292,18 +294,17 @@ var gameController = {
 				gameView.playerButtons[0].focus();
 			}
 		}
-		else if (gameModel.skipTurn.publish() === nextPlayerId || gameModel.stayInPlace31.publish() === nextPlayerId || gameModel.stayInPlace52.publish() === nextPlayerId) {
+		else{
 			if (gameModel.players.length > 1) {
 				// loopt tot de next player geen beurt moet overslaan
 				while (gameModel.skipTurn.publish() === nextPlayerId || gameModel.stayInPlace31.publish() === nextPlayerId || gameModel.stayInPlace52.publish() === nextPlayerId) {
-
+					if (gameModel.skipTurn.publish() === nextPlayerId) {
+						gameModel.skipTurn.publish(false);
+					}
 					if (nextPlayerId < gameModel.players.length) {
 						nextPlayerId += 1;
 					} else {
 						nextPlayerId = 0;
-					}
-					if (gameModel.skipTurn.publish() === nextPlayerId) {
-						gameModel.skipTurn.publish(-1);
 					}
 					console.log("volgende: " + nextPlayerId);
 				}
