@@ -111,6 +111,9 @@ header {
 #players span {
 	padding:10px 0;
 	font-size:1.2em;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	max-width: 85px;
 }
 
 button {
@@ -140,23 +143,23 @@ button:enabled:hover {
 }
 
 #player-1 {
-	right:0;
-	bottom:0;
+	top: 0;
+	left: 0;
 }
 
 #player-2 {
-	left:0;
-	bottom:0;
+	top: 0;
+	right: 0;
 }
 
 #player-3 {
-	left:0;
-	top:0;
+	bottom: 0;
+	right: 0;
 }
 
 #player-4 {
-	right:0;
-	top:0;
+	bottom: 0;
+	left: 0;
 }
 
 #player-1 img {
@@ -336,7 +339,6 @@ button:enabled:hover {
 
 /* board tiles */
 #board div {
-	counter-increment:tileIndex;
 	width:9%;
 	height:73.7px;
 	padding:5px;
@@ -347,9 +349,7 @@ button:enabled:hover {
 	top:257px;
 	left:0;
 	right:0;
-}
-#board div:first-child{
-	counter-increment:tileIndex 0;
+	transition: all .5s ease;
 }
 #board div:first-child::before{
 	content: "start >>>";
@@ -361,7 +361,7 @@ button:enabled:hover {
 }
 
 #board div::before {
-	content:counter(tileIndex);
+	content:"";
 }
 
 #game #board div[id^="tile-"]::after{
@@ -412,10 +412,67 @@ button:enabled:hover {
 	right: 10% !important;
 }
 
+/* tooltips */
+
+#game #board div::before{
+	content:attr(title);
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 5%;
+	z-index: 2;
+	text-align: center;
+	background: rgba(255,255,255,0.9);
+	font-size: 1.1em;
+	opacity: 0;
+	transition: all .5s ease;
+}
+#game #board div::before:hover{
+	opacity: 1;
+}
+
+#board div.goose::before:hover{
+	background: url("gans.svg") no-repeat;
+	right: 20% !important;
+}
+
+#board div#tile-6::before:hover{
+	background: url("brug.svg") no-repeat;
+}
+
+#board div#tile-19::before:hover{
+	background: url("herberg.svg") no-repeat;
+}
+
+#board div#tile-31::before:hover{
+	background: url("put.svg") no-repeat;
+}
+
+#board div#tile-42::before:hover{
+	content: "";
+	background: url("doolhof.svg") no-repeat;
+}
+
+#board div#tile-52::before:hover{
+	background: url("gevangenis.svg") no-repeat;
+}
+
+#board div#tile-58::before:hover{
+	background: url("dood.svg") no-repeat;
+	right: 20% !important;
+}
+
+#board div#tile-63::before:hover{
+	background: url("gewonnen.svg") no-repeat;
+	right: 10% !important;
+}
+
 /* Niels hier mag de stijl voor het startscherm */
 
 #begin {
-    width: 20%;
+    width: 40%;
 	margin: 100px auto;
 	background: white;
 	padding: 15px;
@@ -449,6 +506,12 @@ button:enabled:hover {
     margin-bottom: 15px;
     padding: 5px;
     display: block;
+}
+
+/* Niels hier mag je de stijl van de gloed schrijven */
+
+#board .glow{
+
 }
 
 /* eindscherm */
@@ -498,6 +561,9 @@ button:enabled:hover {
 		bottom: initial;
 		left:initial;
 		background: none;
+	}
+	#begin {
+		width: 80%;
 	}
 }
 
