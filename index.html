@@ -5,22 +5,35 @@
 		<title>KdGanzenbord</title>
 		<link href="style/styles.css" type="text/css" rel="stylesheet" media="all">
 		<link href="style/gameboard.css" type="text/css" rel="stylesheet" media="all">
+
+		<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+		<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+		<link rel="manifest" href="manifest.json">
+		<link rel="mask-icon" href="safari-pinned-tab.svg" color="#000000">
+		<meta name="apple-mobile-web-app-title" content="KdGanzenbord">
+		<meta name="application-name" content="KdGanzenbord">
+		<meta name="theme-color" content="#ffffff">
 	</head>
 	<body>
 		<header>
 			<h1>KdGanzenbord</h1>
-			<h2>KWAK</h2>
+			<h2>KWEK</h2>
 		</header>
 		<div id="overlay">
 			<div id="begin">
 				<h3>Selecteer u speler aantal</h3>
 				<label for="playerAmount">aantal spelers</label>
-				<select id="playerAmount">
+				<select id="playerAmount" autofocus>
 					<option value="4">4</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
 				</select>
+				<input type="text" name="player1" class="hidden">
+				<input type="text" name="player2" class="hidden">
+				<input type="text" name="player3" class="hidden">
+				<input type="text" name="player4" class="hidden">
 				<button>Start</button>
 			</div>
 			<div id="end" class="hidden">

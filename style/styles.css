@@ -113,7 +113,7 @@ header {
 	font-size:1.2em;
 }
 
-#players button {
+button {
 	font-family:"Futura",Helvetica,Arial,sans-serif;
 	border:1px solid #fff;
 	border-radius:5px;
@@ -122,20 +122,20 @@ header {
 	flex-grow:1;
 }
 
-#players button:enabled {
+button:enabled {
 	background:linear-gradient(#57bfff 0%,#009eff 100%);
 	background:-webkit-linear-gradient(#57bfff 0%,#009eff 100%);
 	color:#fff;
 	border-color:#d3d3d3;
 }
 
-#players button:enabled:active {
+button:enabled:active {
 	background:linear-gradient(#009eff 0%,#57bfff 100%);
 	background:-webkit-linear-gradient(#009eff 0%,#57bfff 100%);
 	border-color:#000;
 }
 
-#players button:enabled:hover {
+button:enabled:hover {
 	border-color:#000;
 }
 
@@ -430,6 +430,29 @@ header {
 
 }
 
+/* eindscherm */
+
+#end{
+	width: 20%;
+	margin: 100px auto;
+	background: white;
+	padding: 15px;
+	border-radius: 3px;
+}
+
+#end h3{
+	font-size: 2em;
+}
+
+#end p{
+	font-size: 1.2em;
+	text-align: center;
+}
+
+#end button{
+	display: block;
+	margin: 20px auto 10px;
+}
 
 /* to small rules */
 @media screen and (max-width: 800px) {
