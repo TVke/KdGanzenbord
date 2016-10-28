@@ -278,43 +278,53 @@ var gameController = {
 		var nextPlayerId = activeID + 1;
 		// volgende speler activeren
 
-		if(gameModel.skipTurn.publish()!==nextPlayerId&&gameModel.stayInPlace31.publish()!==nextPlayerId&&gameModel.stayInPlace52.publish()!==nextPlayerId) {
+		if (gameModel.skipTurn.publish() !== nextPlayerId && gameModel.stayInPlace31.publish() !== nextPlayerId && gameModel.stayInPlace52.publish() !== nextPlayerId) {
 			if (nextPlayerId < gameModel.players.length) {
 				gameModel.activePlayer.publish(nextPlayerId);
 				gameModel.subPos.publish(gameModel.pawns[nextPlayerId].publish());
 				gameView.playerButtons[nextPlayerId].removeAttribute('disabled');
+				gameView.playerButtons[nextPlayerId].focus();
 
 			} else {
 				gameModel.activePlayer.publish(0);
 				gameModel.subPos.publish(gameModel.pawns[0].publish());
 				gameView.playerButtons[0].removeAttribute('disabled');
+				gameView.playerButtons[0].focus();
 			}
 		}
-		else{
-			/* nog af te werken!!!! -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
-			console.log("nextPlayerId="+nextPlayerId+" skipTurn="+gameModel.skipTurn.publish()+" stayInPlace31="+gameModel.stayInPlace31.publish()+" stayInPlace52="+gameModel.stayInPlace52.publish());
-			while(gameModel.skipTurn.publish()===nextPlayerId||gameModel.stayInPlace31.publish()===nextPlayerId||gameModel.stayInPlace52.publish()===nextPlayerId){
-				console.log("looping nextPlayerId="+nextPlayerId);
-				if(gameModel.skipTurn.publish()===nextPlayerId||gameModel.stayInPlace31.publish()===nextPlayerId||gameModel.stayInPlace52.publish()===nextPlayerId) {
-					console.log("door controle nextPlayerId="+nextPlayerId);
-					if ((nextPlayerId + 1) < gameModel.players.length) {
+		else if (gameModel.skipTurn.publish() === nextPlayerId || gameModel.stayInPlace31.publish() === nextPlayerId || gameModel.stayInPlace52.publish() === nextPlayerId) {
+			if (gameModel.players.length > 1) {
+				// loopt tot de next player geen beurt moet overslaan
+				while (gameModel.skipTurn.publish() === nextPlayerId || gameModel.stayInPlace31.publish() === nextPlayerId || gameModel.stayInPlace52.publish() === nextPlayerId) {
+
+					if (nextPlayerId < gameModel.players.length) {
 						nextPlayerId += 1;
 					} else {
 						nextPlayerId = 0;
 					}
-				}else{
-					console.log("NIET door controle nextPlayerId="+nextPlayerId);
-					if (nextPlayerId < gameModel.players.length) {
-						gameModel.activePlayer.publish(nextPlayerId);
-						gameModel.subPos.publish(gameModel.pawns[nextPlayerId].publish());
-						gameView.playerButtons[nextPlayerId].removeAttribute('disabled');
-
-					} else {
-						gameModel.activePlayer.publish(0);
-						gameModel.subPos.publish(gameModel.pawns[0].publish());
-						gameView.playerButtons[0].removeAttribute('disabled');
+					if (gameModel.skipTurn.publish() === nextPlayerId) {
+						gameModel.skipTurn.publish(-1);
 					}
+					console.log("volgende: " + nextPlayerId);
 				}
+				if (nextPlayerId < gameModel.players.length) {
+					gameModel.activePlayer.publish(nextPlayerId);
+					gameModel.subPos.publish(gameModel.pawns[nextPlayerId].publish());
+					gameView.playerButtons[nextPlayerId].removeAttribute('disabled');
+					gameView.playerButtons[nextPlayerId].focus();
+
+				} else {
+					gameModel.activePlayer.publish(0);
+					gameModel.subPos.publish(gameModel.pawns[0].publish());
+					gameView.playerButtons[0].removeAttribute('disabled');
+					gameView.playerButtons[0].focus();
+				}
+			} else {
+				// 1 speler beurt overslaan
+				gameModel.activePlayer.publish(0);
+				gameModel.subPos.publish(gameModel.pawns[0].publish());
+				gameView.playerButtons[0].removeAttribute('disabled');
+				gameView.playerButtons[0].focus();
 			}
 		}
 	},
@@ -403,6 +413,7 @@ var gameSetup = {
 			// maakt eerste button klikbaar
 			if (i === 0) {
 				playerButton.removeAttribute("disabled");
+				playerButton.focus();
 			}
 		}
 	},
@@ -418,7 +429,7 @@ var gameSetup = {
 		for (let i = 0; i < players; ++i) {
 			var pawn = gameView.pawns[i];
 			if (pawn.classList.contains("hidden")) {
-				pawn.classList.toggle("hidden");
+				pawn.classList.remove("hidden");
 			}
 			// Observable
 			var newPawn = gameConnector.pawns();
