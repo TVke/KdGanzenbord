@@ -447,7 +447,7 @@ var init = function() {
 	gameSetup.goose();
 	gameSetup.dice(2);
 	gameSetup.singleObservables();
-
+    
 	gameView.startButton.addEventListener("click", function () {
 		var playerAmount = gameView.playerAmount.value;
 		gameSetup.players(playerAmount);
