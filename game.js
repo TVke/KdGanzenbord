@@ -395,7 +395,7 @@ var gameSetup = {
 			}
 		});
 	},
-	players: function (players, names = ['Speler 1', 'Speler 2', 'Speler 3', 'Speler 4']) {
+	players: function (players, names) {
 		// loopt het aantal meespelende spelers
 		for (let i = 0; i < players; ++i) {
 			// player = het DOM element met id player-1,2,3,4,...
@@ -462,20 +462,26 @@ var init = function() {
     
     gameView.playerAmount.addEventListener("change", function(){
         // inputs hidden zetten als iets veranderd aan select
-        for(let i=0, ilen=gameView.playerInput.length; i<ilen; ++i)
-        {
+        for(let i=0, ilen=gameView.playerInput.length; i<ilen; ++i) {
             gameView.playerInput[i].setAttribute("class", "hidden");
         }
         var playerAmount = gameView.playerAmount.value;
-        for(let i=0; i<playerAmount; ++i)
-        {
+        for(let i=0; i<playerAmount; ++i) {
             gameView.playerInput[i].removeAttribute("class");
         }
-    })
+    });
     
 	gameView.startButton.addEventListener("click", function () {
 		var playerAmount = gameView.playerAmount.value;
-		gameSetup.players(playerAmount);
+		var playerNames=[];
+		for(let i=0;i<playerAmount;++i){
+			if(gameView.playerInput[i].value!==""){
+				playerNames.push(gameView.playerInput[i].value);
+			}else{
+				playerNames.push("Player "+(i+1));
+			}
+		}
+		gameSetup.players(playerAmount,playerNames);
 		gameSetup.pawns(playerAmount);
 		gameView.overlay.setAttribute("class", "hidden");
 		gameView.beginOverlay.setAttribute("class", "hidden");
