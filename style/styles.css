@@ -415,19 +415,33 @@ button:enabled:hover {
 /* Niels hier mag de stijl voor het startscherm */
 
 #begin {
-
+    width: 20%;
+	margin: 100px auto;
+	background: white;
+	padding: 15px;
+	border-radius: 3px;
 }
+
 #begin h3{
-
+    font-size: 2em;
+    margin-bottom: 10px;
 }
+
 #begin label{
-
+    font-size: 1.5em;
+    
 }
+
 #begin select{
-
+    font-size: 1.5em;
 }
-#begin button{
 
+#begin button{
+    margin: 0px 0px 0px 320px;
+}
+
+#begin input{
+    margin: 0px 0px 0px 210px;
 }
 
 /* eindscherm */
