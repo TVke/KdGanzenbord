@@ -440,7 +440,6 @@ button:enabled:hover {
 
 #begin button{
     display: block;
-    text-align: center;
     margin: auto;
 }
 
@@ -448,8 +447,8 @@ button:enabled:hover {
     font-size: 1em;
     margin: auto;
     margin-bottom: 15px;
+    padding: 5px;
     display: block;
-    text-align: center;
 }
 
 /* eindscherm */
