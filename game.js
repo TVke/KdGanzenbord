@@ -39,7 +39,8 @@ var gameView = {
 	endButton: document.querySelector("#end button"),
 	infoOverlay: document.getElementById("whiteoverlay"),
 	infoTitle: document.querySelector("#whiteoverlay h3"),
-	info: document.querySelector("#whiteoverlay p")
+	info: document.querySelector("#whiteoverlay p"),
+	game: document.getElementById("game")
 };
 var gameModel = {
 	dice: [],
@@ -57,7 +58,7 @@ var gameModel = {
 	stayInPlace52: new Observable()
 };
 var gameController = {
-		rollDices: function () {
+		rollDice: function () {
 			var activePlayerId = gameModel.activePlayer.publish();
 			var totalThrow = 0;
 			for (let i = 0, ilen = gameModel.dice.length; i < ilen; ++i) {
@@ -84,6 +85,11 @@ var gameController = {
 			for (let i = 0, ilen = gameModel.pawns.length; i < ilen; ++i) {
 				if (playerId != i && gameModel.pawns[i].publish() === place) {
 					otherPlayerAlready = true;
+				}
+			}
+			for(let i=0,ilen=gameView.tiles.length;i<ilen;++i){
+				if(gameView.tiles[i].classList.contains("glow")){
+					gameView.tiles[i].classList.remove("glow");
 				}
 			}
 			var move = setInterval(function () {
@@ -289,7 +295,7 @@ var gameController = {
 					if (gameModel.skipTurn.publish() === nextPlayerId) {
 						gameModel.skipTurn.publish(false);
 					}
-					if (nextPlayerId < gameModel.players.length) {
+					if ((nextPlayerId+1) < gameModel.players.length) {
 						nextPlayerId += 1;
 					}
 					else {
@@ -356,17 +362,38 @@ var gameSetup = {
 		gameModel.pawnMoveOver.publish(false);
 		gameModel.pawnMoveOver.subscribe(function (data) {
 			if (data) {
-				if (gameModel.pawns[gameModel.activePlayer.publish()].publish() !== 9) {
+				var checkPlace = gameModel.pawns[gameModel.activePlayer.publish()].publish();
+				for (let i = 0, ilen = gameModel.geese.length; i < ilen; ++i) {
+					if (checkPlace === gameModel.geese[i]) {
+						gameView.tiles[gameModel.geese[i]].classList.add("glow");
+					}
+				}
+				if (checkPlace === 6 || checkPlace === 19 || checkPlace === 31 || checkPlace === 42 || checkPlace === 52 || checkPlace === 58) {
+					gameView.tiles[checkPlace].classList.add("glow");
+				}
+				if (checkPlace !== 9) {
 					setTimeout(function () {
-						gameController.rules(gameModel.pawns[gameModel.activePlayer.publish()].publish());
+						gameController.rules(checkPlace);
 					}, 500);
 				} else {
 					setTimeout(function () {
-						gameController.startRules(gameModel.pawns[gameModel.activePlayer.publish()].publish());
+						gameController.startRules(checkPlace);
 					}, 500);
 				}
 			}
 		});
+		//tooltips
+
+		for (let i = 0, ilen = gameModel.geese.length; i < ilen; ++i) {
+			gameView.tiles[gameModel.geese[i]].title = "gedobbeld aantal verder";
+		}
+		gameView.tiles[6].title = "verder naar vakje 12";
+		gameView.tiles[19].title = "een beurt overslaan";
+		gameView.tiles[31].title = "wachten tot een andere speler je bevrijdt";
+		gameView.tiles[42].title = "terug naar vakje 39";
+		gameView.tiles[52].title = "wachten tot een andere speler je bevrijdt";
+		gameView.tiles[58].title = "terug naar het begin x_x";
+		gameView.tiles[63].title = "Gewonnen";
 	},
 	players: function (players, names) {
 		// loopt het aantal meespelende spelers
@@ -382,7 +409,7 @@ var gameSetup = {
 			// button functionaliteit
 			var playerButton = gameView.playerButtons[i];
 			playerButton.addEventListener("click", function () {
-				gameController.rollDices();
+				gameController.rollDice();
 			});
 			// maakt eerste button klikbaar
 			if (i === 0) {
@@ -451,7 +478,7 @@ var init = function() {
 			if(gameView.playerInput[i].value!==""){
 				playerNames.push(gameView.playerInput[i].value);
 			}else{
-				playerNames.push("Player "+(i+1));
+				playerNames.push("Speler "+(i+1));
 			}
 		}
 		gameSetup.players(playerAmount,playerNames);
