@@ -258,7 +258,7 @@ button:enabled:hover {
 	position:absolute;
 	width:118%;
 	height:165px;
-	background:url(table-cloth-blue.png);
+	background:url(table-cloth-gray.png);
 	background-size:cover;
 	background-position-y:-3%;
 	transform-origin:top center;
@@ -274,18 +274,10 @@ button:enabled:hover {
 	flex-wrap:wrap;
 	width:100%;
 	height:600px;
-	background:url(table-cloth-blue.png);
+	background:url(table-cloth-gray.png);
 	background-size:cover;
 	transform:rotateX(50deg);
 	-webkit-transform:rotateX(50deg);
-}
-
-#gray #game::after{
-	background:url(table-cloth-gray.png);
-}
-
-#gray #board{
-	background:url(table-cloth-gray.png);
 }
 
 /* pawn */
