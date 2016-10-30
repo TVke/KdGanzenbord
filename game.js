@@ -385,15 +385,15 @@ var gameSetup = {
 		//tooltips
 
 		for (let i = 0, ilen = gameModel.geese.length; i < ilen; ++i) {
-			gameView.tiles[gameModel.geese[i]].title = "gedobbeld aantal verder";
+			gameView.tiles[gameModel.geese[i]].setAttribute("data-title","gedobbeld aantal verder");
 		}
-		gameView.tiles[6].title = "verder naar vakje 12";
-		gameView.tiles[19].title = "een beurt overslaan";
-		gameView.tiles[31].title = "wachten tot je bevrijd wordt";
-		gameView.tiles[42].title = "terug naar vakje 39";
-		gameView.tiles[52].title = "wachten tot je bevrijd wordt";
-		gameView.tiles[58].title = "terug naar het begin x_x";
-		gameView.tiles[63].title = "Gewonnen";
+		gameView.tiles[6].setAttribute("data-title","verder naar vakje 12");
+		gameView.tiles[19].setAttribute("data-title","een beurt overslaan");
+		gameView.tiles[31].setAttribute("data-title","wachten tot je bevrijd wordt");
+		gameView.tiles[42].setAttribute("data-title","terug naar vakje 39");
+		gameView.tiles[52].setAttribute("data-title","wachten tot je bevrijd wordt");
+		gameView.tiles[58].setAttribute("data-title","terug naar het begin x_x");
+		gameView.tiles[63].setAttribute("data-title","Gewonnen");
 	},
 	players: function (players, names) {
 		// loopt het aantal meespelende spelers

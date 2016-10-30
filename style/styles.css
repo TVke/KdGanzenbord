@@ -280,6 +280,14 @@ button:enabled:hover {
 	-webkit-transform:rotateX(50deg);
 }
 
+#gray #game::after{
+	background:url(table-cloth-gray.png);
+}
+
+#gray #board{
+	background:url(table-cloth-gray.png);
+}
+
 /* pawn */
 #game div[id^="pawn-"] {
 	width:9%;
@@ -309,16 +317,20 @@ button:enabled:hover {
 	fill:#FF5050;
 }
 
-#game div#pawn-2 svg {
-	fill:orange;
+#game div#pawn-1 svg :not(path:first-child){
+	stroke:#FF5050;
 }
 
-#game div#pawn-3 svg {
-	fill:#00db00;
+#game div#pawn-2 svg :not(path:first-child){
+	stroke:orange;
 }
 
-#game div#pawn-4 svg {
-	fill:#05B9FF;
+#game div#pawn-3 svg :not(path:first-child){
+	stroke:#00db00;
+}
+
+#game div#pawn-4 svg :not(path:first-child){
+	stroke:#05B9FF;
 }
 
 #game div#pawn-1.place-0 svg {
@@ -423,7 +435,7 @@ button:enabled:hover {
 #board a#tile-52::before,
 #board a#tile-58::before,
 #board a#tile-63::before{
-	content:attr(title);
+	content:attr(data-title);
 	position: absolute;
 	top: 0;
 	left: 0;
