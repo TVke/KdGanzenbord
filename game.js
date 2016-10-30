@@ -27,7 +27,7 @@ var gameView = {
 	playerInput: document.querySelectorAll("#begin input[type=text]"),
 	dice: document.querySelectorAll("#dice div"),
 	pawns: document.querySelectorAll("div[id^='pawn-']"),
-	tiles: document.querySelectorAll("#board div"),
+	tiles: document.querySelectorAll("#board a"),
 	players: document.querySelectorAll("#players div"),
 	playerNames: document.querySelectorAll("#players span"),
 	playerButtons: document.querySelectorAll("#players div button"),
@@ -389,9 +389,9 @@ var gameSetup = {
 		}
 		gameView.tiles[6].title = "verder naar vakje 12";
 		gameView.tiles[19].title = "een beurt overslaan";
-		gameView.tiles[31].title = "wachten tot een andere speler je bevrijdt";
+		gameView.tiles[31].title = "wachten tot je bevrijd wordt";
 		gameView.tiles[42].title = "terug naar vakje 39";
-		gameView.tiles[52].title = "wachten tot een andere speler je bevrijdt";
+		gameView.tiles[52].title = "wachten tot je bevrijd wordt";
 		gameView.tiles[58].title = "terug naar het begin x_x";
 		gameView.tiles[63].title = "Gewonnen";
 	},
