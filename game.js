@@ -204,7 +204,7 @@ var gameController = {
 			for (let i = 0, ilen = gameModel.geese.length; i < ilen; ++i) {
 				if (gameModel.geese[i] === data) {
 					setTimeout(function () {
-						if (gameModel.tempPos.publish() < data) {
+						if (gameModel.tempPos.publish() < data || gameModel.subPos.publish()>data) {
 							gameModel.pawns[playerId].publish(data + gameModel.currentThrow.publish());
 							gameController.displayInfo("Gans", "Je gaat " + gameModel.currentThrow.publish() + " vakjes verder!");
 						} else {
