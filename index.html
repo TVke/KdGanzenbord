@@ -16,30 +16,33 @@
 		<meta name="theme-color" content="#ffffff">
 	</head>
 	<body>
+	<noscript>
+		<div>Om KdGanzenbord te spelen moet je JavaScript in je browser aanzetten, klik <a href="http://enable-javascript.com/nl/" target="_blank" >hier</a> om te zien hoe</div>
+	</noscript>
 		<header>
 			<h1>KdGanzenbord</h1>
 			<h2>KWEK</h2>
 		</header>
 		<div id="overlay">
 			<div id="begin">
-				<h3>Selecteer uw speler aantal</h3>
-				<label for="playerAmount">aantal spelers</label>
+				<h3>Met hoeveel spelers wil je spelen?</h3>
+				<label for="playerAmount">Aantal spelers:</label>
 				<select id="playerAmount" autofocus>
 				    <option value="4">4</option>
 					<option value="3">3</option>
 				    <option value="2">2</option>
 					<option value="1">1</option>
 				</select>
-				<input type="text" name="player1" placeholder="Speler 1">
-				<input type="text" name="player2" placeholder="Speler 2">
-				<input type="text" name="player3" placeholder="Speler 3">
-				<input type="text" name="player4" placeholder="Speler 4">
-				<button>Start</button>
+				<input type="text" name="player1" placeholder="Speler 1" maxlength="9">
+				<input type="text" name="player2" placeholder="Speler 2" maxlength="9">
+				<input type="text" name="player3" placeholder="Speler 3" maxlength="9">
+				<input type="text" name="player4" placeholder="Speler 4" maxlength="9">
+				<button>Speel!</button>
 			</div>
 			<div id="end" class="hidden">
 				<h3>Gewonnen!</h3>
 				<p></p>
-				<button autofocus>Nog een keer</button>
+				<button autofocus>Nog een keer!</button>
 			</div>
 		</div>
 		<div id="whiteoverlay" class="hidden">
