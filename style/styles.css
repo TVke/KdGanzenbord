@@ -504,7 +504,9 @@ body #begin input:nth-of-type(4){
 
 /* Niels hier mag je de stijl van de gloed schrijven */
 #board .glow{
-
+	background-color: greenyellow;
+	box-shadow: 0 0 10px greenyellow;
+	z-index: 2;
 }
 
 /* eindscherm */
@@ -532,7 +534,6 @@ body #begin input:nth-of-type(4){
 }
 
 /* noscript */
-
 noscript div {
 	z-index: 999;
 	text-align: center;

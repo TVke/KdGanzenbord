@@ -363,7 +363,7 @@ var gameSetup = {
 						gameView.tiles[gameModel.geese[i]].classList.add("glow");
 					}
 				}
-				if (checkPlace === 6 || checkPlace === 19 || checkPlace === 31 || checkPlace === 42 || checkPlace === 52 || checkPlace === 58) {
+				if (checkPlace === 6 || checkPlace === 19 || checkPlace === 31 || checkPlace === 42 || checkPlace === 52 || checkPlace === 58 || checkPlace === 63) {
 					gameView.tiles[checkPlace].classList.add("glow");
 				}
 				if (checkPlace !== 9) {
