@@ -351,7 +351,7 @@ var gameSetup = {
 		gameModel.endTile.publish(gameView.tiles.length - 1);
 		// speed settings
 		gameModel.pawnMoveSpeed.publish(250);
-		gameModel.ruesCheckspeed.publish(500);
+		gameModel.ruesCheckspeed.publish(gameModel.pawnMoveSpeed.publish() * 2);
 		gameModel.showInfoTime.publish(5000);
 		//after every moved pawn
 		gameModel.pawnMoveOver.publish(false);
