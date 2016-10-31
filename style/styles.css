@@ -53,23 +53,20 @@ header {
 }
 
 /* overlays */
-#overlay {
+body #overlay {
 	background:rgba(0,0,0,0.7);
 	z-index:2;
+	position: fixed;
 }
 
-/* Sander dit is de stijl van de info bubbels -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
 #whiteoverlay{
 	width: 20%;
 	height: 70px;
 	margin: 0 auto;
-	top: initial;
-	bottom: 110px;
+	top: 100px;
 	z-index: 1;
-	background: rgba(255, 255, 255, 0.9);
-	-webkit-backdrop-filter: blur(10px);
-	backdrop-filter: blur(10px);
-	border: 1px solid lightgray;
+	background: rgba(255, 255, 255, 0.95);
+	border: 2px solid black;
 	padding: 5px 10px;
 	border-radius: 3px;
 }
@@ -104,7 +101,7 @@ header {
 	background:#fff;
 	padding:2px;
 	margin:2px;
-	border:2px solid;
+	border:5px solid;
 }
 
 #players span {
@@ -483,6 +480,27 @@ button:enabled:hover {
     display: block;
 }
 
+body #begin input:focus{
+	outline: none;
+	border-width: 2px;
+}
+
+body #begin input:nth-of-type(1){
+	border: 1px solid #FF5050;
+}
+
+body #begin input:nth-of-type(2){
+	border: 1px solid orange;
+}
+
+body #begin input:nth-of-type(3){
+	border: 1px solid #00db00;
+}
+
+body #begin input:nth-of-type(4){
+	border: 1px solid #05B9FF;
+}
+
 /* Niels hier mag je de stijl van de gloed schrijven */
 #board .glow{
 
@@ -510,6 +528,27 @@ button:enabled:hover {
 #end button{
 	display: block;
 	margin: 20px auto 10px;
+}
+
+/* noscript */
+
+noscript div {
+	z-index: 999;
+	text-align: center;
+	font-size: 1.5vw;
+	background-color: #ff0a27;
+	position: fixed;
+	width: 100%;
+	padding: 15px;
+}
+
+noscript div a{
+	color: white;
+	text-decoration: none;
+}
+
+noscript div a:hover{
+	text-decoration: underline;
 }
 
 /* to small rules */
