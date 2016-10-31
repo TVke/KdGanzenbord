@@ -85,7 +85,7 @@ body #overlay {
 #players>div {
 	position:inherit;
 	width:150px;
-	height:110px;
+	height:115px;
 	padding:10px;
 	display:flex;
 	display:-webkit-flex;
@@ -478,6 +478,7 @@ button:enabled:hover {
     margin: 0 auto 15px;
     padding: 5px;
     display: block;
+	border: 1px solid #FF5050;
 }
 
 body #begin input:focus{
@@ -486,24 +487,26 @@ body #begin input:focus{
 }
 
 body #begin input:nth-of-type(1){
-	border: 1px solid #FF5050;
+	border-color: #FF5050;
 }
 
 body #begin input:nth-of-type(2){
-	border: 1px solid orange;
+	border-color: orange;
 }
 
 body #begin input:nth-of-type(3){
-	border: 1px solid #00db00;
+	border-color: #00db00;
 }
 
 body #begin input:nth-of-type(4){
-	border: 1px solid #05B9FF;
+	border-color: #05B9FF;
 }
 
 /* Niels hier mag je de stijl van de gloed schrijven */
 #board .glow{
-
+	background-color: greenyellow;
+	box-shadow: 0 0 10px greenyellow;
+	z-index: 2;
 }
 
 /* eindscherm */
@@ -531,7 +534,6 @@ body #begin input:nth-of-type(4){
 }
 
 /* noscript */
-
 noscript div {
 	z-index: 999;
 	text-align: center;
