@@ -14,7 +14,7 @@
 }
 
 body {
-	font-family:'KdG',Helvetica,Arial,sans-serif;
+	font-family:'KdG','Futura',Helvetica,Arial,sans-serif;
 }
 
 .hidden,#dice.hidden,#players>div.hidden,#overlay input.hidden {
@@ -30,7 +30,7 @@ h2 {
 	font-size:1em;
 }
 
-header,#overlay,#players,#dice,#board div.goose::after,#whiteoverlay {
+header,#overlay,#players,#dice,#board a.goose::after,#whiteoverlay {
 	top:0;
 	left:0;
 	right:0;
@@ -58,8 +58,7 @@ header {
 	z-index:2;
 }
 
-
-
+/* Sander dit is de stijl van de info bubbels -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
 #whiteoverlay{
 	width: 20%;
 	height: 70px;
@@ -117,7 +116,7 @@ header {
 }
 
 button {
-	font-family:"Futura",Helvetica,Arial,sans-serif;
+	font-family:'Futura',Helvetica,Arial,sans-serif;
 	border:1px solid #fff;
 	border-radius:5px;
 	font-size:1.2em;
@@ -258,7 +257,7 @@ button:enabled:hover {
 	position:absolute;
 	width:118%;
 	height:165px;
-	background:url(table-cloth-blue.png);
+	background:url(table-cloth-gray.png);
 	background-size:cover;
 	background-position-y:-3%;
 	transform-origin:top center;
@@ -274,7 +273,7 @@ button:enabled:hover {
 	flex-wrap:wrap;
 	width:100%;
 	height:600px;
-	background:url(table-cloth-blue.png);
+	background:url(table-cloth-gray.png);
 	background-size:cover;
 	transform:rotateX(50deg);
 	-webkit-transform:rotateX(50deg);
@@ -309,16 +308,20 @@ button:enabled:hover {
 	fill:#FF5050;
 }
 
-#game div#pawn-2 svg {
-	fill:orange;
+#game div#pawn-1 svg :not(path:first-child){
+	stroke:#FF5050;
 }
 
-#game div#pawn-3 svg {
-	fill:#00db00;
+#game div#pawn-2 svg :not(path:first-child){
+	stroke:orange;
 }
 
-#game div#pawn-4 svg {
-	fill:#05B9FF;
+#game div#pawn-3 svg :not(path:first-child){
+	stroke:#00db00;
+}
+
+#game div#pawn-4 svg :not(path:first-child){
+	stroke:#05B9FF;
 }
 
 #game div#pawn-1.place-0 svg {
@@ -338,7 +341,7 @@ button:enabled:hover {
 }
 
 /* board tiles */
-#board div {
+#board a {
 	width:9%;
 	height:73.7px;
 	padding:5px;
@@ -351,7 +354,7 @@ button:enabled:hover {
 	right:0;
 	transition: all .5s ease;
 }
-#board div:first-child::before{
+#board a:first-child::before{
 	content: "start >>>";
 	position: absolute;
 	left: 0;
@@ -360,11 +363,7 @@ button:enabled:hover {
 	text-align: center;
 }
 
-#board div::before {
-	content:"";
-}
-
-#game #board div[id^="tile-"]::after{
+#game #board a[id^="tile-"]::after{
 	content:"";
 	background-size: contain;
 	background-position-y: 100%;
@@ -376,46 +375,58 @@ button:enabled:hover {
 	bottom: 0;
 }
 
-#board div.goose::after{
+#board a.goose::after{
 	background: url("gans.svg") no-repeat;
 	right: 20% !important;
 }
 
-#board div#tile-6::after{
+#board a#tile-6::after{
 	background: url("brug.svg") no-repeat;
 }
 
-#board div#tile-19::after{
+#board a#tile-19::after{
 	background: url("herberg.svg") no-repeat;
 }
 
-#board div#tile-31::after{
+#board a#tile-31::after{
 	background: url("put.svg") no-repeat;
 }
 
-#board div#tile-42::after{
-	content: "";
+#board a#tile-42::after{
 	background: url("doolhof.svg") no-repeat;
 }
 
-#board div#tile-52::after{
+#board a#tile-52::after{
 	background: url("gevangenis.svg") no-repeat;
 }
 
-#board div#tile-58::after{
+#board a#tile-58::after{
 	background: url("dood.svg") no-repeat;
 	right: 20% !important;
 }
 
-#board div#tile-63::after{
+#board a#tile-63::after{
 	background: url("gewonnen.svg") no-repeat;
 	right: 10% !important;
 }
 
 /* tooltips */
+#players{
+	pointer-events: none;
+}
+#players>*{
+	pointer-events: auto;
+}
 
-#game #board div::before{
-	content:attr(title);
+#board a.goose::before,
+#board a#tile-6::before,
+#board a#tile-19::before,
+#board a#tile-31::before,
+#board a#tile-42::before,
+#board a#tile-52::before,
+#board a#tile-58::before,
+#board a#tile-63::before{
+	content:attr(data-title);
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -428,49 +439,14 @@ button:enabled:hover {
 	font-size: 1.1em;
 	opacity: 0;
 	transition: all .5s ease;
+	font-family:"Futura",Helvetica,Arial,sans-serif;
 }
-#game #board div::before:hover{
+
+#game #board a:hover::before{
 	opacity: 1;
 }
 
-#board div.goose::before:hover{
-	background: url("gans.svg") no-repeat;
-	right: 20% !important;
-}
-
-#board div#tile-6::before:hover{
-	background: url("brug.svg") no-repeat;
-}
-
-#board div#tile-19::before:hover{
-	background: url("herberg.svg") no-repeat;
-}
-
-#board div#tile-31::before:hover{
-	background: url("put.svg") no-repeat;
-}
-
-#board div#tile-42::before:hover{
-	content: "";
-	background: url("doolhof.svg") no-repeat;
-}
-
-#board div#tile-52::before:hover{
-	background: url("gevangenis.svg") no-repeat;
-}
-
-#board div#tile-58::before:hover{
-	background: url("dood.svg") no-repeat;
-	right: 20% !important;
-}
-
-#board div#tile-63::before:hover{
-	background: url("gewonnen.svg") no-repeat;
-	right: 10% !important;
-}
-
-/* Niels hier mag de stijl voor het startscherm */
-
+/* startscherm */
 #begin {
     width: 40%;
 	margin: 100px auto;
@@ -502,14 +478,12 @@ button:enabled:hover {
 
 #begin input{
     font-size: 1em;
-    margin: auto;
-    margin-bottom: 15px;
+    margin: 0 auto 15px;
     padding: 5px;
     display: block;
 }
 
 /* Niels hier mag je de stijl van de gloed schrijven */
-
 #board .glow{
 
 }
