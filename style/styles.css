@@ -533,6 +533,18 @@ button:enabled:hover {
 	margin: 20px auto 10px;
 }
 
+/* noscript */
+
+noscript div {
+	z-index: 999;
+	text-align: center;
+	font-size: 2em;
+	background-color: #ff0a27;
+	position: fixed;
+	width: 100%;
+	padding: 15px;
+}
+
 /* to small rules */
 @media screen and (max-width: 800px) {
 	#game::after {
