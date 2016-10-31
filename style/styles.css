@@ -485,7 +485,8 @@ button:enabled:hover {
 
 /* Niels hier mag je de stijl van de gloed schrijven */
 #board .glow{
-
+    background-color: greenyellow;
+    box-shadow: 10px 10px 0.2em greenyellow;
 }
 
 /* eindscherm */
