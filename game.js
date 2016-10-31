@@ -393,7 +393,7 @@ var gameSetup = {
 		gameView.tiles[42].setAttribute("data-title","terug naar vakje 39");
 		gameView.tiles[52].setAttribute("data-title","wachten tot je bevrijd wordt");
 		gameView.tiles[58].setAttribute("data-title","terug naar het begin x_x");
-		gameView.tiles[63].setAttribute("data-title","Gewonnen");
+		gameView.tiles[63].setAttribute("data-title","gewonnen!");
 	},
 	players: function (players, names) {
 		// loopt het aantal meespelende spelers
