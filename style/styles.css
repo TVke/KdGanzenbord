@@ -349,7 +349,7 @@ button:enabled:hover {
 	top:257px;
 	left:0;
 	right:0;
-	transition: all .5s ease;
+	transition: opacity .5s ease;
 }
 #board a:first-child::before{
 	content: "start >>>";
@@ -433,7 +433,7 @@ button:enabled:hover {
 	z-index: 2;
 	text-align: center;
 	background: rgba(255,255,255,0.9);
-	font-size: 1.1em;
+	font-size: 1em;
 	opacity: 0;
 	transition: all .5s ease;
 	font-family:"Futura",Helvetica,Arial,sans-serif;
@@ -579,6 +579,21 @@ noscript div a:hover{
 	}
 	#begin {
 		width: 80%;
+	}
+    #whiteoverlay{
+	    width: 40%;
+    }
+	#board a.goose::before,
+	#board a#tile-6::before,
+	#board a#tile-19::before,
+	#board a#tile-31::before,
+	#board a#tile-42::before,
+	#board a#tile-52::before,
+	#board a#tile-58::before,
+	#board a#tile-63::before {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		font-size: 0.7em;
 	}
 }
 
