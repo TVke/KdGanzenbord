@@ -14,6 +14,8 @@
 		<meta name="apple-mobile-web-app-title" content="KdGanzenbord">
 		<meta name="application-name" content="KdGanzenbord">
 		<meta name="theme-color" content="#ffffff">
+		
+		<meta name="description" content="Een digitaal ganzenbord in de stijl van KdG">
 	</head>
 	<body>
 	<noscript>
@@ -33,10 +35,14 @@
 				    <option value="2">2</option>
 					<option value="1">1</option>
 				</select>
-				<input type="text" name="player1" placeholder="Speler 1" maxlength="9">
-				<input type="text" name="player2" placeholder="Speler 2" maxlength="9">
-				<input type="text" name="player3" placeholder="Speler 3" maxlength="9">
-				<input type="text" name="player4" placeholder="Speler 4" maxlength="9">
+				<label for="p1" class="hidden">naam Speler 1</label>
+				<input type="text" name="player1" placeholder="Speler 1" id="p1" maxlength="9">
+				<label for="p2" class="hidden">naam Speler 2</label>
+				<input type="text" name="player2" placeholder="Speler 2" id="p2" maxlength="9">
+				<label for="p3" class="hidden">naam Speler 3</label>
+				<input type="text" name="player3" placeholder="Speler 3" id="p3" maxlength="9">
+				<label for="p4" class="hidden">naam Speler 4</label>
+				<input type="text" name="player4" placeholder="Speler 4" id="p4" maxlength="9">
 				<button>Speel!</button>
 			</div>
 			<div id="end" class="hidden">
