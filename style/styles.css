@@ -493,6 +493,7 @@ button:enabled:hover {
 body #begin input:focus{
 	outline: none;
 	border-width: 2px;
+	padding: 4px;
 }
 
 body #begin input:nth-of-type(1){
