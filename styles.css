@@ -1,0 +1,618 @@
+@font-face {
+	font-family: 'KdG';
+    src: url('KdG-Regular.eot'); 
+    src: url('KdG-Regular.eot?#iefix') format('embedded-opentype'), url('KdG-Regular.woff') format('woff'), url('KdG-Regular.ttf') format('truetype'), url('KdG-Regular.svg#KdG-Regular') format('svg');
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
+/* basics */
+*,html {
+	margin:0;
+	padding:0;
+}
+
+body {
+	font-family:'KdG','Futura',Helvetica,Arial,sans-serif;
+}
+
+.hidden,#dice.hidden,#players>div.hidden,#overlay input.hidden {
+	display:none;
+}
+
+h1,h2,h3 {
+	text-align:center;
+}
+
+h2 {
+	color:gray;
+	font-size:1em;
+}
+
+header,#overlay,#players,#dice,#board a.goose::after,#whiteoverlay {
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	position:absolute;
+}
+
+header,#dice,#players>div {
+	background:rgba(255,255,255,0.6);
+}
+
+header,#dice {
+	padding:10px 0;
+	width:300px;
+	margin:0 auto;
+}
+
+header {
+	bottom:initial;
+}
+
+/* overlays */
+body #overlay {
+	background:rgba(0,0,0,0.7);
+	z-index:2;
+	position: fixed;
+}
+
+#whiteoverlay{
+	width: 20%;
+	height: 70px;
+	margin: 0 auto;
+	top: 100px;
+	z-index: 1;
+	background: rgba(255, 255, 255, 0.95);
+	border: 2px solid black;
+	padding: 5px 10px;
+	border-radius: 3px;
+}
+#whiteoverlay h3{
+	padding-bottom: 10px;
+}
+#whiteoverlay>*{
+	text-align: center;
+}
+
+/* players */
+#players {
+	z-index:1;
+}
+
+#players>div {
+	position:inherit;
+	width:150px;
+	height:115px;
+	padding:10px;
+	display:flex;
+	display:-webkit-flex;
+	flex-wrap:wrap;
+	justify-content:space-around;
+}
+
+#players img {
+	display:block;
+	width:50px;
+	height:50px;
+	border-radius:50%;
+	background:#fff;
+	padding:2px;
+	margin:2px;
+	border:5px solid;
+}
+
+#players span {
+	padding:10px 0;
+	font-size:1.2em;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	max-width: 85px;
+}
+
+button {
+	font-family:'Futura',Helvetica,Arial,sans-serif;
+	border:1px solid #fff;
+	border-radius:5px;
+	font-size:1.2em;
+	padding:10px;
+	flex-grow:1;
+}
+
+button:enabled {
+	background:linear-gradient(#57bfff 0%,#009eff 100%);
+	background:-webkit-linear-gradient(#57bfff 0%,#009eff 100%);
+	color:#fff;
+	border-color:#d3d3d3;
+}
+
+button:enabled:active {
+	background:linear-gradient(#009eff 0%,#57bfff 100%);
+	background:-webkit-linear-gradient(#009eff 0%,#57bfff 100%);
+	border-color:#000;
+}
+
+button:enabled:hover {
+	border-color:#000;
+}
+
+#player-1 {
+	top: 0;
+	left: 0;
+}
+
+#player-2 {
+	top: 0;
+	right: 0;
+}
+
+#player-3 {
+	bottom: 0;
+	right: 0;
+}
+
+#player-4 {
+	bottom: 0;
+	left: 0;
+}
+
+#player-1 img {
+	border-color:#FF5050;
+}
+
+#player-2 img {
+	border-color:orange;
+}
+
+#player-3 img {
+	border-color:#00db00;
+}
+
+#player-4 img {
+	border-color:#05B9FF;
+}
+
+/* dice */
+#dice {
+	width:150px;
+	top:initial;
+	display:flex;
+	display:-webkit-flex;
+	justify-content:space-around;
+	z-index:1;
+	padding:10px;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+}
+
+#dice>div {
+	width:50px;
+	height:50px;
+	border:3px solid #000;
+	border-radius:5px;
+	background:#fff;
+	padding:5px;
+	position:relative;
+}
+
+#dice>div::after {
+	content:"";
+	display:block;
+	width:10px;
+	height:10px;
+	margin:0 auto;
+	background:#000;
+	border-radius:50%;
+	position:absolute;
+	top:25px;
+	left:0;
+	right:0;
+}
+
+#dice>div.rolled-1::after {
+	background:#000;
+}
+
+#dice>div.rolled-2::after {
+	background:transparent;
+	box-shadow:20px -20px 0 black,-20px 20px 0 #000;
+}
+
+#dice>div.rolled-3::after {
+	background:#000;
+	box-shadow:20px -20px 0 black,-20px 20px 0 #000;
+}
+
+#dice>div.rolled-4::after {
+	background:transparent;
+	box-shadow:-20px -20px 0 black,-20px 20px 0 black,20px -20px 0 black,20px 20px 0 #000;
+}
+
+#dice>div.rolled-5::after {
+	background:#000;
+	box-shadow:-20px -20px 0 black,-20px 20px 0 black,20px -20px 0 black,20px 20px 0 #000;
+}
+
+#dice>div.rolled-6::after {
+	background:transparent;
+	box-shadow:-20px -20px 0 black,-20px 0 0 black,-20px 20px 0 black,20px -20px 0 black,20px 0 0 black,20px 20px 0 #000;
+}
+
+/* gameboard */
+#game {
+	width:75%;
+	margin:0 auto;
+	position:relative;
+	perspective:2000px;
+}
+
+#game::after {
+	content:"";
+	display:block;
+	position:absolute;
+	width:118%;
+	height:165px;
+	background:url(table-cloth-gray.png);
+	background-size:cover;
+	background-position-y:-3%;
+	transform-origin:top center;
+	-webkit-transform-origin:top center;
+	transform:rotateX(50deg)translateY(-115px)translate(-7.6%)rotateX(-90deg);
+	-webkit-transform:rotateX(50deg)translateY(-115px)translate(-7.6%)rotateX(-90deg);
+}
+
+#board {
+	position:relative;
+	display:flex;
+	display:-webkit-flex;
+	flex-wrap:wrap;
+	width:100%;
+	height:600px;
+	background:url(table-cloth-gray.png);
+	background-size:cover;
+	transform:rotateX(50deg);
+	-webkit-transform:rotateX(50deg);
+}
+
+/* pawn */
+#game div[id^="pawn-"] {
+	width:9%;
+	height:73.7px;
+	padding:5px;
+	position:absolute;
+	margin:0 auto;
+	top:262.15px;
+	left:0;
+	right:0;
+	transform-origin:bottom center;
+	-webkit-transform-origin:bottom center;
+	transition:all .1s ease;
+	-webkit-transition:all .25s ease;
+	z-index:1;
+}
+
+#game div[id^="pawn-"] svg {
+	height:73.7px;
+	width:50%;
+	max-width:46px;
+	margin:0 auto;
+	display:block;
+}
+
+#game div#pawn-1 svg {
+	fill:#FF5050;
+}
+
+#game div#pawn-1 svg :not(path:first-child){
+	stroke:#FF5050;
+}
+
+#game div#pawn-2 svg :not(path:first-child){
+	stroke:orange;
+}
+
+#game div#pawn-3 svg :not(path:first-child){
+	stroke:#00db00;
+}
+
+#game div#pawn-4 svg :not(path:first-child){
+	stroke:#05B9FF;
+}
+
+#game div#pawn-1.place-0 svg {
+	margin-left:0;
+}
+
+#game div#pawn-2.place-0 svg {
+	margin-left:17%;
+}
+
+#game div#pawn-3.place-0 svg, #game div.temp svg{
+	margin-right:17%;
+}
+
+#game div#pawn-4.place-0 svg {
+	margin-right:0;
+}
+
+/* board tiles */
+#board a {
+	width:9%;
+	height:73.7px;
+	padding:5px;
+	border:1px solid #e8e8e8;
+	background:#fff;
+	position:absolute;
+	margin:0 auto;
+	top:257px;
+	left:0;
+	right:0;
+	transition: opacity .5s ease;
+}
+#board a:first-child::before{
+	content: "start >>>";
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 10px;
+	text-align: center;
+}
+
+#game #board a[id^="tile-"]::after{
+	content:"";
+	background-size: contain;
+	background-position-y: 100%;
+	background-position-X: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+#board a.goose::after{
+	background: url("gans.svg") no-repeat;
+	right: 20% !important;
+}
+
+#board a#tile-6::after{
+	background: url("brug.svg") no-repeat;
+}
+
+#board a#tile-19::after{
+	background: url("herberg.svg") no-repeat;
+}
+
+#board a#tile-31::after{
+	background: url("put.svg") no-repeat;
+}
+
+#board a#tile-42::after{
+	background: url("doolhof.svg") no-repeat;
+}
+
+#board a#tile-52::after{
+	background: url("gevangenis.svg") no-repeat;
+}
+
+#board a#tile-58::after{
+	background: url("dood.svg") no-repeat;
+	right: 20% !important;
+}
+
+#board a#tile-63::after{
+	background: url("gewonnen.svg") no-repeat;
+	right: 10% !important;
+}
+
+/* tooltips */
+#players{
+	pointer-events: none;
+}
+#players>*{
+	pointer-events: auto;
+}
+
+#board a.goose::before,
+#board a#tile-6::before,
+#board a#tile-19::before,
+#board a#tile-31::before,
+#board a#tile-42::before,
+#board a#tile-52::before,
+#board a#tile-58::before,
+#board a#tile-63::before{
+	content:attr(data-title);
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 5%;
+	z-index: 2;
+	text-align: center;
+	background: rgba(255,255,255,0.9);
+	font-size: 1em;
+	opacity: 0;
+	transition: all .5s ease;
+	font-family:"Futura",Helvetica,Arial,sans-serif;
+}
+
+#game #board a:hover::before{
+	opacity: 1;
+}
+
+/* startscherm */
+#begin {
+    width: 40%;
+	margin: 100px auto;
+	background: white;
+	padding: 15px;
+	border-radius: 3px;
+    text-align: center;
+}
+
+#begin h3{
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+#begin label{
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+#begin select{
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+#begin button{
+    display: block;
+    margin: auto;
+}
+
+#begin input{
+    font-size: 1em;
+    margin: 0 auto 15px;
+    padding: 5px;
+    display: block;
+	border: 1px solid #FF5050;
+}
+
+body #begin input:focus{
+	outline: none;
+	border-width: 2px;
+}
+
+body #begin input:nth-of-type(1){
+	border-color: #FF5050;
+}
+
+body #begin input:nth-of-type(2){
+	border-color: orange;
+}
+
+body #begin input:nth-of-type(3){
+	border-color: #00db00;
+}
+
+body #begin input:nth-of-type(4){
+	border-color: #05B9FF;
+}
+
+/* Niels hier mag je de stijl van de gloed schrijven */
+#board .glow{
+<<<<<<< HEAD
+    background-color: greenyellow;
+    box-shadow: 10px 10px 0.2em greenyellow;
+=======
+	background-color: greenyellow;
+	box-shadow: 0 0 10px greenyellow;
+	z-index: 2;
+>>>>>>> 8e3bd55508dcc418722f6e8fd2c97805a83be6cc
+}
+
+/* eindscherm */
+
+#end{
+	width: 20%;
+	margin: 100px auto;
+	background: white;
+	padding: 15px;
+	border-radius: 3px;
+}
+
+#end h3{
+	font-size: 2em;
+}
+
+#end p{
+	font-size: 1.2em;
+	text-align: center;
+}
+
+#end button{
+	display: block;
+	margin: 20px auto 10px;
+}
+
+/* noscript */
+noscript div {
+	z-index: 999;
+	text-align: center;
+	font-size: 1.5vw;
+	background-color: #ff0a27;
+	position: fixed;
+	width: 100%;
+	padding: 15px;
+}
+
+noscript div a{
+	color: white;
+	text-decoration: none;
+}
+
+noscript div a:hover{
+	text-decoration: underline;
+}
+
+/* to small rules */
+@media screen and (max-width: 800px) {
+	#game::after {
+		display:none;
+	}
+	
+	#players {
+		display:flex;
+		display:-webkit-flex;
+		top:550px;
+		height:125px;
+	}
+	
+	#players>div {
+		position:relative;
+		width:initial;
+	}
+	#dice{
+		top:0;
+		right: 0;
+		bottom: initial;
+		left:initial;
+		background: none;
+	}
+	#begin {
+		width: 80%;
+	}
+    #whiteoverlay{
+	    width: 40%;
+    }
+	#board a.goose::before,
+	#board a#tile-6::before,
+	#board a#tile-19::before,
+	#board a#tile-31::before,
+	#board a#tile-42::before,
+	#board a#tile-52::before,
+	#board a#tile-58::before,
+	#board a#tile-63::before {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		font-size: 0.7em;
+	}
+}
+
+@media screen and (max-width: 605px) {
+	#players {
+		display:block;
+		height:initial;
+	}
+	
+	#players>div {
+		max-width:200px;
+		margin:20px auto;
+	}
+	#dice{
+		top:40px;
+	}
+}
