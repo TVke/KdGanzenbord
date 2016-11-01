@@ -301,23 +301,32 @@ button:enabled:hover {
 	display:block;
 }
 
-#game div#pawn-1 svg {
-	fill:#FF5050;
+#game div#pawn-1 svg path:first-child{
+	stroke:none;
+}
+#game div#pawn-2 svg path:first-child{
+	stroke:none;
+}
+#game div#pawn-3 svg path:first-child{
+	stroke:none;
+}
+#game div#pawn-4 svg path:first-child{
+	stroke:none;
 }
 
-#game div#pawn-1 svg :not(path:first-child){
+#game div#pawn-1 svg path{
 	stroke:#FF5050;
 }
 
-#game div#pawn-2 svg :not(path:first-child){
+#game div#pawn-2 svg path{
 	stroke:orange;
 }
 
-#game div#pawn-3 svg :not(path:first-child){
+#game div#pawn-3 svg path{
 	stroke:#00db00;
 }
 
-#game div#pawn-4 svg :not(path:first-child){
+#game div#pawn-4 svg path{
 	stroke:#05B9FF;
 }
 
