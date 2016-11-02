@@ -514,14 +514,9 @@ body #begin input:nth-of-type(4){
 
 /* Niels hier mag je de stijl van de gloed schrijven */
 #board .glow{
-<<<<<<< HEAD
-    background-color: greenyellow;
-    box-shadow: 10px 10px 0.2em greenyellow;
-=======
-	background-color: greenyellow;
-	box-shadow: 0 0 10px greenyellow;
-	z-index: 2;
->>>>>>> 8e3bd55508dcc418722f6e8fd2c97805a83be6cc
+    background-color: black;
+    box-shadow: 0 0 10px greenyellow;
+    z-index: 2;
 }
 
 /* eindscherm */
