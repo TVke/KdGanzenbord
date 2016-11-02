@@ -25,6 +25,7 @@ var gameView = {
 	playerAmount: document.getElementById("playerAmount"),
 	startButton: document.querySelector("#begin button"),
 	playerInput: document.querySelectorAll("#begin input[type=text]"),
+	diceContainer: document.getElementById("dice"),
 	dice: document.querySelectorAll("#dice div"),
 	pawns: document.querySelectorAll("div[id^='pawn-']"),
 	tiles: document.querySelectorAll("#board a"),
@@ -66,11 +67,18 @@ var gameController = {
 	rollDice: function () {
 		var activePlayerId = gameModel.activePlayer.publish();
 		var totalThrow = 0;
+		var lastDie = gameView.dice[gameModel.dice.length-1];
 		for (let i = 0, ilen = gameModel.dice.length; i < ilen; ++i) {
 			var randomNumber = Math.floor((Math.random() * 6) + 1);
 			gameModel.dice[i].publish(randomNumber);
+			if(i===0){
+				gameView.dice[i].setAttribute("aria-label","Je dobbelde "+randomNumber);
+			}else{
+				gameView.dice[i].setAttribute("aria-label","en "+randomNumber);
+			}
 			totalThrow += randomNumber;
 		}
+		lastDie.setAttribute("aria-label",lastDie.getAttribute("aria-label")+". "+totalThrow+" verder");
 		// disable after button press
 		gameView.playerButtons[activePlayerId].setAttribute('disabled', '');
 		var currentPlace = gameModel.pawns[activePlayerId].publish();
@@ -79,6 +87,7 @@ var gameController = {
 		gameModel.tempPos.publish(currentPlace);
 		gameModel.activePlayer.publish(activePlayerId);
 		gameModel.currentThrow.publish(totalThrow);
+		gameView.diceContainer.classList.remove("hidden");
 	},
 	movePawn: function (place) {
 		var startCounter = gameModel.subPos.publish();
@@ -312,6 +321,7 @@ var gameController = {
 			gameView.playerButtons[nextPlayerId].removeAttribute('disabled');
 			gameView.playerButtons[nextPlayerId].focus();
 		}
+		gameView.diceContainer.classList.add("hidden");
 	},
 	end: function (status) {
 		if (status === "win") {

@@ -14,6 +14,8 @@
 		<meta name="apple-mobile-web-app-title" content="KdGanzenbord">
 		<meta name="application-name" content="KdGanzenbord">
 		<meta name="theme-color" content="#ffffff">
+		
+		<meta name="description" content="Een digitaal ganzenbord in de stijl van KdG">
 	</head>
 	<body>
 	<noscript>
@@ -24,7 +26,7 @@
 			<h2>KWEK</h2>
 		</header>
 		<div id="overlay">
-			<div id="begin">
+			<div role="alertdialog" id="begin">
 				<h3>Met hoeveel spelers wil je spelen?</h3>
 				<label for="playerAmount">Aantal spelers:</label>
 				<select id="playerAmount" autofocus>
@@ -33,46 +35,50 @@
 				    <option value="2">2</option>
 					<option value="1">1</option>
 				</select>
-				<input type="text" name="player1" placeholder="Speler 1" maxlength="9">
-				<input type="text" name="player2" placeholder="Speler 2" maxlength="9">
-				<input type="text" name="player3" placeholder="Speler 3" maxlength="9">
-				<input type="text" name="player4" placeholder="Speler 4" maxlength="9">
-				<button>Speel!</button>
+				<label for="p1" class="hidden">naam Speler 1</label>
+				<input type="text" name="player1" placeholder="Speler 1" id="p1" maxlength="9">
+				<label for="p2" class="hidden">naam Speler 2</label>
+				<input type="text" name="player2" placeholder="Speler 2" id="p2" maxlength="9">
+				<label for="p3" class="hidden">naam Speler 3</label>
+				<input type="text" name="player3" placeholder="Speler 3" id="p3" maxlength="9">
+				<label for="p4" class="hidden">naam Speler 4</label>
+				<input type="text" name="player4" placeholder="Speler 4" id="p4" maxlength="9">
+				<button role="button" tabindex="0">Speel!</button>
 			</div>
-			<div id="end" class="hidden">
-				<h3>Gewonnen!</h3>
+			<div role="alertdialog" id="end" class="hidden">
+				<h3 role="textbox">Gewonnen!</h3>
 				<p></p>
-				<button autofocus>Nog een keer!</button>
+				<button autofocus>Nog een keer?</button>
 			</div>
 		</div>
-		<div id="whiteoverlay" class="hidden">
-				<h3></h3>
+		<div role="alertdialog" id="whiteoverlay" class="hidden">
+				<h3 role="textbox"></h3>
 				<p></p>
 		</div>
-		<div id="dice">
-			<div id="die-1" class="rolled-0 hidden"></div>
-			<div id="die-2" class="rolled-0 hidden"></div>
+		<div role="alert" id="dice">
+			<div role="textbox" id="die-1" aria-label="Je dobbelde 2" class="rolled-0 hidden"></div>
+			<div role="textbox" id="die-2" aria-label="en 4" class="rolled-0 hidden"></div>
 		</div>
 		<div id="players">
 			<div id="player-1" class="hidden">
 				<img src="style/player.svg" alt="image of player 1">
 				<span></span>
-				<button disabled>Dobbel</button>
+				<button aria-label="Speler 1 Dobbel" disabled>Dobbel</button>
 			</div>
 			<div id="player-2" class="hidden">
 				<img src="style/player.svg" alt="image of player 2">
 				<span></span>
-				<button disabled>Dobbel</button>
+				<button aria-label="Speler 2 Dobbel" disabled>Dobbel</button>
 			</div>
 			<div id="player-3" class="hidden">
 				<img src="style/player.svg" alt="image of player 3">
 				<span></span>
-				<button disabled>Dobbel</button>
+				<button aria-label="Speler 3 Dobbel" disabled>Dobbel</button>
 			</div>
 			<div id="player-4" class="hidden">
 				<img src="style/player.svg" alt="image of player 4">
 				<span></span>
-				<button disabled>Dobbel</button>
+				<button aria-label="Speler 4 Dobbel" disabled>Dobbel</button>
 			</div>
 		</div>
 		<div id="game">
@@ -89,70 +95,70 @@
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 63.98 127.32"><path d="M5.54 111.88l15-51.71-11.24-8.17 10.14-11.83s-6.84-10.3-6.44-18.82 11.3-15.73 19.08-16.08 19.25 5 19.65 14.4-1.83 19.23-5.93 22.22c2.25 3.54 9.36 12.21 9.36 12.21l-10.86 6.17 13.89 52s-10.5 9.43-23.27 10z" fill="#fff"/><path d="M44.31 61.24l14.85 53m-40.72-45.9l-13.65 45.78m54.9-3.53a39 39 0 0 1-55.15.07l-.07-.07m53-58.86a35.22 35.22 0 0 1-49.8 0M48.91 46.08l9.28 8.52m-40.88-11.39l-10 10.9M28.71 5a19.93 19.93 0 1 1 6.59 39.31m12.18-6.54a19.93 19.93 0 1 1-30.48-25.68M12.23 24.79m20.42 20.42" stroke="#000" stroke-miterlimit="10" stroke-width="10" fill="none"/></svg>
 			</div>
 			<div id="board">
-				<a id="tile-0"><p>0</p></a>
-				<a id="tile-1"><p>1</p></a>
-				<a id="tile-2"><p>2</p></a>
-				<a id="tile-3"><p>3</p></a>
-				<a id="tile-4"><p>4</p></a>
-				<a id="tile-5"><p>5</p></a>
-				<a id="tile-6"><p>6</p></a>
-				<a id="tile-7"><p>7</p></a>
-				<a id="tile-8"><p>8</p></a>
-				<a id="tile-9"><p>9</p></a>
-				<a id="tile-10"><p>10</p></a>
-				<a id="tile-11"><p>11</p></a>
-				<a id="tile-12"><p>12</p></a>
-				<a id="tile-13"><p>13</p></a>
-				<a id="tile-14"><p>14</p></a>
-				<a id="tile-15"><p>15</p></a>
-				<a id="tile-16"><p>16</p></a>
-				<a id="tile-17"><p>17</p></a>
-				<a id="tile-18"><p>18</p></a>
-				<a id="tile-19"><p>19</p></a>
-				<a id="tile-20"><p>20</p></a>
-				<a id="tile-21"><p>21</p></a>
-				<a id="tile-22"><p>22</p></a>
-				<a id="tile-23"><p>23</p></a>
-				<a id="tile-24"><p>24</p></a>
-				<a id="tile-25"><p>25</p></a>
-				<a id="tile-26"><p>26</p></a>
-				<a id="tile-27"><p>27</p></a>
-				<a id="tile-28"><p>28</p></a>
-				<a id="tile-29"><p>29</p></a>
-				<a id="tile-30"><p>30</p></a>
-				<a id="tile-31"><p>31</p></a>
-				<a id="tile-32"><p>32</p></a>
-				<a id="tile-33"><p>33</p></a>
-				<a id="tile-34"><p>34</p></a>
-				<a id="tile-35"><p>35</p></a>
-				<a id="tile-36"><p>36</p></a>
-				<a id="tile-37"><p>37</p></a>
-				<a id="tile-38"><p>38</p></a>
-				<a id="tile-39"><p>39</p></a>
-				<a id="tile-40"><p>40</p></a>
-				<a id="tile-41"><p>41</p></a>
-				<a id="tile-42"><p>42</p></a>
-				<a id="tile-43"><p>43</p></a>
-				<a id="tile-44"><p>44</p></a>
-				<a id="tile-45"><p>45</p></a>
-				<a id="tile-46"><p>46</p></a>
-				<a id="tile-47"><p>47</p></a>
-				<a id="tile-48"><p>48</p></a>
-				<a id="tile-49"><p>49</p></a>
-				<a id="tile-50"><p>50</p></a>
-				<a id="tile-51"><p>51</p></a>
-				<a id="tile-52"><p>52</p></a>
-				<a id="tile-53"><p>53</p></a>
-				<a id="tile-54"><p>54</p></a>
-				<a id="tile-55"><p>55</p></a>
-				<a id="tile-56"><p>56</p></a>
-				<a id="tile-57"><p>57</p></a>
-				<a id="tile-58"><p>58</p></a>
-				<a id="tile-59"><p>59</p></a>
-				<a id="tile-60"><p>60</p></a>
-				<a id="tile-61"><p>61</p></a>
-				<a id="tile-62"><p>62</p></a>
-				<a id="tile-63"><p>63</p></a>
+				<a aria-hidden="true" id="tile-0"><p>0</p></a>
+				<a aria-hidden="true" id="tile-1"><p>1</p></a>
+				<a aria-hidden="true" id="tile-2"><p>2</p></a>
+				<a aria-hidden="true" id="tile-3"><p>3</p></a>
+				<a aria-hidden="true" id="tile-4"><p>4</p></a>
+				<a aria-hidden="true" id="tile-5"><p>5</p></a>
+				<a aria-hidden="true" id="tile-6"><p>6</p></a>
+				<a aria-hidden="true" id="tile-7"><p>7</p></a>
+				<a aria-hidden="true" id="tile-8"><p>8</p></a>
+				<a aria-hidden="true" id="tile-9"><p>9</p></a>
+				<a aria-hidden="true" id="tile-10"><p>10</p></a>
+				<a aria-hidden="true" id="tile-11"><p>11</p></a>
+				<a aria-hidden="true" id="tile-12"><p>12</p></a>
+				<a aria-hidden="true" id="tile-13"><p>13</p></a>
+				<a aria-hidden="true" id="tile-14"><p>14</p></a>
+				<a aria-hidden="true" id="tile-15"><p>15</p></a>
+				<a aria-hidden="true" id="tile-16"><p>16</p></a>
+				<a aria-hidden="true" id="tile-17"><p>17</p></a>
+				<a aria-hidden="true" id="tile-18"><p>18</p></a>
+				<a aria-hidden="true" id="tile-19"><p>19</p></a>
+				<a aria-hidden="true" id="tile-20"><p>20</p></a>
+				<a aria-hidden="true" id="tile-21"><p>21</p></a>
+				<a aria-hidden="true" id="tile-22"><p>22</p></a>
+				<a aria-hidden="true" id="tile-23"><p>23</p></a>
+				<a aria-hidden="true" id="tile-24"><p>24</p></a>
+				<a aria-hidden="true" id="tile-25"><p>25</p></a>
+				<a aria-hidden="true" id="tile-26"><p>26</p></a>
+				<a aria-hidden="true" id="tile-27"><p>27</p></a>
+				<a aria-hidden="true" id="tile-28"><p>28</p></a>
+				<a aria-hidden="true" id="tile-29"><p>29</p></a>
+				<a aria-hidden="true" id="tile-30"><p>30</p></a>
+				<a aria-hidden="true" id="tile-31"><p>31</p></a>
+				<a aria-hidden="true" id="tile-32"><p>32</p></a>
+				<a aria-hidden="true" id="tile-33"><p>33</p></a>
+				<a aria-hidden="true" id="tile-34"><p>34</p></a>
+				<a aria-hidden="true" id="tile-35"><p>35</p></a>
+				<a aria-hidden="true" id="tile-36"><p>36</p></a>
+				<a aria-hidden="true" id="tile-37"><p>37</p></a>
+				<a aria-hidden="true" id="tile-38"><p>38</p></a>
+				<a aria-hidden="true" id="tile-39"><p>39</p></a>
+				<a aria-hidden="true" id="tile-40"><p>40</p></a>
+				<a aria-hidden="true" id="tile-41"><p>41</p></a>
+				<a aria-hidden="true" id="tile-42"><p>42</p></a>
+				<a aria-hidden="true" id="tile-43"><p>43</p></a>
+				<a aria-hidden="true" id="tile-44"><p>44</p></a>
+				<a aria-hidden="true" id="tile-45"><p>45</p></a>
+				<a aria-hidden="true" id="tile-46"><p>46</p></a>
+				<a aria-hidden="true" id="tile-47"><p>47</p></a>
+				<a aria-hidden="true" id="tile-48"><p>48</p></a>
+				<a aria-hidden="true" id="tile-49"><p>49</p></a>
+				<a aria-hidden="true" id="tile-50"><p>50</p></a>
+				<a aria-hidden="true" id="tile-51"><p>51</p></a>
+				<a aria-hidden="true" id="tile-52"><p>52</p></a>
+				<a aria-hidden="true" id="tile-53"><p>53</p></a>
+				<a aria-hidden="true" id="tile-54"><p>54</p></a>
+				<a aria-hidden="true" id="tile-55"><p>55</p></a>
+				<a aria-hidden="true" id="tile-56"><p>56</p></a>
+				<a aria-hidden="true" id="tile-57"><p>57</p></a>
+				<a aria-hidden="true" id="tile-58"><p>58</p></a>
+				<a aria-hidden="true" id="tile-59"><p>59</p></a>
+				<a aria-hidden="true" id="tile-60"><p>60</p></a>
+				<a aria-hidden="true" id="tile-61"><p>61</p></a>
+				<a aria-hidden="true" id="tile-62"><p>62</p></a>
+				<a aria-hidden="true" id="tile-63"><p>63</p></a>
 			</div>
 		</div>
 		<script type="text/javascript" src="game.js"></script>
