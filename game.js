@@ -488,8 +488,10 @@ var init = function() {
 		for (let i = 0; i < playerAmount; ++i) {
 			if (gameView.playerInput[i].value !== "") {
 				playerNames.push(gameView.playerInput[i].value);
+				gameView.playerButtons[i].setAttribute("aria-label",gameView.playerInput[i].value + " Dobbel");
 			} else {
 				playerNames.push("Speler " + (i + 1));
+				gameView.playerButtons[i].setAttribute("aria-label","Speler " + (i + 1) + " Dobbel");
 			}
 		}
 		gameSetup.players(playerAmount, playerNames);
