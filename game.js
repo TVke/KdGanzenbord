@@ -53,6 +53,7 @@ var gameModel = {
 	endTile: new Observable(),
 	tempPos: new Observable(),
 	subPos: new Observable(),
+	goingUp: new Observable(),
 	activePlayer: new Observable(),
 	currentThrow: new Observable(),
 	pawnMoveOver: new Observable(),
@@ -110,6 +111,7 @@ var gameController = {
 			if (place > startCounter) { // telt op
 				if (startCounter != maxCounter) {
 					gameView.pawns[playerId].className = "place-" + ++startCounter;
+					gameModel.goingUp.publish(true);
 				} else {
 					clearInterval(move);
 					gameModel.subPos.publish(maxCounter);
@@ -119,6 +121,7 @@ var gameController = {
 			} else if (place < startCounter) {// telt af
 				if (startCounter > minCounter) {
 					gameView.pawns[playerId].className = "place-" + --startCounter;
+					gameModel.goingUp.publish(false);
 				} else {
 					clearInterval(move);
 					gameView.pawns[playerId].className = "place-" + minCounter;
@@ -218,7 +221,7 @@ var gameController = {
 		for (let i = 0, ilen = gameModel.geese.length; i < ilen; ++i) {
 			if (gameModel.geese[i] === data) {
 				setTimeout(function () {
-					if (gameModel.tempPos.publish() < data || gameModel.subPos.publish() > data) {
+					if (gameModel.goingUp.publish()) {
 						gameModel.pawns[playerId].publish(data + gameModel.currentThrow.publish());
 						gameController.displayInfo("Gans", "Je gaat " + gameModel.currentThrow.publish() + " vakjes verder!");
 					} else {
