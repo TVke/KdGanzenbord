@@ -241,7 +241,7 @@ var gameController = {
 					break;
 				case 19:
 					gameController.skipTurn();
-					gameController.displayInfo("Herbeg", "Je moet een beurt overslaan!");
+					gameController.displayInfo("Herberg", "Je moet een beurt overslaan!");
 					break;
 				case 31:
 					gameController.stickyPlace(31);
